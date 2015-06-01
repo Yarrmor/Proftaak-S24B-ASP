@@ -15,28 +15,31 @@ namespace Proftaak_S24B_ASP
             {
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
-
-                VulLogin();
             }
             else if((string)Session["IngelogdAccount"] == "Beheerder")
             {
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
                 btnBeheer.Visible = true;
-
-                VulLogin();
             }
+
+            VulSubMenu();
         }
 
-        public void VulLogin()
+        public void VulSubMenu()
         {
-            tbxGebruikersnaam.Visible = false;
-            tbxWachtwoord.Visible = false;
-            btnLogin.Visible = false;
-            lblIngelogdGebruikersnaam.Visible = true;
-            lblIngelogdGebruikersnaam.Text = (string)Session["IngelogdAccount"];
-            lblWachtwoord.Visible = false;
-            btnLogout.Visible = true;
+            TreeNode tn = new TreeNode("Test");
+            TreeNode tn2 = new TreeNode("Test2");
+            TreeNode tn3 = new TreeNode("Test2");
+            TreeNode tn4 = new TreeNode("Test2");
+            TreeNode tn5 = new TreeNode("Test2");
+            TreeNode tn6 = new TreeNode("Test2");
+            tvwSubMenu.Nodes.Add(tn);
+            tn.ChildNodes.Add(tn2);
+            tn2.ChildNodes.Add(tn3);
+            tn3.ChildNodes.Add(tn4);
+            tn4.ChildNodes.Add(tn5);
+            tn5.ChildNodes.Add(tn6);
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
