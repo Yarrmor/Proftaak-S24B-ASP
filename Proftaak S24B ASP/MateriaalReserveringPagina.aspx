@@ -19,7 +19,7 @@
     
     <h1>Materiaal Reserveren</h1>
     <asp:Label ID="lblInfo" runat="server" Text="Hier kunt u materiaal reserveren indien u een plaats gereserveerd heeft."></asp:Label>
-    </br>
+    <br />
 
     <div>
     <h2>Materiaal:</h2>
@@ -37,24 +37,24 @@
         <!--  Details -->
         <p>Materiaal:</p>
         <asp:Label class="ReserverenLabels" ID="lblMateriaalNaam" runat="server" Text="Selecteer eerst een materiaal!"></asp:Label>
-        </br>
+        <br />
         <p>Voorraad:</p>
         <asp:Label class="ReserverenLabels" ID="lblMateriaalVoorraad" runat="server" Text="0"></asp:Label>
-        </br>
+        <br />
         <p>Prijs:</p>
         <asp:Label class="ReserverenLabels" ID="lblMateriaalPrijs" runat="server" Text="€0.00"></asp:Label>
-        </br>
+        <br />
 
         <!--  Datum -->
         <h3>Datum:</h3>
         <p>Van:</p>
         <asp:DropDownList ID="cbxMateriaalDatumVan" runat="server">
         </asp:DropDownList>
-        </br>
+        <br />
         <p>Tot:</p>
         <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server">
         </asp:DropDownList>
-        </br></br>
+        <br /><br />
 
         <!--  Plaats -->
         <asp:Button ID="btnReserveer" runat="server" Text="Reserveer" OnClick="btnReserveer_Click" />
