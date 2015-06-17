@@ -126,7 +126,62 @@
                     </asp:Table>
                     <asp:Label ID="lblEmailsLeden" runat="server" Visible="false" Text="Email adressen leden:"></asp:Label>
                     <asp:Table ID="tblGroepsgegevens" runat="server">
-                       
+                       <asp:TableRow Visible="false" id="tbrEmail2" runat="server">
+                           <asp:TableCell>
+                               Email lid 2:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail2" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail3" runat="server">
+                           <asp:TableCell>
+                               Email lid 3:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail3" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail4" runat="server">
+                           <asp:TableCell>
+                               Email lid 4:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail4" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail5" runat="server">
+                           <asp:TableCell>
+                               Email lid 5:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail5" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail6" runat="server">
+                           <asp:TableCell>
+                               Email lid 6:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail6" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail7" runat="server">
+                           <asp:TableCell>
+                               Email lid 7:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail7" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
+                        <asp:TableRow Visible="false" id="tbrEmail8" runat="server">
+                           <asp:TableCell>
+                               Email lid 8:
+                           </asp:TableCell>
+                           <asp:TableCell>
+                               <asp:TextBox ID="tbEmail8" runat="server"></asp:TextBox>
+                           </asp:TableCell>
+                       </asp:TableRow>
                     </asp:Table>
                      
                 </ContentTemplate>

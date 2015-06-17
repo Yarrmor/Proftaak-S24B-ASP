@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Afbeeldingen\Event1_Map.png" />
+    <Content Include="InlogPagina.aspx" />
     <Content Include="MateriaalReserveringPagina.aspx" />
     <Content Include="PlaatsReserveringPagina.aspx" />
     <Content Include="Site.Master" />
@@ -79,6 +80,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InlogPagina.aspx.cs">
+      <DependentUpon>InlogPagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InlogPagina.aspx.designer.cs">
+      <DependentUpon>InlogPagina.aspx</DependentUpon>
     </Compile>
     <Compile Include="MateriaalReserveringPagina.aspx.cs">
       <DependentUpon>MateriaalReserveringPagina.aspx</DependentUpon>

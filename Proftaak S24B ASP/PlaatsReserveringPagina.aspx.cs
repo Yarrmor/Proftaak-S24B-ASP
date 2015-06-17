@@ -29,38 +29,32 @@ namespace Proftaak_S24B_ASP
         /// <param name="e"></param>
         protected void cbxAantalPersonen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int aantal;
+            int aantal = AantalPersonen();
 
-            if (int.TryParse(cbxAantalPersonen.SelectedValue.ToString(), out aantal))
+            if (aantal != -1)
             {
-                lblEmailsLeden.Visible = (aantal != 1);
+                // tblGroepsgegevens.Rows[i].Visible deed geen juiste postback
+                List<TableRow> tbrs = new List<TableRow> { tbrEmail2, tbrEmail3, tbrEmail4, tbrEmail5, tbrEmail6, tbrEmail7, tbrEmail8 };
 
-                int rijen = tblGroepsgegevens.Rows.Count;
-
-                if (rijen > aantal - 1)
+                for (int i = 0; i < 7; i++)
                 {
-                    tblGroepsgegevens.Rows.RemoveAt(aantal);
+                    tbrs[i].Visible = (i + 2 <= aantal);
                 }
-                else if (rijen < aantal - 1)
-                {
-                    for (int i = 0; i < aantal - rijen - 1; i++)
-                    {
-                        TableRow row = new TableRow();
-
-                        TableCell cellLabel = new TableCell();
-                        cellLabel.Wrap = false;
-                        cellLabel.Text = "Email lid:";
-                        row.Cells.Add(cellLabel);
-
-                        TableCell cellTextbox = new TableCell();
-                        cellTextbox.Controls.Add(new TextBox());
-                        row.Cells.Add(cellTextbox);
-
-                        tblGroepsgegevens.Rows.Add(row);
-                    }
-                }
-
             }
+        }
+
+        /// <summary>
+        /// Haalt het aantal personen geselecteerd voor het event op door te kijken naar de waarde van de dropdown lijst
+        /// </summary>
+        /// <returns></returns>
+        private int AantalPersonen()
+        {
+            int i;
+
+            if (int.TryParse(cbxAantalPersonen.SelectedValue.ToString(), out i))
+                return i;
+            else
+                return -1;
         }
 
         protected void btnReserveren_Click(object sender, EventArgs e)
