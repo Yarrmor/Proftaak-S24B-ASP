@@ -90,6 +90,11 @@
             display: inline-block;
             margin: 0px;
         }
+        span {
+            color: #737373;
+            display: inline-block;
+            margin: 0px;
+        }
         .hidden {
             display: none;
             visibility: hidden;
