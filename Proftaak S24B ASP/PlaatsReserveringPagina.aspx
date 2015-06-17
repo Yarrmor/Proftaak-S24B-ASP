@@ -113,15 +113,27 @@
         </div>
         <div id="divGroepsgegevens" style="display:table-cell;padding-left:20px;">
             <h3>Groepsgegevens:</h3>
-            <asp:Table ID="Table1" runat="server">
-                <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Aantal personen:</asp:TableCell>
-                    <asp:TableCell runat="server">
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+            
+            <asp:UpdatePanel ID="pnlGroepsgegevens" runat="server">
+                <ContentTemplate>
+                    <asp:Table ID="tblGroepsAantal" runat="server">
+                       <asp:TableRow runat="server">
+                            <asp:TableCell Wrap="false" runat="server">Aantal personen:</asp:TableCell>
+                            <asp:TableCell runat="server">
+                                <asp:DropDownList ID="cbxAantalPersonen" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxAantalPersonen_SelectedIndexChanged"></asp:DropDownList>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                    <asp:Label ID="lblEmailsLeden" runat="server" Visible="false" Text="Email adressen leden:"></asp:Label>
+                    <asp:Table ID="tblGroepsgegevens" runat="server">
+                       
+                    </asp:Table>
+                     
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            
         </div>
-            </div>
+        </div>
     </div>
+
 </asp:Content>

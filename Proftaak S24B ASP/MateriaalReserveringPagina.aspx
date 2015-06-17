@@ -22,11 +22,17 @@
     <br />
 
     <div>
+        
     <h2>Materiaal:</h2>
-    <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
+        <asp:UpdatePanel ID="updPnl" runat="server">
+            <ContentTemplate>
+                  <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
         <asp:ListItem>Kon materialen niet ophalen!</asp:ListItem>
     </asp:ListBox>
     <asp:Button ID="btnVervers" runat="server" Text="Ververs lijst" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+  
      
         </div>
 
@@ -36,13 +42,13 @@
         
         <!--  Details -->
         <p>Materiaal:</p>
-        <asp:Label class="ReserverenLabels" ID="lblMateriaalNaam" runat="server" Text="Selecteer eerst een materiaal!"></asp:Label>
+        <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalNaam" runat="server" Text="Selecteer eerst een materiaal!"></asp:Label>
         <br />
         <p>Voorraad:</p>
-        <asp:Label class="ReserverenLabels" ID="lblMateriaalVoorraad" runat="server" Text="0"></asp:Label>
+        <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalVoorraad" runat="server" Text="0"></asp:Label>
         <br />
         <p>Prijs:</p>
-        <asp:Label class="ReserverenLabels" ID="lblMateriaalPrijs" runat="server" Text="€0.00"></asp:Label>
+        <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalPrijs" runat="server" Text="€0.00"></asp:Label>
         <br />
 
         <!--  Datum -->
