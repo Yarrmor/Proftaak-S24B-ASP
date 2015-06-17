@@ -131,9 +131,10 @@
                      
                 </ContentTemplate>
             </asp:UpdatePanel>
-            
         </div>
         </div>
+        <br />
+            <asp:Button ID="btnReserveren" runat="server" Text="Plaats reservering" OnClick="btnReserveren_Click" />
     </div>
 
 </asp:Content>

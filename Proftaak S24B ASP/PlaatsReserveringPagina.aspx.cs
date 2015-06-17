@@ -21,7 +21,12 @@ namespace Proftaak_S24B_ASP
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Gebaseerd op het aantal geselecteerde personen, worden email velden toegevoegd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void cbxAantalPersonen_SelectedIndexChanged(object sender, EventArgs e)
         {
             int aantal;
@@ -56,6 +61,11 @@ namespace Proftaak_S24B_ASP
                 }
 
             }
+        }
+
+        protected void btnReserveren_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
