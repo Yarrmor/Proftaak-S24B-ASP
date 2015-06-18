@@ -78,6 +78,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Achterliggende klassen\DatabaseManager\DatabaseManager.cs" />
     <Compile Include="Achterliggende klassen\MediaSysteem\Account.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\PlaatsReservering.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Plek.cs" />

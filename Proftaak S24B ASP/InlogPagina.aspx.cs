@@ -13,5 +13,10 @@ namespace Proftaak_S24B_ASP
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

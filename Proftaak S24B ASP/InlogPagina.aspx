@@ -21,5 +21,5 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Button ID="btnLogin" runat="server" Text="Inloggen" />
+    <asp:Button ID="btnLogin" runat="server" Text="Inloggen" OnClick="btnLogin_Click" />
 </asp:Content>
