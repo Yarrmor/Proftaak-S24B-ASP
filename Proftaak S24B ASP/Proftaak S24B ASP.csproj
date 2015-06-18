@@ -66,6 +66,7 @@
     <Content Include="MateriaalReserveringPagina.aspx" />
     <Content Include="PlaatsReserveringPagina.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="ActiveerAccount.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,6 +137,13 @@
     <Compile Include="Achterliggende klassen\ToegangscontroleSysteem.cs" />
     <Compile Include="Achterliggende klassen\VerhuurSysteem\VerhuurSysteem.cs" />
     <Compile Include="Achterliggende klassen\VerhuurSysteem\Verhuur.cs" />
+    <Compile Include="ActiveerAccount.aspx.cs">
+      <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveerAccount.aspx.designer.cs">
+      <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,7 +11,10 @@ namespace Proftaak_S24B_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Account"] != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

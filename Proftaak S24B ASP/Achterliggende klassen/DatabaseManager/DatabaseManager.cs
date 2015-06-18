@@ -162,6 +162,38 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        /// <summary>
+        /// Verkrijgt een account op basis van de activatieHash
+        /// </summary>
+        /// <param name="activatieHash"></param>
+        /// <returns></returns>
+        public Account VerkrijgAccount(string activatieHash)
+        {
+            try
+            {
+                string sql = "SELECT ID, GEBRUIKERSNAAM, EMAIL, GEACTIVEERD FROM ACCOUNT WHERE ACTIVATIEHASH = :activatieHash";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":activatieHash", activatieHash);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int ID = Convert.ToInt32(reader["ID"]);
+                string email = reader["EMAIL"].ToString();
+                string gebruikersnaam = reader["GEBRUIKERSNAAM"].ToString();
+                bool geactiveerd = Convert.ToBoolean(reader["GEACTIVEERD"]);
+
+                Account acc = new Account(ID, gebruikersnaam, email, geactiveerd);
+
+                return acc;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         #endregion
     }
 }
