@@ -10,6 +10,7 @@
         input[type="checkbox"] {
             float:left;
         }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -127,7 +128,7 @@
                     <asp:Label ID="lblEmailsLeden" runat="server" Visible="false" Text="Email adressen leden:"></asp:Label>
                     <asp:Table ID="tblGroepsgegevens" runat="server">
                        <asp:TableRow Visible="false" id="tbrEmail2" runat="server">
-                           <asp:TableCell>
+                           <asp:TableCell Wrap="False">
                                Email lid 2:
                            </asp:TableCell>
                            <asp:TableCell>

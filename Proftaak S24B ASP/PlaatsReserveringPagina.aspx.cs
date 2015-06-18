@@ -13,6 +13,7 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Als combobox aantal personen leeg is, wordt deze gevuld. maximumAantalPersonen is in dit geval hardcoded
             if (cbxAantalPersonen.Items.Count == 0)
             {
                 for (int i = 1; i <= maximumAantalPersonen; i++)
@@ -23,7 +24,8 @@ namespace Proftaak_S24B_ASP
         }
         
         /// <summary>
-        /// Gebaseerd op het aantal geselecteerde personen, worden email velden toegevoegd
+        /// Gebaseerd op het aantal geselecteerde personen, worden email velden (on)zichtbaar gemaakt.
+        /// Niet live toegevoegd of verwijderd om data te behouden die erin stonden, en om validatie makkelijker te implementeren.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
