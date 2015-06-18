@@ -13,6 +13,7 @@ namespace Proftaak_S24B_ASP
 
         public int Grootte { get; set; }
 
+<<<<<<< HEAD
         public Categorie Categorie { get; set; }
 
         public Bestand(int ID, DateTime datum, Account account, Categorie categorie, string naam, string bestandsLocatie, int grootte) 
@@ -22,6 +23,12 @@ namespace Proftaak_S24B_ASP
             this.BestandsLocatie = bestandsLocatie;
             this.Grootte = grootte;
             this.Categorie = categorie;
+=======
+        public Bestand(int ID, DateTime datum, Account account, Categorie Categorie, string naam, string bestandsLocatie, int grootte) 
+            : base(ID, datum, account) 
+        {
+
+>>>>>>> origin/Update
         }
 
         public void Download()
