@@ -78,6 +78,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Achterliggende klassen\MediaSysteem\Account.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\PlaatsReservering.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Plek.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Specificatie.cs" />
+    <Compile Include="Achterliggende klassen\BeheerSysteem.cs" />
+    <Compile Include="Achterliggende klassen\MediaSysteem\Bijdrage.cs" />
+    <Compile Include="Achterliggende klassen\MediaSysteem\Bestand.cs" />
+    <Compile Include="Achterliggende klassen\MediaSysteem\Categorie.cs" />
+    <Compile Include="Achterliggende klassen\MediaSysteem\Bericht.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -85,6 +94,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="InlogPagina.aspx.cs">
       <DependentUpon>InlogPagina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -106,6 +116,17 @@
     <Compile Include="PlaatsReserveringPagina.aspx.designer.cs">
       <DependentUpon>PlaatsReserveringPagina.aspx</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\PlaatsReserveringsSysteem.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Locatie.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Persoon.cs" />
+    <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Event.cs" />
+    <Compile Include="Achterliggende klassen\InlogSysteem.cs" />
+    <Compile Include="Achterliggende klassen\VerhuurSysteem\Exemplaar.cs" />
+    <Compile Include="Achterliggende klassen\VerhuurSysteem\Product.cs" />
+    <Compile Include="Achterliggende klassen\VerhuurSysteem\ProductCategorie.cs" />
+    <Compile Include="Achterliggende klassen\MediaSysteem\Melding.cs" />
+>>>>>>> origin/Update
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -114,6 +135,9 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Achterliggende klassen\ToegangscontroleSysteem.cs" />
+    <Compile Include="Achterliggende klassen\VerhuurSysteem\VerhuurSysteem.cs" />
+    <Compile Include="Achterliggende klassen\VerhuurSysteem\Verhuur.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
