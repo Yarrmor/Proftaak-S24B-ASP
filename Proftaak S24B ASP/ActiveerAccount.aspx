@@ -16,30 +16,37 @@
     <table class="auto-style1">
         <tr>
             <td class="auto-style2">
-                <asp:Label ID="lblValOngeldig" runat="server" ForeColor="Red" Text="Ingevoerde validatie code is ongeldig!"></asp:Label>
+                <asp:Label ID="lblValOngeldig" runat="server" ForeColor="Red" Text="Ingevoerde validatie code is ongeldig!" Visible="False"></asp:Label>
+                <br />
+                <asp:Label ID="lblActivatieHashGebruikt" runat="server" ForeColor="Red" Text="ActivatieHash is al gebruikt!"></asp:Label>
             </td>
             <td class="auto-style3">
-                <asp:Label ID="lblValInformatie" runat="server" Text="Stel wachtwoord in voor: "></asp:Label>
+                <asp:Label ID="lblValInformatie" runat="server"></asp:Label>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style2">
-                <asp:Label ID="lblWachtwoord" runat="server" Text="Wachtwoord"></asp:Label>
-            </td>
+            <td class="auto-style2">Gebruikersnaam</td>
             <td class="auto-style3">
-                <asp:TextBox ID="tbxWachtwoord" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="tbxGebruikersnaam" runat="server" Enabled="False"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvGebruikersnaam" runat="server" ControlToValidate="tbxGebruikersnaam" ErrorMessage="U moet een gebruikersnaam invoeren!" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style2">Wachtwoord</td>
+            <td class="auto-style3">
+                <asp:TextBox ID="tbxWachtwoord" runat="server" Enabled="False" TextMode="Password"></asp:TextBox>
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="rfvWachtwoord" runat="server" ControlToValidate="tbxWachtwoord" ErrorMessage="U moet een wachtwoord invoeren!" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td class="auto-style2">
-                <asp:Label ID="lblBevestigWachtwoord" runat="server" Text="Bevestig Wachtwoord"></asp:Label>
-            </td>
+            <td class="auto-style2">Bevestig Wachtwoord</td>
             <td class="auto-style3">
-                <asp:TextBox ID="tbxBevestigWachtwoord" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="tbxBevestigWachtwoord" runat="server" Enabled="False" TextMode="Password"></asp:TextBox>
             </td>
             <td>
                 <asp:RequiredFieldValidator ID="rfvBevestigWachtwoord" runat="server" ControlToValidate="tbxBevestigWachtwoord" ErrorMessage="U moet het wachtwoord nog een keer invullen voor bevestiging!" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -50,7 +57,7 @@
         <tr>
             <td class="auto-style2">&nbsp;</td>
             <td class="auto-style3">
-                <asp:Button ID="btnActiveer" runat="server" Text="Activeer" />
+                <asp:Button ID="btnActiveer" runat="server" Enabled="False" Text="Activeer" />
             </td>
             <td>&nbsp;</td>
         </tr>

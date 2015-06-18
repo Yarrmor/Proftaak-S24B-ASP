@@ -31,13 +31,31 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Label lblValInformatie;
         
         /// <summary>
-        /// lblWachtwoord control.
+        /// lblActivatieHashGebruikt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWachtwoord;
+        protected global::System.Web.UI.WebControls.Label lblActivatieHashGebruikt;
+        
+        /// <summary>
+        /// tbxGebruikersnaam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxGebruikersnaam;
+        
+        /// <summary>
+        /// rfvGebruikersnaam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGebruikersnaam;
         
         /// <summary>
         /// tbxWachtwoord control.
@@ -56,15 +74,6 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWachtwoord;
-        
-        /// <summary>
-        /// lblBevestigWachtwoord control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBevestigWachtwoord;
         
         /// <summary>
         /// tbxBevestigWachtwoord control.
