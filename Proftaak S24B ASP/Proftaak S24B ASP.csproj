@@ -94,7 +94,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="InlogPagina.aspx.cs">
       <DependentUpon>InlogPagina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,7 +115,6 @@
     <Compile Include="PlaatsReserveringPagina.aspx.designer.cs">
       <DependentUpon>PlaatsReserveringPagina.aspx</DependentUpon>
     </Compile>
-=======
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\PlaatsReserveringsSysteem.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Locatie.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Persoon.cs" />
@@ -126,7 +124,6 @@
     <Compile Include="Achterliggende klassen\VerhuurSysteem\Product.cs" />
     <Compile Include="Achterliggende klassen\VerhuurSysteem\ProductCategorie.cs" />
     <Compile Include="Achterliggende klassen\MediaSysteem\Melding.cs" />
->>>>>>> origin/Update
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
