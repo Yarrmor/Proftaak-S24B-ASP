@@ -129,6 +129,39 @@ namespace Proftaak_S24B_ASP
 
         #region Queries
 
+        /// <summary>
+        /// Verkrijg een account voor het gegeven email en wachtwoord.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="wachtwoord"></param>
+        /// <returns></returns>
+        public Account VerkrijgAccount(string email, string wachtwoord)
+        {
+            try
+            {
+                string sql = "SELECT ID, GEBRUIKERSNAAM, GEACTIVEERD FROM ACCOUNT WHERE EMAIL = :email AND WACHTWOORD = :wachtwoord";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":email", email);
+                command.Parameters.Add(":wachtwoord", wachtwoord);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int ID = Convert.ToInt32(reader["ID"]);
+                string gebruikersnaam = reader["GEBRUIKERSNAAM"].ToString();
+                bool geactiveerd = Convert.ToBoolean(reader["GEACTIVEERD"]);
+
+                Account acc = new Account(ID, gebruikersnaam, email, geactiveerd);
+
+                return acc;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         #endregion
     }
 }

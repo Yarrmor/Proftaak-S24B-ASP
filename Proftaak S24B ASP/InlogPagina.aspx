@@ -34,7 +34,9 @@
             <td>
     <asp:Button ID="btnLogin" runat="server" Text="Inloggen" OnClick="btnLogin_Click" />
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:Label ID="lblInlogMislukt" runat="server" ForeColor="Red" Text="Het inloggen is mislukt, mogelijk heb je een verkeerd wachtwoord/email ingevult of is je account nog niet geactiveerd!" Visible="False"></asp:Label>
+            </td>
         </tr>
     </table>
     </asp:Content>

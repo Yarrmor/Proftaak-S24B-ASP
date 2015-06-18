@@ -11,16 +11,24 @@ namespace Proftaak_S24B_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if((string)Session["IngelogdAccount"] == "Gebruiker")
+            if (Session["Account"] != null)
             {
+                btnLoginUit.Text = "Uitloggen";
+                Account acc = (Account)Session["Account"];
+                lblGebruikersnaam.Text = acc.Gebruikersnaam;
+                lblGebruikersnaam.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
+                btnBeheer.Visible = false;
             }
-            else if((string)Session["IngelogdAccount"] == "Beheerder")
+            else
             {
-                btnAccount.Visible = true;
-                btnUpload.Visible = true;
-                btnBeheer.Visible = true;
+                btnLoginUit.Text = "Inloggen";
+                lblGebruikersnaam.Text = "";
+                lblGebruikersnaam.Visible = false;
+                btnAccount.Visible = false;
+                btnUpload.Visible = false;
+                btnBeheer.Visible = false;
             }
 
             VulSubMenu();
@@ -52,6 +60,23 @@ namespace Proftaak_S24B_ASP
         {
             Session.Contents.Remove("IngelogdAccount");
             Response.Redirect("Default.aspx");
+        }
+
+        protected void btnLoginUit_Click(object sender, EventArgs e)
+        {
+            if (Session["Account"] != null)
+            {
+                Session["Account"] = null;
+                btnLoginUit.Text = "Inloggen";
+                lblGebruikersnaam.Visible = false;
+                btnAccount.Visible = false;
+                btnUpload.Visible = false;
+                btnBeheer.Visible = false;
+            }
+            else
+            {
+                Response.Redirect("InlogPagina.aspx");
+            }
         }
     }
 }
