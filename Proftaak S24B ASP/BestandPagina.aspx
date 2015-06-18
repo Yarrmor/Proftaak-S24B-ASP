@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <table>
+    <table style="width: 100%;">
         <tr>
             <td>
                 <asp:Label ID="lblNaam" runat="server"></asp:Label>
@@ -20,5 +20,29 @@
         </tr>
     </table>
     <br />
-    <asp:ListView ID ="lvwBerichten" runat="server"></asp:ListView>
+    <asp:ListView ID ="lvwBerichten" runat="server" OnSelectedIndexChanged="lvwBerichten_SelectedIndexChanged"></asp:ListView>
+    <table>
+        <tr>
+            <td>
+                Titel:
+            </td>
+            <td>
+                <asp:TextBox ID="tbxTitel" runat="server" Width="500"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Bericht:
+            </td>
+            <td>
+                <asp:TextBox ID="tbxBericht" runat="server" Height="100" Width="500"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <asp:Button ID="btnBericht" runat="server" Text="Plaats" OnClick="btnBericht_Click"/>
+            </td>
+        </tr>
+    </table>
 </asp:Content>

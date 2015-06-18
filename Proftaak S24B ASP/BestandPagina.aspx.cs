@@ -51,5 +51,32 @@ namespace Proftaak_S24B_ASP
         {
             MS.Bestand.Download();
         }
+
+        protected void lvwBerichten_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MS.Bericht = MS.Berichten[lvwBerichten.SelectedIndex];
+            tbxTitel.Text = "RE: " + MS.Bericht.Titel;
+        }
+
+        protected void btnBericht_Click(object sender, EventArgs e)
+        {
+            if(tbxBericht.Text.Length >= 10 && tbxTitel.Text != "")
+            {
+                if (MS.Bericht != null)
+                {
+                    if(!MS.PlaatsBericht(MS.Bericht, tbxTitel.Text, tbxBericht.Text))
+                    {
+
+                    }
+                }
+                else
+                {
+                    if(!MS.PlaatsBericht(tbxTitel.Text, tbxBericht.Text))
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }
