@@ -70,7 +70,18 @@ namespace Proftaak_S24B_ASP
 
         protected void btnActiveer_Click(object sender, EventArgs e)
         {
+            lblActivatieMislukt.Visible = false;
+            DatabaseManager dm = new DatabaseManager();
+            InlogSysteem inlog = new InlogSysteem();
 
+            if (dm.ActiveerAccount(acc.ID, tbxGebruikersnaam.Text, inlog.getHashSha256(tbxWachtwoord.Text)))
+            {
+                Response.Redirect("InlogPagina.aspx");
+            }
+            else
+            {
+                lblActivatieMislukt.Visible = true;
+            }
         }
     }
 }

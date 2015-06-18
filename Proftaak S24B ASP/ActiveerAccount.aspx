@@ -57,9 +57,11 @@
         <tr>
             <td class="auto-style2">&nbsp;</td>
             <td class="auto-style3">
-                <asp:Button ID="btnActiveer" runat="server" Enabled="False" Text="Activeer" />
+                <asp:Button ID="btnActiveer" runat="server" Enabled="False" OnClick="btnActiveer_Click" Text="Activeer" />
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:Label ID="lblActivatieMislukt" runat="server" ForeColor="Red" Text="Activiatie is mislukt!" Visible="False"></asp:Label>
+            </td>
         </tr>
     </table>
 </asp:Content>

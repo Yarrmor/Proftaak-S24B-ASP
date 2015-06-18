@@ -194,6 +194,26 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+
+        public bool ActiveerAccount(int accountID, string gebruikersNaam, string wachtwoordHash)
+        {
+            try
+            {
+                string sql = "UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord WHERE ACCOUNT.ID = :ID;";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", accountID);
+                command.Parameters.Add(":gebruikersnaam", gebruikersNaam);
+                command.Parameters.Add(":wachtwoord", wachtwoordHash);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
