@@ -15,12 +15,14 @@ namespace Proftaak_S24B_ASP
             {
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
+                btnLogout.Visible = true;
             }
             else if((string)Session["IngelogdAccount"] == "Beheerder")
             {
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
                 btnBeheer.Visible = true;
+                btnLogout.Visible = true;
             }
 
             VulSubMenu();
@@ -40,6 +42,7 @@ namespace Proftaak_S24B_ASP
             tn3.ChildNodes.Add(tn4);
             tn4.ChildNodes.Add(tn5);
             tn5.ChildNodes.Add(tn6);
+            tvwSubMenu.CollapseAll();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -51,6 +54,16 @@ namespace Proftaak_S24B_ASP
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Contents.Remove("IngelogdAccount");
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void btnLogin_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("Inloggen.aspx");
+        }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
             Response.Redirect("Default.aspx");
         }
     }

@@ -67,6 +67,18 @@
             line-height: 20px;
             padding: 6px 12px;
         }
+        input[type="password"] {
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            color: #555;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 6px 12px;
+        }
+        input[type="checkbox"] {
+            float: left;
+        }
         label {
             display: block;
             font-weight: bold;
@@ -81,6 +93,9 @@
         }
         #tvwSubMenu {
             margin: 0px 0px 0px 0px;
+        }
+        #checkboxlist {
+            float: none;
         }
         form {
             padding: 0px 8px;
@@ -116,12 +131,12 @@
 
                 <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: 967px;">
                     <ul style="width: 967px; height: 40px;">
-                        <li><asp:Button ID="btnHome" runat="server" Text="Home" Width="75" /></li>
+                        <li><asp:Button ID="btnHome" runat="server" Text="Home" Width="75" OnClick="btnHome_Click" /></li>
                         <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer" Width="75" /></li>
                         <li><asp:Button ID="btnAccount" runat="server" Text="Account" Width="75" Visible="False" /></li>
                         <li><asp:Button ID="btnUpload" runat="server" Text="Upload" Width="75" Visible="False" /></li>
                         <li><asp:Button ID="btnBeheer" runat="server" Text="Beheer" Width="75" Visible="False" /></li>
-                        <li><asp:Button ID="btnLogin" runat="server" Text="Inloggen" Width="75" Visible="true" /></li>
+                        <li><asp:Button ID="btnLogin" runat="server" Text="Inloggen" Width="75" Visible="true" OnClick="btnLogin_Click1" /></li>
                         <li><asp:Button ID="btnLogout" runat="server" Text="Uitloggen" Width="75" Visible="false" /></li>
                     </ul>
                 </div>
