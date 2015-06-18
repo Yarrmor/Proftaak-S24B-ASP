@@ -7,5 +7,14 @@ namespace Proftaak_S24B_ASP
 {
     public class InlogSysteem
     {
+        public InlogSysteem()
+        {
+
+        }
+
+        public bool Login(string email, string wachtwoord)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
