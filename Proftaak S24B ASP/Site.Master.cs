@@ -9,6 +9,8 @@ namespace Proftaak_S24B_ASP
 {
     public partial class Site : System.Web.UI.MasterPage
     {
+        private MediaSysteem MS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if((string)Session["IngelogdAccount"] == "Gebruiker")
@@ -30,19 +32,7 @@ namespace Proftaak_S24B_ASP
 
         public void VulSubMenu()
         {
-            TreeNode tn = new TreeNode("Test");
-            TreeNode tn2 = new TreeNode("Test2");
-            TreeNode tn3 = new TreeNode("Test2");
-            TreeNode tn4 = new TreeNode("Test2");
-            TreeNode tn5 = new TreeNode("Test2");
-            TreeNode tn6 = new TreeNode("Test2");
-            tvwSubMenu.Nodes.Add(tn);
-            tn.ChildNodes.Add(tn2);
-            tn2.ChildNodes.Add(tn3);
-            tn3.ChildNodes.Add(tn4);
-            tn4.ChildNodes.Add(tn5);
-            tn5.ChildNodes.Add(tn6);
-            tvwSubMenu.CollapseAll();
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -65,6 +55,11 @@ namespace Proftaak_S24B_ASP
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
+        }
+
+        protected void tvwSubMenu_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            Session["SelectedCategorie"] = MS.VerkrijgCategorie(tvwSubMenu.SelectedNode.Text);
         }
     }
 }
