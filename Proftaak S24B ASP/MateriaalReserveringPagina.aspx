@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MateriaalReserveringPagina.aspx.cs" Inherits="Proftaak_S24B_ASP.MateriaalPagina" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        #Content {
-            width:auto;
-        }
         div {
             float:left;
         }
@@ -28,7 +25,7 @@
         <h2>Categorie:</h2>
         <asp:UpdatePanel ID="updPnlCategorie" runat="server">
             <ContentTemplate>
-                  <asp:TreeView ID="tvwCategorieen" runat="server" OnSelectedNodeChanged="tvwCategorieen_SelectedNodeChanged">
+                  <asp:TreeView ID="tvwCategorieen" runat="server">
                   </asp:TreeView>
             <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" />
             </ContentTemplate>
@@ -40,7 +37,7 @@
     <h2>Materiaal:</h2>
         <asp:UpdatePanel ID="updPnlMateriaal" runat="server">
             <ContentTemplate>
-                  <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px" AutoPostBack="True">
+                  <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
         <asp:ListItem>Kon materialen niet ophalen!</asp:ListItem>
     </asp:ListBox>
     <asp:Button ID="btnVerversMeterialen" runat="server" Text="Ververs lijst" />
@@ -55,8 +52,6 @@
         <h2>Reserveren:</h2>
         
         <!--  Details -->
-        <asp:UpdatePanel ID="updPnlMateriaalDetails" runat="server">
-            <ContentTemplate>
         <p>Materiaal:</p>
         <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalNaam" runat="server" Text="Selecteer eerst een materiaal!"></asp:Label>
         <br />
@@ -65,10 +60,8 @@
         <br />
         <p>Prijs:</p>
         <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalPrijs" runat="server" Text="€0.00"></asp:Label>
-        
-                </ContentTemplate>
-            </asp:UpdatePanel>
         <br />
+
         <!--  Datum -->
         <h3>Datum:</h3>
         <p>Van:</p>
