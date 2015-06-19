@@ -4,7 +4,7 @@
         div {
             float:left;
         }
-        #divReserveren, #divMateriaal {
+        #divHuren, #divMateriaal {
             margin-left:25px;
         }
         .ReserverenLabels {
@@ -23,9 +23,10 @@
 
     <div>
         <h2>Categorie:</h2>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="updPnlCategorie" runat="server">
             <ContentTemplate>
-                  <asp:TreeView ID="tvwCategorieen" runat="server"></asp:TreeView>
+                  <asp:TreeView ID="tvwCategorieen" runat="server" OnSelectedNodeChanged="tvwCategorieen_SelectedNodeChanged">
+                  </asp:TreeView>
             <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" />
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -34,10 +35,10 @@
     <div id="divMateriaal">
         
     <h2>Materiaal:</h2>
-        <asp:UpdatePanel ID="updPnl" runat="server">
+        <asp:UpdatePanel ID="updPnlMateriaal" runat="server">
             <ContentTemplate>
-                  <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
-        <asp:ListItem>Kon materialen niet ophalen!</asp:ListItem>
+                  <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px" AutoPostBack="True">
+        <asp:ListItem>Selecteer een categorie!</asp:ListItem>
     </asp:ListBox>
     <asp:Button ID="btnVerversMeterialen" runat="server" Text="Ververs lijst" />
             </ContentTemplate>
@@ -46,34 +47,38 @@
      
         </div>
 
-    <div id="divReserveren">
+    <div id="divHuren">
         
-        <h2>Reserveren:</h2>
+        <h2>Huren:</h2>
         
         <!--  Details -->
+        <asp:UpdatePanel ID="updPnlMateriaalDetails" runat="server">
+            <ContentTemplate>
         <p>Materiaal:</p>
         <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalNaam" runat="server" Text="Selecteer eerst een materiaal!"></asp:Label>
         <br />
-        <p>Voorraad:</p>
-        <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalVoorraad" runat="server" Text="0"></asp:Label>
-        <br />
         <p>Prijs:</p>
         <asp:Label CssClass="ReserverenLabels" ID="lblMateriaalPrijs" runat="server" Text="€0.00"></asp:Label>
+        
+                
         <br />
-
         <!--  Datum -->
         <h3>Datum:</h3>
         <p>Van:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumVan" runat="server">
+        <asp:DropDownList ID="cbxMateriaalDatumVan" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumVan_SelectedIndexChanged">
         </asp:DropDownList>
         <br />
         <p>Tot:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server">
+        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumTot_SelectedIndexChanged">
         </asp:DropDownList>
+                
         <br /><br />
 
         <!--  Plaats reservering -->
-        <asp:Button ID="btnReserveer" runat="server" Text="Reserveer" OnClick="btnReserveer_Click" />
+        <asp:Button ID="btnHuur" runat="server" Text="Huur" OnClick="btnHuur_Click" />
+        <asp:Label runat="server" Visible="false" ID="lblNietIngelogd">U moet ingelogd zijn om een product te huren!</asp:Label>
+        </ContentTemplate>
+            </asp:UpdatePanel>
     </div>
 </asp:Content>
 
