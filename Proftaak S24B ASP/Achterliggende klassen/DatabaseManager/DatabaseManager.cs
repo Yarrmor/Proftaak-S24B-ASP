@@ -199,13 +199,14 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                string sql = "UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord WHERE ACCOUNT.ID = :ID;";
+                //"UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord WHERE ID = :ID"
+                string sql = "UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord, GEACTIVEERD = 1 WHERE ID = :ID";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
-                command.Parameters.Add(":ID", accountID);
                 command.Parameters.Add(":gebruikersnaam", gebruikersNaam);
                 command.Parameters.Add(":wachtwoord", wachtwoordHash);
+                command.Parameters.Add(":ID", accountID);
 
                 return VoerNonQueryUit(command);
             }
