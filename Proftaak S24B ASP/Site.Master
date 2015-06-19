@@ -191,7 +191,7 @@
         <div id="ContentWrapper" style="float: none; height: 500px;">
             <div id="SubMenu" style="float: left; width: auto; height: 500px;">
                 <asp:Panel ID="pnlSubMenu" runat="server" ScrollBars="Auto" Width="300px">
-                    <asp:TreeView ID="tvwSubMenu" runat="server"></asp:TreeView>
+                    <asp:TreeView ID="tvwSubMenu" runat="server" OnSelectedNodeChanged="tvwSubMenu_SelectedNodeChanged"></asp:TreeView>
                 </asp:Panel>
             </div>
 

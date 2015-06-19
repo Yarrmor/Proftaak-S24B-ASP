@@ -10,5 +10,9 @@ namespace Proftaak_S24B_ASP
     public partial class Default : System.Web.UI.Page
     {
 
+        protected void ddlTest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("Inloggen.aspx");
+        }
     }
 }

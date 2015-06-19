@@ -8,31 +8,31 @@ namespace Proftaak_S24B_ASP
     public class Bijdrage
     {
         public int ID { get; set; }
-
         public DateTime Datum { get; set; }
-
         public Account Account { get; set; }
-        
+
+        private DatabaseManager dm;
 
         //Verbeteren in klassediagram
         public Bijdrage(int id, DateTime datum, Account account)
         {
-
+            this.ID = id;
+            this.Datum = datum;
+            this.Account = account;
         }
 
         public Bijdrage(int id)
         {
             this.ID = id;
         }
-
-        public bool VoegToe()
+        public virtual bool VoegToe()
         {
-            throw new NotImplementedException();            
+            return false;
         }
 
-        public bool Verwijder()
+        public virtual bool Verwijder()
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }
