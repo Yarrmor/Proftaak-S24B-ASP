@@ -62,7 +62,7 @@
         </asp:DropDownList>
         <br /><br />
 
-        <!--  Plaats -->
+        <!--  Plaats reservering -->
         <asp:Button ID="btnReserveer" runat="server" Text="Reserveer" OnClick="btnReserveer_Click" />
     </div>
 </asp:Content>

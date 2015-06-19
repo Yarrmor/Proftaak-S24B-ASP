@@ -15,9 +15,14 @@ namespace Proftaak_S24B_ASP
         
 
         //Verbeteren in klassediagram
-        public Bijdrage(int ID, DateTime datum, Account account)
+        public Bijdrage(int id, DateTime datum, Account account)
         {
 
+        }
+
+        public Bijdrage(int id)
+        {
+            this.ID = id;
         }
 
         public bool VoegToe()

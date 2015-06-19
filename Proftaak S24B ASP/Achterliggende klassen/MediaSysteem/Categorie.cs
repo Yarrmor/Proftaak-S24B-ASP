@@ -11,14 +11,14 @@ namespace Proftaak_S24B_ASP
 
         public Categorie HoofdCategorie { get; set; }
 
-        public Categorie(int ID, DateTime datum, Account account, string naam) 
-            : base(ID, datum, account) 
+        public Categorie(int id, string naam) 
+            : base(id) 
         {
-
+            this.Naam = naam;
         }
 
-        public Categorie(int ID, DateTime datum, Account account, string naam, Categorie HoofdCategorie)
-            : base(ID, datum, account)
+        public Categorie(int id, DateTime datum, Account account, string naam, Categorie HoofdCategorie)
+            : base(id, datum, account)
         {
 
         }
