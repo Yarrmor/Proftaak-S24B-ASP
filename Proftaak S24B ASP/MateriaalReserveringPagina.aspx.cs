@@ -9,17 +9,20 @@ namespace Proftaak_S24B_ASP
 {
     public partial class MateriaalPagina : System.Web.UI.Page
     {
+        VerhuurSysteem verhuurSysteem;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            verhuurSysteem = new VerhuurSysteem();
+
+            // Laad datums
             if (Session["SelectedEvent"] != null)
             {
                 if (cbxMateriaalDatumTot.Items.Count == 0)
                 {
-                    DatabaseManager dm = new DatabaseManager();
-
                     Event evenement = Session["SelectedEvent"] as Event;
 
-                    List<DateTime> datums = dm.VerkrijgDatums(evenement.ID);
+                    List<DateTime> datums = verhuurSysteem.VerkrijgDatums(evenement);
 
                     foreach (DateTime datum in datums)
                     {
@@ -29,9 +32,30 @@ namespace Proftaak_S24B_ASP
                 }
             }
 
+            // Laad categorieen
+            if (tvwCategorieen.Nodes.Count == 0)
+            {
+                TreeNodeCollection nodes = verhuurSysteem.VerkrijgProductCategorieen();
+
+                foreach (TreeNode node in nodes)
+                {
+                    tvwCategorieen.Nodes.Add(node);
+                }
+            }
+
             // Laad materiaal
-         // Laad materiaal
-         // Laad datums
+            if (Session["SelectedProductCategorie"] != null)
+            {
+                lbxMateriaal.Items.Clear();
+
+                List<Product> producten = verhuurSysteem.VerkrijgProducten(Session["SelectedProductCategorie"] as ProductCategorie);
+
+                foreach (Product p in producten)
+                {
+                    lbxMateriaal.Items.Add(p.ToString());
+                }
+            }
+            
         }
 
         protected void lbxMateriaal_SelectedIndexChanged(object sender, EventArgs e)

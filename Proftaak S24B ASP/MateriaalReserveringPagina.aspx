@@ -23,9 +23,10 @@
 
     <div>
         <h2>Categorie:</h2>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="updPnlCategorie" runat="server">
             <ContentTemplate>
-                  <asp:TreeView ID="tvwCategorieen" runat="server"></asp:TreeView>
+                  <asp:TreeView ID="tvwCategorieen" runat="server">
+                  </asp:TreeView>
             <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" />
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -34,7 +35,7 @@
     <div id="divMateriaal">
         
     <h2>Materiaal:</h2>
-        <asp:UpdatePanel ID="updPnl" runat="server">
+        <asp:UpdatePanel ID="updPnlMateriaal" runat="server">
             <ContentTemplate>
                   <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
         <asp:ListItem>Kon materialen niet ophalen!</asp:ListItem>
