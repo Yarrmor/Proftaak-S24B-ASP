@@ -504,7 +504,7 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                string sql = "SELECT bi.ID, bi.DATUM, b.NAAM, b.BESTANDLOCATIE, b.GROOTTE, a.ID, a.GEBRUIKERSNAAM FROM BIJDRAGE bi, BESTAND b, ACCOUNT a WHERE bi.ID = b.BIJDRAGE_ID AND a.ID = bi.ACCOUNT_ID ORDER BY bi.ID DESC";
+                string sql = "SELECT bi.ID AS BI_ID, bi.DATUM AS BI_DATUM, b.NAAM AS B_NAAM, b.BESTANDSLOCATIE AS B_BESTANDSLOCATIE, b.GROOTTE AS B_GROOTTE, a.ID AS A_ID, a.GEBRUIKERSNAAM AS A_GEBRUIKERSNAAM FROM BIJDRAGE bi, BESTAND b, ACCOUNT a WHERE bi.ID = b.BIJDRAGE_ID AND a.ID = bi.ACCOUNT_ID ORDER BY bi.ID DESC";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
@@ -514,14 +514,14 @@ namespace Proftaak_S24B_ASP
 
                 while (reader.Read())
                 {
-                    int id = Convert.ToInt32(reader["bi.ID"]);
-                    DateTime datum = Convert.ToDateTime(reader["bi.DATUM"]);
-                    string naam = reader["b.NAAM"].ToString();
-                    string bestandLocatie = reader["b.BESTANDLOCATIE"].ToString();
-                    int grootte = Convert.ToInt32(reader["b.GROOTTE"]);
+                    int id = Convert.ToInt32(reader["BI_ID"]);
+                    DateTime datum = Convert.ToDateTime(reader["BI_DATUM"]);
+                    string naam = reader["B_NAAM"].ToString();
+                    string bestandLocatie = reader["B_BESTANDLOCATIE"].ToString();
+                    int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
                     
-                    int accId = Convert.ToInt32(reader["a.ID"]);
-                    string accNaam = reader["a.GEBRUIKERSNAAM"].ToString();
+                    int accId = Convert.ToInt32(reader["A_ID"]);
+                    string accNaam = reader["A_GEBRUIKERSNAAM"].ToString();
 
                     Account a = new Account(accId, accNaam);
 
@@ -545,7 +545,7 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                string sql = "SELECT bi.ID, bi.DATUM, b.NAAM, b.BESTANDLOCATIE, b.GROOTTE, a.ID, a.GEBRUIKERSNAAM FROM BIJDRAGE bi, BESTAND b, ACCOUNT a WHERE bi.ID = b.BIJDRAGE_ID AND a.ID = bi.ACCOUNT_ID AND b.CATEGORIE_ID = :CID ORDER BY bi.ID DESC";
+                string sql = "SELECT bi.ID AS BI_ID, bi.DATUM AS BI_DATUM, b.NAAM AS B_NAAM, b.BESTANDSLOCATIE AS B_BESTANDSLOCATIE, b.GROOTTE AS B_GROOTTE, a.ID AS A_ID, a.GEBRUIKERSNAAM AS A_GEBRUIKERSNAAM FROM BIJDRAGE bi, BESTAND b, ACCOUNT a WHERE bi.ID = b.BIJDRAGE_ID AND a.ID = bi.ACCOUNT_ID AND b.CATEGORIE_ID = :CID ORDER BY bi.ID DESC";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
@@ -557,14 +557,14 @@ namespace Proftaak_S24B_ASP
 
                 while (reader.Read())
                 {
-                    int id = Convert.ToInt32(reader["bi.ID"]);
-                    DateTime datum = Convert.ToDateTime(reader["bi.DATUM"]);
-                    string naam = reader["b.NAAM"].ToString();
-                    string bestandLocatie = reader["b.BESTANDLOCATIE"].ToString();
-                    int grootte = Convert.ToInt32(reader["b.GROOTTE"]);
+                    int id = Convert.ToInt32(reader["BI_ID"]);
+                    DateTime datum = Convert.ToDateTime(reader["BI_DATUM"]);
+                    string naam = reader["B_NAAM"].ToString();
+                    string bestandLocatie = reader["B_BESTANDLOCATIE"].ToString();
+                    int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
 
-                    int accId = Convert.ToInt32(reader["a.ID"]);
-                    string accNaam = reader["a.GEBRUIKERSNAAM"].ToString();
+                    int accId = Convert.ToInt32(reader["A_ID"]);
+                    string accNaam = reader["A_GEBRUIKERSNAAM"].ToString();
 
                     Account a = new Account(accId, accNaam);
 

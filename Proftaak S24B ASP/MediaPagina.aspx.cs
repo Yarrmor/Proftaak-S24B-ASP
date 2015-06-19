@@ -13,6 +13,8 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MS = new MediaSysteem();
+
             if((Categorie)Session["SelectedCategorie"] != null)
             {
                 Categorie cat = (Categorie)Session["SelectedCategorie"];
@@ -24,8 +26,6 @@ namespace Proftaak_S24B_ASP
                 lvwMedia.DataSource = MS.VerkrijgBestanden();
                 lvwMedia.DataBind();
             }
-
-            MS = new MediaSysteem();
         }
 
         protected void lvwMedia_SelectedIndexChanged(object sender, EventArgs e)

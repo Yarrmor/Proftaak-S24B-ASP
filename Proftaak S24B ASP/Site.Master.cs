@@ -13,6 +13,9 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
+            Session["SelectedEvent"] = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
+
             if (Session["Account"] != null)
             {
                 btnLoginUit.Text = "Uitloggen";
@@ -40,7 +43,16 @@ namespace Proftaak_S24B_ASP
 
         public void VulSubMenu()
         {
-            tvwSubMenu = MS.VulSubMenu();
+            if(tvwSubMenu.Nodes.Count == 0)
+            {
+                TreeNodeCollection tnc = MS.VulSubMenu();
+
+                foreach(TreeNode tn in tnc)
+                {
+                    tvwSubMenu.Nodes.Add(tn);
+                }
+            }
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
