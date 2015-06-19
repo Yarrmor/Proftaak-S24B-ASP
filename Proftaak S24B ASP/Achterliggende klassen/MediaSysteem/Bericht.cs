@@ -23,7 +23,8 @@ namespace Proftaak_S24B_ASP
 
         public List<Bericht> VerkrijgBerichten()
         {
-            return dm.VerkrijgBerichten(this.ID);
+            //return dm.VerkrijgBerichten(this.ID);
+            return null;
         }
     }
 }

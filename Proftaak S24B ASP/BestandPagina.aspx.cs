@@ -18,6 +18,8 @@ namespace Proftaak_S24B_ASP
                 Response.Redirect("MediaPagina.aspx");
             }
 
+            MS = new MediaSysteem();
+
             MS.Bestand = (Bestand)Session["SelectedBestand"];
 
             VulBestandInfo();

@@ -14,7 +14,7 @@ namespace Proftaak_S24B_ASP
         public List<Bericht> Berichten { get; set; }
         public Bericht Bericht { get; set; }
 
-        private DatabaseManager dm;
+        private DatabaseManager dm = new DatabaseManager();
 
         public List<Categorie> VerkrijgCategorieen()
         {
@@ -56,7 +56,7 @@ namespace Proftaak_S24B_ASP
             return false; //this.dm.PlaatsBericht(titel, bericht);
         }
 
-        public TreeView VulSubmenu()
+        public TreeView VulSubMenu()
         {
             TreeView tv = new TreeView();
             List<Categorie> hoofdCatList = VerkrijgCategorieen();

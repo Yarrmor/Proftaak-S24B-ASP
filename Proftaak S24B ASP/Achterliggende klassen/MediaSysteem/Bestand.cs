@@ -25,12 +25,14 @@ namespace Proftaak_S24B_ASP
 
         public override bool VoegToe()
         {
-            return this.dm.VoegToe(this);
+            //return this.dm.VoegToe(this);
+            return false;
         }
 
         public override bool Verwijder()
         {
-            return this.dm.Verwijder(this.ID);
+            //return this.dm.Verwijder(this.ID);
+            return false;
         }
 
         public void Download()

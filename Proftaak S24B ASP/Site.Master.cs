@@ -33,6 +33,8 @@ namespace Proftaak_S24B_ASP
                 btnBeheer.Visible = false;
             }
 
+            MS = new MediaSysteem();
+
             VulSubMenu();
         }
 

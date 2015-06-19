@@ -24,6 +24,8 @@ namespace Proftaak_S24B_ASP
                 lvwMedia.DataSource = MS.VerkrijgBestanden();
                 lvwMedia.DataBind();
             }
+
+            MS = new MediaSysteem();
         }
 
         protected void lvwMedia_SelectedIndexChanged(object sender, EventArgs e)

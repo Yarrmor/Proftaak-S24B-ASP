@@ -25,9 +25,14 @@ namespace Proftaak_S24B_ASP
         {
             this.ID = id;
         }
+        public virtual bool VoegToe()
+        {
+            return false;
+        }
 
-        public abstract bool VoegToe();
-
-        public abstract bool Verwijder();
+        public virtual bool Verwijder()
+        {
+            return false;
+        }
     }
 }
