@@ -195,7 +195,7 @@
                 </asp:Panel>
             </div>
 
-            <div id="Content" style="float: left; width: 900px; height: 500px;">
+            <div id="Content" style="float: left; width: auto; height: 500px;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
