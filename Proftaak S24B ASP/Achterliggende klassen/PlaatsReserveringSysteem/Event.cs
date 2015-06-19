@@ -19,9 +19,14 @@ namespace Proftaak_S24B_ASP
 
         public int MaxBezoekers { get; set; }
 
-        public Event()
+        public Event(int id, string naam, DateTime datumStart, DateTime datumEind, Locatie locatie, int maxBezoekers)
         {
-
+            this.ID = id;
+            this.Naam = naam;
+            this.DatumStart = datumStart;
+            this.DatumEind = datumEind;
+            this.Locatie = locatie;
+            this.MaxBezoekers = maxBezoekers;
         }
 
         public bool VoegToe()

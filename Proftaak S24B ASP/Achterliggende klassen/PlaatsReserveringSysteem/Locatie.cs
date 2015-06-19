@@ -19,9 +19,14 @@ namespace Proftaak_S24B_ASP
 
         public string Plaats { get; set; }
 
-        public Locatie()
+        public Locatie(int id, string naam, string straat, int nr, string postcode, string plaats)
         {
-
+            this.ID = id;
+            this.Naam = naam;
+            this.Straat = straat;
+            this.NR = nr;
+            this.Postcode = postcode;
+            this.Plaats = plaats;
         }
 
         public bool VoegToe()
