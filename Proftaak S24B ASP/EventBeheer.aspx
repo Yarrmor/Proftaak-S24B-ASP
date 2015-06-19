@@ -17,7 +17,7 @@
         </div>
 
         <div id="WijzigProductTabel" style="float: left; margin-left: 20px;">
-            <h2>Wijzig Plek</h2>
+            <h2>Wijzig Product</h2>
             <asp:Table ID="Table1" runat="server">
                <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Product Categorie</asp:TableCell>
