@@ -23,6 +23,19 @@
     <asp:ListView ID ="lvwBerichten" runat="server" OnSelectedIndexChanged="lvwBerichten_SelectedIndexChanged"></asp:ListView>
     <table>
         <tr>
+            <td style="width: auto;">
+                 <asp:Label ID="lblSelectedBericht" runat="server" Text="Niks geselecteerd." />
+            </td>
+            <td style="width: 136px;">
+                <asp:Button ID="btnUnselect" runat="server" Text="Deselecteer" Enabled="False" />
+            </td>
+            <td style="width: 110px;">
+                <asp:Button ID="btnVerwijder" runat="server" Text="Verwijder" Enabled="False" />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
             <td>
                 Titel:
             </td>

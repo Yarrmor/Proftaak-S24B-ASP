@@ -23,6 +23,8 @@ namespace Proftaak_S24B_ASP
             VulBestandInfo();
 
             VulBerichten();
+
+            ControlleerEigendom();
         }
 
         public void VulBestandInfo()
@@ -66,17 +68,26 @@ namespace Proftaak_S24B_ASP
                 {
                     if(!MS.PlaatsBericht(MS.Bericht, tbxTitel.Text, tbxBericht.Text))
                     {
-
+                        Session["ErrorMessage"] = "Het plaatsen van het bericht is mislukt. Probeer later nog eens.";
                     }
                 }
                 else
                 {
                     if(!MS.PlaatsBericht(tbxTitel.Text, tbxBericht.Text))
                     {
-
+                        Session["ErrorMessage"] = "Het plaatsen van het bericht is mislukt. Probeer later nog eens.";
                     }
                 }
             }
+            else
+            {
+                Session["ErrorMessage"] = "De titel van het bericht kan niet leeg zijn en de inhoud moet minstens 10 tekens lang zijn.";
+            }
+        }
+
+        protected void ControlleerEigendom()
+        {
+
         }
     }
 }

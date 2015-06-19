@@ -13,41 +13,46 @@ namespace Proftaak_S24B_ASP
         public List<Bericht> Berichten { get; set; }
         public Bericht Bericht { get; set; }
 
-        //private DatabaseManager dm;
+        private DatabaseManager dm;
 
         public List<Categorie> VerkrijgCategorieën()
         {
-            return null;
+            this.Categorieën = this.dm.VerkrijgCategorieën();
+            return this.Categorieën;
         }
 
         public List<Categorie> VerkrijgCategorieën(Categorie cat)
         {
-            return null;
+            this.Categorieën = this.dm.VerkrijgCategorieën(cat);
+            return this.Categorieën;
         }
 
         public Categorie VerkrijgCategorie(string naam)
         {
-            return null;
+            this.Categorie = this.dm.VerkrijgCategorie(naam);
+            return this.Categorie;
         }
 
         public List<Bestand> VerkrijgBestanden()
         {
-            return null;
+            this.Bestanden = this.dm.VerkrijgBestanden();
+            return this.Bestanden;
         }
 
         public List<Bestand> VerkrijgBestanden(Categorie cat)
         {
-            return null;
+            this.Bestanden = this.dm.VerkrijgBestanden(cat);
+            return this.Bestanden;
         }
 
         public bool PlaatsBericht(Bericht hoofdBericht, string titel, string bericht)
         {
-            return false;
+            return this.dm.PlaatsBericht(hoofdBericht, titel, bericht);
         }
 
         public bool PlaatsBericht(string titel, string bericht)
         {
-            return false;
+            return this.dm.PlaatsBericht(titel, bericht);
         }
     }
 }
