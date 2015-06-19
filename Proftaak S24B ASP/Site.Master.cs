@@ -32,7 +32,7 @@ namespace Proftaak_S24B_ASP
 
         public void VulSubMenu()
         {
-            
+            tvwSubMenu = MS.VulSubMenu();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

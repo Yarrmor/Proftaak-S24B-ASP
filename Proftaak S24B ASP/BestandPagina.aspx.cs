@@ -24,7 +24,10 @@ namespace Proftaak_S24B_ASP
 
             VulBerichten();
 
-            ControlleerEigendom();
+            if(Session["ErrorMessage"] != null)
+            {
+                lblErrorMessage.Text = (string)Session["ErrorMessage"];
+            }
         }
 
         public void VulBestandInfo()
@@ -57,6 +60,16 @@ namespace Proftaak_S24B_ASP
         protected void lvwBerichten_SelectedIndexChanged(object sender, EventArgs e)
         {
             MS.Bericht = MS.Berichten[lvwBerichten.SelectedIndex];
+            lblSelectedBericht.Text = "Bericht: " + MS.Bericht.ID.ToString();
+            btnUnselect.Enabled = true;
+            if(MS.Bericht.Account == (Account)Session["IngelogdAccount"])
+            {
+                btnVerwijder.Enabled = true;
+            }
+            else
+            {
+                btnVerwijder.Enabled = false;
+            }
             tbxTitel.Text = "RE: " + MS.Bericht.Titel;
         }
 
@@ -70,6 +83,10 @@ namespace Proftaak_S24B_ASP
                     {
                         Session["ErrorMessage"] = "Het plaatsen van het bericht is mislukt. Probeer later nog eens.";
                     }
+                    else
+                    {
+                        Session.Remove("ErrorMessage");
+                    }
                 }
                 else
                 {
@@ -77,17 +94,31 @@ namespace Proftaak_S24B_ASP
                     {
                         Session["ErrorMessage"] = "Het plaatsen van het bericht is mislukt. Probeer later nog eens.";
                     }
+                    else
+                    {
+                        Session.Remove("ErrorMessage");
+                    }
                 }
             }
             else
             {
                 Session["ErrorMessage"] = "De titel van het bericht kan niet leeg zijn en de inhoud moet minstens 10 tekens lang zijn.";
             }
+            Response.Redirect("Bestand.aspx");
         }
 
-        protected void ControlleerEigendom()
+        protected void btnUnselect_Click(object sender, EventArgs e)
         {
+            MS.Bericht = null;
+            lblSelectedBericht.Text = "Niks geselecteerd.";
+            btnUnselect.Enabled = false;
+            btnVerwijder.Enabled = false;
+        }
 
+        protected void btnVerwijder_Click(object sender, EventArgs e)
+        {
+            MS.Bericht.Verwijder();
+            Response.Redirect("Bestand.aspx");
         }
     }
 }

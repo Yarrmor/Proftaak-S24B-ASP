@@ -27,13 +27,14 @@
                  <asp:Label ID="lblSelectedBericht" runat="server" Text="Niks geselecteerd." />
             </td>
             <td style="width: 136px;">
-                <asp:Button ID="btnUnselect" runat="server" Text="Deselecteer" Enabled="False" />
+                <asp:Button ID="btnUnselect" runat="server" Text="Deselecteer" Enabled="False" OnClick="btnUnselect_Click" />
             </td>
             <td style="width: 110px;">
-                <asp:Button ID="btnVerwijder" runat="server" Text="Verwijder" Enabled="False" />
+                <asp:Button ID="btnVerwijder" runat="server" Text="Verwijder" Enabled="False" OnClick="btnVerwijder_Click" />
             </td>
         </tr>
     </table>
+    <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
     <table>
         <tr>
             <td>

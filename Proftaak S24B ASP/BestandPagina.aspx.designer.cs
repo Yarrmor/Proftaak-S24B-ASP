@@ -85,6 +85,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnVerwijder;
         
         /// <summary>
+        /// lblErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+        
+        /// <summary>
         /// tbxTitel control.
         /// </summary>
         /// <remarks>
