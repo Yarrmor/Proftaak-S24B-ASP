@@ -373,7 +373,7 @@ namespace Proftaak_S24B_ASP
         /// </summary>
         /// <param name="pcat"></param>
         /// <returns></returns>
-        public List<Product> VerkrijgMaterialen(ProductCategorie pcat)
+        public List<Product> VerkrijgProducten(ProductCategorie pcat)
         {
             try
             {
@@ -413,6 +413,32 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public bool HuurProduct(Product p, Event evenement, Account a, DateTime beginDatum, DateTime eindDatum)
+        {
+            try
+            {
+                string sql = "INSERT INTO VERHUUR (PRODUCTEXEMPLAAR_ID, RES_PB_ID, DATUMIN, DATUMUIT, BETAALD) VALUES (:EXEMPLAARID, :PB_ID, :DATUMIN, :DATUMUIT, 0)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                throw new NotImplementedException();
+
+                //command.Parameters.Add(":EXEMPLAARID", VerkrijgBeschikbaarExemplaar(p));
+                //command.Parameters.Add(":PB_ID", VerkrijgPolsbandjeID(a, evenement));
+                command.Parameters.Add(":DATUMIN", eindDatum);
+                command.Parameters.Add(":DATUMUIT", beginDatum);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
         #endregion
 
         #region Queries/Media

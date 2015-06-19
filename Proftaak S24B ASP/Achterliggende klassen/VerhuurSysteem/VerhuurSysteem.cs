@@ -99,7 +99,7 @@ namespace Proftaak_S24B_ASP
         {
             DatabaseManager dm = new DatabaseManager();
 
-            List<Product> producten = dm.VerkrijgMaterialen(pcat);
+            List<Product> producten = dm.VerkrijgProducten(pcat);
 
             var session = HttpContext.Current.Session;
 
@@ -108,6 +108,22 @@ namespace Proftaak_S24B_ASP
             return producten;
         }
 
+        public bool HuurProduct(Product p, Account a, int datumStartIndex, int datumEindIndex)
+        {
+            DatabaseManager dm = new DatabaseManager();
+
+            // Zet datum indexes om naar daadwerkelijke datums van evenement
+            var session = HttpContext.Current.Session;
+
+            Event evenement = session["SelectedEvent"] as Event;
+
+            List<DateTime> datums = dm.VerkrijgDatums(evenement.ID);
+
+            DateTime beginDatum = datums[datumStartIndex];
+            DateTime eindDatum = datums[datumStartIndex + datumEindIndex];
+
+            return p.Huur(a, evenement, beginDatum, eindDatum);
+        }
 
     }
 }

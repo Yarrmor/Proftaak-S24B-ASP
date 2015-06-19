@@ -44,6 +44,16 @@ namespace Proftaak_S24B_ASP
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Probeert een exemplaar van dit product te huren
+        /// </summary>
+        /// <returns></returns>
+        public bool Huur(Account a, Event evenement, DateTime beginDatum, DateTime eindDatum)
+        {
+            DatabaseManager dm = new DatabaseManager();
+
+            return dm.HuurProduct(this, evenement, a, beginDatum, eindDatum);
+        }
         public override string ToString()
         {
             return Merk + " - " + Serie + " - " + Typenummer;

@@ -4,7 +4,7 @@
         div {
             float:left;
         }
-        #divReserveren, #divMateriaal {
+        #divHuren, #divMateriaal {
             margin-left:25px;
         }
         .ReserverenLabels {
@@ -47,9 +47,9 @@
      
         </div>
 
-    <div id="divReserveren">
+    <div id="divHuren">
         
-        <h2>Reserveren:</h2>
+        <h2>Huren:</h2>
         
         <!--  Details -->
         <asp:UpdatePanel ID="updPnlMateriaalDetails" runat="server">
@@ -65,17 +65,18 @@
         <!--  Datum -->
         <h3>Datum:</h3>
         <p>Van:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumVan" runat="server">
+        <asp:DropDownList ID="cbxMateriaalDatumVan" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumVan_SelectedIndexChanged">
         </asp:DropDownList>
         <br />
         <p>Tot:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server">
+        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumTot_SelectedIndexChanged">
         </asp:DropDownList>
                 
         <br /><br />
 
         <!--  Plaats reservering -->
-        <asp:Button ID="btnReserveer" runat="server" Text="Reserveer" OnClick="btnReserveer_Click" />
+        <asp:Button ID="btnHuur" runat="server" Text="Huur" OnClick="btnHuur_Click" />
+        <asp:Label runat="server" Visible="false" ID="lblNietIngelogd">U moet ingelogd zijn om een product te huren!</asp:Label>
         </ContentTemplate>
             </asp:UpdatePanel>
     </div>
