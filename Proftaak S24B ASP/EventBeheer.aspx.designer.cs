@@ -157,6 +157,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekPlaats;
         
         /// <summary>
+        /// tbxWijzigPlekPrijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekPrijs;
+        
+        /// <summary>
         /// tbxWijzigPlekNummer control.
         /// </summary>
         /// <remarks>
@@ -245,6 +254,15 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxLocatiePlaats;
+        
+        /// <summary>
+        /// tbxPlekPrijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxPlekPrijs;
         
         /// <summary>
         /// tbxPlekNummer control.

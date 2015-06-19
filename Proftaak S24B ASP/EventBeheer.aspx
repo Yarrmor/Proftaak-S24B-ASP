@@ -140,6 +140,14 @@
                 </asp:TableRow>
 
                 <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">Prijs</asp:TableCell>
+                    <asp:TableCell runat="server">
+                        <asp:TextBox ID="tbxWijzigPlekPrijs" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server">Validator</asp:TableCell>
+                </asp:TableRow>
+
+                <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Nummer</asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:TextBox ID="tbxWijzigPlekNummer" runat="server"></asp:TextBox>
@@ -228,6 +236,14 @@
 
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server"><b>Overige Plek Gegevens</b></asp:TableCell>
+                </asp:TableRow>
+
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">Prijs</asp:TableCell>
+                    <asp:TableCell runat="server">
+                        <asp:TextBox ID="tbxPlekPrijs" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server">Validator</asp:TableCell>
                 </asp:TableRow>
 
                 <asp:TableRow runat="server">
