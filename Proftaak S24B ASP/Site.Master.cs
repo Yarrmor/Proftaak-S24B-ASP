@@ -21,27 +21,16 @@ namespace Proftaak_S24B_ASP
                 lblGebruikersnaam.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
-<<<<<<< HEAD
                 btnBeheer.Visible = false;
-=======
-                btnLogout.Visible = true;
->>>>>>> origin/Jelle
             }
             else
             {
-<<<<<<< HEAD
                 btnLoginUit.Text = "Inloggen";
                 lblGebruikersnaam.Text = "";
                 lblGebruikersnaam.Visible = false;
                 btnAccount.Visible = false;
                 btnUpload.Visible = false;
                 btnBeheer.Visible = false;
-=======
-                btnAccount.Visible = true;
-                btnUpload.Visible = true;
-                btnBeheer.Visible = true;
-                btnLogout.Visible = true;
->>>>>>> origin/Jelle
             }
 
             VulSubMenu();
@@ -64,7 +53,6 @@ namespace Proftaak_S24B_ASP
             Response.Redirect("Default.aspx");
         }
 
-<<<<<<< HEAD
         protected void btnLoginUit_Click(object sender, EventArgs e)
         {
             if (Session["Account"] != null)
@@ -80,10 +68,6 @@ namespace Proftaak_S24B_ASP
             {
                 Response.Redirect("InlogPagina.aspx");
             }
-=======
-        protected void btnLogin_Click1(object sender, EventArgs e)
-        {
-            Response.Redirect("Inloggen.aspx");
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
@@ -94,7 +78,6 @@ namespace Proftaak_S24B_ASP
         protected void tvwSubMenu_SelectedNodeChanged(object sender, EventArgs e)
         {
             Session["SelectedCategorie"] = MS.VerkrijgCategorie(tvwSubMenu.SelectedNode.Text);
->>>>>>> origin/Jelle
         }
     }
 }
