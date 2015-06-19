@@ -60,12 +60,41 @@ namespace Proftaak_S24B_ASP
 
         protected void lbxMateriaal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Laad details
+            if (lbxMateriaal.SelectedIndex != -1 && Session["Producten"] != null)
+            {
+                List<Product> producten = Session["Producten"] as List<Product>;
+
+                Product p = producten[lbxMateriaal.SelectedIndex];
+
+                if (p != null)
+                {
+                    lblMateriaalNaam.Text = p.ToString();
+                    lblMateriaalPrijs.Text = p.Prijs.ToString("C");
+                }
+            }
         }
 
         protected void btnReserveer_Click(object sender, EventArgs e)
         {
             // Plaats reservering
+        }
+
+        protected void tvwCategorieen_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = tvwCategorieen.SelectedNode;
+            
+            
+            if (selectedNode != null)
+            {
+                lbxMateriaal.Items.Clear();
+
+                List<Product> producten = verhuurSysteem.VerkrijgProducten(verhuurSysteem.VerkrijgProductCategorie(selectedNode.Text));
+
+                foreach (Product p in producten)
+                {
+                    lbxMateriaal.Items.Add(p.ToString());
+                }
+            }
         }
     }
 }

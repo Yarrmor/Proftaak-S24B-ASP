@@ -138,7 +138,7 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                string sql = "SELECT DATUMSTART, DATUMEIND FROM EVENT WHERE ID = :EVENTID";
+                string sql = "SELECT DATUMSTART, DATUMEINDE FROM EVENT WHERE ID = :EVENTID";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
@@ -149,7 +149,7 @@ namespace Proftaak_S24B_ASP
                 List<DateTime> dates = new List<DateTime>();
 
                 DateTime datumStart = Convert.ToDateTime(reader["DATUMSTART"]);
-                DateTime datumEind = Convert.ToDateTime(reader["DATUMEIND"]);
+                DateTime datumEind = Convert.ToDateTime(reader["DATUMEINDE"]);
 
                 do
                 {
@@ -377,21 +377,31 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                throw new NotImplementedException();
-                /*
                 string sql = "SELECT ID, MERK, SERIE, TYPENUMMER, PRIJS FROM PRODUCT WHERE PRODUCTCAT_ID = :PCATID AND ID IN ( SELECT PRODUCT_ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN))";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
                 command.Parameters.Add(":PCATID", pcat.ID);
 
-                OracleDataReader reader = VoerQueryUit(command);
+                OracleDataReader reader = VoerMultiQueryUit(command);
 
-                int id = Convert.ToInt32(reader["ID"]);
-                string catNaam = reader["NAAM"].ToString();
+                List<Product> producten = new List<Product>();
 
-                return 
-                */
+                while (reader.Read())
+	            {
+	                int id = Convert.ToInt32(reader["ID"]);
+                    string merk = reader["MERK"].ToString();
+                    string serie = reader["SERIE"].ToString();
+                    int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+
+                    Product p = new Product(id, pcat, merk, serie, typeNummer, prijs);
+                    producten.Add(p);
+
+	            }
+
+                return producten;
+                
             }
             catch
             {
