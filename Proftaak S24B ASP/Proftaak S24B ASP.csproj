@@ -71,6 +71,7 @@
     <Content Include="PlaatsReserveringPagina.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ActiveerAccount.aspx" />
+    <Content Include="EventBeheer.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,6 +163,13 @@
     </Compile>
     <Compile Include="ActiveerAccount.aspx.designer.cs">
       <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheer.aspx.cs">
+      <DependentUpon>EventBeheer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheer.aspx.designer.cs">
+      <DependentUpon>EventBeheer.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>
