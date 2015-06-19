@@ -11,6 +11,25 @@ namespace Proftaak_S24B_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["SelectedEvent"] != null)
+            {
+                if (cbxMateriaalDatumTot.Items.Count == 0)
+                {
+                    DatabaseManager dm = new DatabaseManager();
+
+                    Event evenement = Session["SelectedEvent"] as Event;
+
+                    List<DateTime> datums = dm.VerkrijgDatums(evenement.ID);
+
+                    foreach (DateTime datum in datums)
+                    {
+                        cbxMateriaalDatumTot.Items.Add(datum.ToShortDateString());
+                        cbxMateriaalDatumVan.Items.Add(datum.ToShortDateString());
+                    }
+                }
+            }
+
+            // Laad materiaal
          // Laad materiaal
          // Laad datums
         }
