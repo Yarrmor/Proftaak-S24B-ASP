@@ -4,7 +4,7 @@
         div {
             float:left;
         }
-        #divReserveren {
+        #divReserveren, #divMateriaal {
             margin-left:25px;
         }
         .ReserverenLabels {
@@ -22,6 +22,16 @@
     <br />
 
     <div>
+        <h2>Categorie:</h2>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                  <asp:TreeView ID="tvwCategorieen" runat="server"></asp:TreeView>
+            <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+    <div id="divMateriaal">
         
     <h2>Materiaal:</h2>
         <asp:UpdatePanel ID="updPnl" runat="server">
@@ -29,7 +39,7 @@
                   <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px">
         <asp:ListItem>Kon materialen niet ophalen!</asp:ListItem>
     </asp:ListBox>
-    <asp:Button ID="btnVervers" runat="server" Text="Ververs lijst" />
+    <asp:Button ID="btnVerversMeterialen" runat="server" Text="Ververs lijst" />
             </ContentTemplate>
         </asp:UpdatePanel>
   

@@ -22,6 +22,33 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Label lblInfo;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// tvwCategorieen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TreeView tvwCategorieen;
+        
+        /// <summary>
+        /// btnVerversCategorieen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerversCategorieen;
+        
+        /// <summary>
         /// updPnl control.
         /// </summary>
         /// <remarks>
@@ -40,13 +67,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.ListBox lbxMateriaal;
         
         /// <summary>
-        /// btnVervers control.
+        /// btnVerversMeterialen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVervers;
+        protected global::System.Web.UI.WebControls.Button btnVerversMeterialen;
         
         /// <summary>
         /// lblMateriaalNaam control.
