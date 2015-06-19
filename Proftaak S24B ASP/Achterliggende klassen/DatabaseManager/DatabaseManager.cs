@@ -517,7 +517,7 @@ namespace Proftaak_S24B_ASP
                     int id = Convert.ToInt32(reader["BI_ID"]);
                     DateTime datum = Convert.ToDateTime(reader["BI_DATUM"]);
                     string naam = reader["B_NAAM"].ToString();
-                    string bestandLocatie = reader["B_BESTANDLOCATIE"].ToString();
+                    string bestandLocatie = reader["B_BESTANDSLOCATIE"].ToString();
                     int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
                     
                     int accId = Convert.ToInt32(reader["A_ID"]);
