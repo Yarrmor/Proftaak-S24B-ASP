@@ -78,8 +78,12 @@
             line-height: 20px;
             padding: 6px 12px;
         }
+<<<<<<< HEAD
 
         input[type="Password"] {
+=======
+        input[type="password"] {
+>>>>>>> origin/Jelle
             background-color: #fff;
             border-radius: 4px;
             border: 1px solid #ccc;
@@ -88,7 +92,13 @@
             line-height: 20px;
             padding: 6px 12px;
         }
+<<<<<<< HEAD
 
+=======
+        input[type="checkbox"] {
+            float: left;
+        }
+>>>>>>> origin/Jelle
         label {
             display: block;
             font-weight: bold;
@@ -107,7 +117,13 @@
         #tvwSubMenu {
             margin: 0px 0px 0px 0px;
         }
+<<<<<<< HEAD
 
+=======
+        #checkboxlist {
+            float: none;
+        }
+>>>>>>> origin/Jelle
         form {
             padding: 0px 8px;
         }
@@ -174,6 +190,7 @@
 
                 <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: 967px;">
                     <ul style="width: 967px; height: 40px;">
+<<<<<<< HEAD
                         <li><asp:Button ID="btnHome" runat="server" Text="Home" Width="75" CausesValidation="False"/></li>
                         <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer" Width="75" CausesValidation="False"/></li>
                         <li><asp:Button ID="btnAccount" runat="server" Text="Account" Width="75" Visible="False" CausesValidation="False"/></li>
@@ -183,6 +200,15 @@
                             <asp:Button ID="btnLoginUit" runat="server" Text="Inloggen" Width="80px" Visible="true" CausesValidation="False" OnClick="btnLoginUit_Click"/>
                             <asp:Label ID="lblGebruikersnaam" runat="server" Visible="False"></asp:Label>
                         </li>
+=======
+                        <li><asp:Button ID="btnHome" runat="server" Text="Home" Width="75" OnClick="btnHome_Click" /></li>
+                        <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer" Width="75" /></li>
+                        <li><asp:Button ID="btnAccount" runat="server" Text="Account" Width="75" Visible="False" /></li>
+                        <li><asp:Button ID="btnUpload" runat="server" Text="Upload" Width="75" Visible="False" /></li>
+                        <li><asp:Button ID="btnBeheer" runat="server" Text="Beheer" Width="75" Visible="False" /></li>
+                        <li><asp:Button ID="btnLogin" runat="server" Text="Inloggen" Width="75" Visible="true" OnClick="btnLogin_Click1" /></li>
+                        <li><asp:Button ID="btnLogout" runat="server" Text="Uitloggen" Width="75" Visible="false" /></li>
+>>>>>>> origin/Jelle
                     </ul>
                 </div>
             </div>
@@ -191,7 +217,7 @@
         <div id="ContentWrapper" style="float: none; height: 500px;">
             <div id="SubMenu" style="float: left; width: auto; height: 500px;">
                 <asp:Panel ID="pnlSubMenu" runat="server" ScrollBars="Auto" Width="300px">
-                    <asp:TreeView ID="tvwSubMenu" runat="server"></asp:TreeView>
+                    <asp:TreeView ID="tvwSubMenu" runat="server" OnSelectedNodeChanged="tvwSubMenu_SelectedNodeChanged"></asp:TreeView>
                 </asp:Panel>
             </div>
 
