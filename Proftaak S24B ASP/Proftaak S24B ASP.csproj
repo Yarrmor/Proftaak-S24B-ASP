@@ -64,7 +64,12 @@
     <Content Include="BestandPagina.aspx" />
     <Content Include="MediaPagina.aspx" />
     <Content Include="Oracle\Oracle.DataAccess.dll" />
+    <Content Include="Afbeeldingen\Event1_Map.png" />
+    <Content Include="InlogPagina.aspx" />
+    <Content Include="MateriaalReserveringPagina.aspx" />
+    <Content Include="PlaatsReserveringPagina.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="ActiveerAccount.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,6 +107,27 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="InlogPagina.aspx.cs">
+      <DependentUpon>InlogPagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InlogPagina.aspx.designer.cs">
+      <DependentUpon>InlogPagina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaalReserveringPagina.aspx.cs">
+      <DependentUpon>MateriaalReserveringPagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MateriaalReserveringPagina.aspx.designer.cs">
+      <DependentUpon>MateriaalReserveringPagina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlaatsReserveringPagina.aspx.cs">
+      <DependentUpon>PlaatsReserveringPagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlaatsReserveringPagina.aspx.designer.cs">
+      <DependentUpon>PlaatsReserveringPagina.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\PlaatsReserveringsSysteem.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Locatie.cs" />
     <Compile Include="Achterliggende klassen\PlaatsReserveringSysteem\Persoon.cs" />
@@ -129,6 +155,13 @@
     <Compile Include="Achterliggende klassen\ToegangscontroleSysteem.cs" />
     <Compile Include="Achterliggende klassen\VerhuurSysteem\VerhuurSysteem.cs" />
     <Compile Include="Achterliggende klassen\VerhuurSysteem\Verhuur.cs" />
+    <Compile Include="ActiveerAccount.aspx.cs">
+      <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveerAccount.aspx.designer.cs">
+      <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

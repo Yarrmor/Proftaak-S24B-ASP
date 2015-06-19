@@ -13,6 +13,7 @@ namespace Proftaak_S24B_ASP
         public Categorie Categorie { get; set; }
 
         private DatabaseManager dm;
+
         public Bestand(int id, DateTime datum, Account account, Categorie categorie, string naam, string bestandsLocatie, int grootte)
             :base(id, datum, account)
         {

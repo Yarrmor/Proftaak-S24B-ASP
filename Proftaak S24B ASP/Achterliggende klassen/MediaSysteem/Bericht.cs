@@ -19,7 +19,7 @@ namespace Proftaak_S24B_ASP
             this.HoofdBijdrage = hoofdBijdrage;
             this.Titel = titel;
             this.Inhoud = inhoud;
-        }
+	}
 
         public List<Bericht> VerkrijgBerichten()
         {

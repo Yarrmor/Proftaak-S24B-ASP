@@ -129,6 +129,92 @@ namespace Proftaak_S24B_ASP
 
         #region Queries
 
+        /// <summary>
+        /// Verkrijg een account voor het gegeven email en wachtwoord.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="wachtwoord"></param>
+        /// <returns></returns>
+        public Account VerkrijgAccount(string email, string wachtwoord)
+        {
+            try
+            {
+                string sql = "SELECT ID, GEBRUIKERSNAAM, GEACTIVEERD FROM ACCOUNT WHERE EMAIL = :email AND WACHTWOORD = :wachtwoord";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":email", email);
+                command.Parameters.Add(":wachtwoord", wachtwoord);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int ID = Convert.ToInt32(reader["ID"]);
+                string gebruikersnaam = reader["GEBRUIKERSNAAM"].ToString();
+                bool geactiveerd = Convert.ToBoolean(reader["GEACTIVEERD"]);
+
+                Account acc = new Account(ID, gebruikersnaam, email, geactiveerd);
+
+                return acc;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Verkrijgt een account op basis van de activatieHash
+        /// </summary>
+        /// <param name="activatieHash"></param>
+        /// <returns></returns>
+        public Account VerkrijgAccount(string activatieHash)
+        {
+            try
+            {
+                string sql = "SELECT ID, GEBRUIKERSNAAM, EMAIL, GEACTIVEERD FROM ACCOUNT WHERE ACTIVATIEHASH = :activatieHash";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":activatieHash", activatieHash);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int ID = Convert.ToInt32(reader["ID"]);
+                string email = reader["EMAIL"].ToString();
+                string gebruikersnaam = reader["GEBRUIKERSNAAM"].ToString();
+                bool geactiveerd = Convert.ToBoolean(reader["GEACTIVEERD"]);
+
+                Account acc = new Account(ID, gebruikersnaam, email, geactiveerd);
+
+                return acc;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+        public bool ActiveerAccount(int accountID, string gebruikersNaam, string wachtwoordHash)
+        {
+            try
+            {
+                //"UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord WHERE ID = :ID"
+                string sql = "UPDATE ACCOUNT SET GEBRUIKERSNAAM = :gebruikersnaam , WACHTWOORD = :wachtwoord, GEACTIVEERD = 1 WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":gebruikersnaam", gebruikersNaam);
+                command.Parameters.Add(":wachtwoord", wachtwoordHash);
+                command.Parameters.Add(":ID", accountID);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
