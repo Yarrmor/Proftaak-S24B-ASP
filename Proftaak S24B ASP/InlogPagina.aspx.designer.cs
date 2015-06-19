@@ -13,15 +13,6 @@ namespace Proftaak_S24B_ASP {
     public partial class InlogPagina {
         
         /// <summary>
-        /// tblInlogGegevens control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblInlogGegevens;
-        
-        /// <summary>
         /// tbEmail control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,24 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        
+        /// <summary>
+        /// rfvEmailIngevult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmailIngevult;
+        
+        /// <summary>
+        /// revEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
         
         /// <summary>
         /// tbWachtwoord control.
@@ -40,6 +49,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TextBox tbWachtwoord;
         
         /// <summary>
+        /// rfvWachtwoordInvoeren control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWachtwoordInvoeren;
+        
+        /// <summary>
         /// btnLogin control.
         /// </summary>
         /// <remarks>
@@ -47,5 +65,14 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
+        
+        /// <summary>
+        /// lblInlogMislukt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInlogMislukt;
     }
 }

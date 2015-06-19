@@ -11,12 +11,26 @@ namespace Proftaak_S24B_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Account"] != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
+            lblInlogMislukt.Visible = false;
+            InlogSysteem inlog = new InlogSysteem();
+            Account acc = inlog.Login(tbEmail.Text, tbWachtwoord.Text);
+            if (acc != null)
+            {
+                Session["Account"] = acc;
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                lblInlogMislukt.Visible = true;
+            }
         }
     }
 }

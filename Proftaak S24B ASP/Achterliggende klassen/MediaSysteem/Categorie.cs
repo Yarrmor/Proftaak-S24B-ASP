@@ -13,7 +13,7 @@ namespace Proftaak_S24B_ASP
         private DatabaseManager dm;
 
         public Categorie(int id, DateTime datum, Account account, string naam) 
-            : base(id, datum, account) 
+            : base(id, datum, account)
         {
             this.Naam = naam;
         }
@@ -23,6 +23,12 @@ namespace Proftaak_S24B_ASP
         {
             this.Naam = naam;
             this.HoofdCategorie = hoofdCategorie;
+        }
+
+        public Categorie(int id, string naam)
+            :base(id)
+        {
+            this.Naam = naam;
         }
 
         public override bool VoegToe()

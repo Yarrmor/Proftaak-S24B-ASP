@@ -130,6 +130,47 @@ namespace Proftaak_S24B_ASP
         #region Queries
 
         /// <summary>
+        /// Retourneert voor iedere dag gedurende het evenement met ID eventID een DateTime.
+        /// </summary>
+        /// <param name="eventID"></param>
+        /// <returns></returns>
+        public List<DateTime> VerkrijgDatums(int eventID)
+        {
+            try
+            {
+                string sql = "SELECT DATUMSTART, DATUMEIND FROM EVENT WHERE ID = :EVENTID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":EVENTID", eventID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                List<DateTime> dates = new List<DateTime>();
+
+                DateTime datumStart = Convert.ToDateTime(reader["DATUMSTART"]);
+                DateTime datumEind = Convert.ToDateTime(reader["DATUMEIND"]);
+
+                do
+                {
+                    dates.Add(datumStart);
+                    datumStart = datumStart.AddDays(1);
+                } while (datumStart.Date != datumEind);
+
+                return dates;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }  
+        }
+
+        #region Queries/Account
+        /// <summary>
         /// Verkrijg een account voor het gegeven email en wachtwoord.
         /// </summary>
         /// <param name="email"></param>
@@ -215,6 +256,252 @@ namespace Proftaak_S24B_ASP
                 return false;
             }
         }
+        #endregion
+
+        #region Queries/MateriaalReservering
+
+        /// <summary>
+        /// Haalt alle productcategorieen op die geen hoofdcategorie hebben (fk is null)
+        /// </summary>
+        /// <returns></returns>
+        public List<ProductCategorie> VerkrijgProductCategorieen()
+        {
+            try
+            {
+                string sql = "SELECT ID, NAAM FROM PRODUCTCAT WHERE PRODUCTCAT_ID IS NULL";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<ProductCategorie> categorieen = new List<ProductCategorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    categorieen.Add(new ProductCategorie(id, naam));
+                }
+
+                return categorieen;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        /// <summary>
+        /// Haalt alle productcategorieen op die als hoofdcategorie de meegegeven categorie hebben (gebaseerd op ID)
+        /// </summary>
+        /// <param name="hoofdCategorie"></param>
+        /// <returns></returns>
+        public List<ProductCategorie> VerkrijgProductCategorieen(ProductCategorie hoofdCategorie)
+        {
+            try
+            {
+                string sql = "SELECT ID, NAAM FROM PRODUCTCAT WHERE PRODUCTCAT_ID = :PCATID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PCATID", hoofdCategorie.ID);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<ProductCategorie> productCategorieen = new List<ProductCategorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    productCategorieen.Add(new ProductCategorie(id, naam));
+                }
+
+                return productCategorieen;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        /// <summary>
+        /// Haalt de gegevens van de productcategorie op met deze naam
+        /// Wordt gebruikt om ID van productCategorie op te halen als je alleen naam weet (bv in treeview)
+        /// </summary>
+        /// <param name="naam"></param>
+        /// <returns></returns>
+        public ProductCategorie VerkrijgProductCategorie(string naam)
+        {
+            try
+            {
+                string sql = "SELECT ID, NAAM FROM PRODUCTCAT WHERE UPPER(NAAM) = :PCNAAM";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PCNAAM", naam.ToUpper());
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int id = Convert.ToInt32(reader["ID"]);
+                string catNaam = reader["NAAM"].ToString();
+
+                return new ProductCategorie(id, catNaam);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        /// <summary>
+        /// Retourneert een lijst met producten waarvan exemplaren beschikbaar zijn om uitgeleend te worden, binnen de meegegeven productcategorie
+        /// </summary>
+        /// <param name="pcat"></param>
+        /// <returns></returns>
+        public List<Product> VerkrijgMaterialen(ProductCategorie pcat)
+        {
+            try
+            {
+                throw new NotImplementedException();
+                /*
+                string sql = "SELECT ID, MERK, SERIE, TYPENUMMER, PRIJS FROM PRODUCT WHERE PRODUCTCAT_ID = :PCATID AND ID IN ( SELECT PRODUCT_ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN))";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PCATID", pcat.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int id = Convert.ToInt32(reader["ID"]);
+                string catNaam = reader["NAAM"].ToString();
+
+                return 
+                */
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        #endregion
+
+        #region Queries/Media
+
+        public List<Categorie> VerkrijgCategorieen()
+        {
+            try
+            {
+                string sql = "SELECT BIJDRAGE_ID, NAAM FROM CATEGORIE WHERE CATEGORIE_ID IS NULL";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Categorie> categorieen = new List<Categorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["BIJDRAGE_ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    categorieen.Add(new Categorie(id, naam));
+                }
+
+                return categorieen;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public List<Categorie> VerkrijgCategorieen(Categorie hoofdCat)
+        {
+            try
+            {
+                string sql = "SELECT BIJDRAGE_ID, NAAM FROM CATEGORIE WHERE CATEGORIE_ID = :CATID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":CATID", hoofdCat.ID);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Categorie> categorieen = new List<Categorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["BIJDRAGE_ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    categorieen.Add(new Categorie(id, naam));
+                }
+
+                return categorieen;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public Categorie VerkrijgCategorie(string naam)
+        {
+            try
+            {
+                string sql = "SELECT BIJDRAGE_ID, NAAM FROM CATEGORIE WHERE UPPER(NAAM) = :CNAAM";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":CNAAM", naam.ToUpper());
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int id = Convert.ToInt32(reader["BIJDRAGE_ID"]);
+                string cNaam = reader["NAAM"].ToString();
+
+                return new Categorie(id, cNaam);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        #endregion
+
         #endregion
     }
 }

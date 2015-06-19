@@ -13,18 +13,24 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if((string)Session["IngelogdAccount"] == "Gebruiker")
+            if (Session["Account"] != null)
             {
+                btnLoginUit.Text = "Uitloggen";
+                Account acc = (Account)Session["Account"];
+                lblGebruikersnaam.Text = acc.Gebruikersnaam;
+                lblGebruikersnaam.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
-                btnLogout.Visible = true;
+                btnBeheer.Visible = false;
             }
-            else if((string)Session["IngelogdAccount"] == "Beheerder")
+            else
             {
-                btnAccount.Visible = true;
-                btnUpload.Visible = true;
-                btnBeheer.Visible = true;
-                btnLogout.Visible = true;
+                btnLoginUit.Text = "Inloggen";
+                lblGebruikersnaam.Text = "";
+                lblGebruikersnaam.Visible = false;
+                btnAccount.Visible = false;
+                btnUpload.Visible = false;
+                btnBeheer.Visible = false;
             }
 
             VulSubMenu();
@@ -47,9 +53,21 @@ namespace Proftaak_S24B_ASP
             Response.Redirect("Default.aspx");
         }
 
-        protected void btnLogin_Click1(object sender, EventArgs e)
+        protected void btnLoginUit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inloggen.aspx");
+            if (Session["Account"] != null)
+            {
+                Session["Account"] = null;
+                btnLoginUit.Text = "Inloggen";
+                lblGebruikersnaam.Visible = false;
+                btnAccount.Visible = false;
+                btnUpload.Visible = false;
+                btnBeheer.Visible = false;
+            }
+            else
+            {
+                Response.Redirect("InlogPagina.aspx");
+            }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)

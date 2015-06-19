@@ -21,6 +21,11 @@ namespace Proftaak_S24B_ASP
             this.Account = account;
         }
 
+        public Bijdrage(int id)
+        {
+            this.ID = id;
+        }
+
         public abstract bool VoegToe();
 
         public abstract bool Verwijder();

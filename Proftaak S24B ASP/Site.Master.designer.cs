@@ -85,22 +85,22 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnBeheer;
         
         /// <summary>
-        /// btnLogin control.
+        /// btnLoginUit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.Button btnLoginUit;
         
         /// <summary>
-        /// btnLogout control.
+        /// lblGebruikersnaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::System.Web.UI.WebControls.Label lblGebruikersnaam;
         
         /// <summary>
         /// pnlSubMenu control.

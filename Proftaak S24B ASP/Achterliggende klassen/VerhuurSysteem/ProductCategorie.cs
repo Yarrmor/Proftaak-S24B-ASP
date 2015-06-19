@@ -11,11 +11,19 @@ namespace Proftaak_S24B_ASP
 
         public string Naam { get; set; }
 
-        public Categorie HoofdCategorie { get; set; }
+        public ProductCategorie HoofdCategorie { get; set; }
 
-        public ProductCategorie()
+        public ProductCategorie(int id, string naam)
         {
+            ID = id;
+            Naam = naam;
+        }
 
+        public ProductCategorie(int id, string naam, ProductCategorie hoofdCategorie)
+        {
+            ID = id;
+            Naam = naam;
+            HoofdCategorie = hoofdCategorie;
         }
 
         public List<ProductCategorie> VerkrijgSubCategorieen()
