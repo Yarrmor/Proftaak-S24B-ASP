@@ -40,7 +40,16 @@ namespace Proftaak_S24B_ASP
 
         public void VulSubMenu()
         {
-            tvwSubMenu = MS.VulSubMenu();
+            if(tvwSubMenu.Nodes.Count == 0)
+            {
+                TreeNodeCollection tnc = MS.VulSubMenu();
+
+                foreach(TreeNode tn in tnc)
+                {
+                    tvwSubMenu.Nodes.Add(tn);
+                }
+            }
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

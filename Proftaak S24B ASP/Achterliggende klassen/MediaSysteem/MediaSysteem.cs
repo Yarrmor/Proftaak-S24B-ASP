@@ -56,18 +56,18 @@ namespace Proftaak_S24B_ASP
             return false; //this.dm.PlaatsBericht(titel, bericht);
         }
 
-        public TreeView VulSubMenu()
+        public TreeNodeCollection VulSubMenu()
         {
-            TreeView tv = new TreeView();
+            TreeNodeCollection tnc = new TreeNodeCollection();
             List<Categorie> hoofdCatList = VerkrijgCategorieen();
 
             foreach(Categorie hoofdCat in hoofdCatList)
             {
                 TreeNode tn = new TreeNode(hoofdCat.Naam);
                 tn = VulSubCat(hoofdCat, tn);
-                tv.Nodes.Add(tn);
+                tnc.Add(tn);
             }
-            return tv;
+            return tnc;
         }
 
         public TreeNode VulSubCat(Categorie cat, TreeNode parent)
