@@ -8,8 +8,8 @@ namespace Proftaak_S24B_ASP
 {
     public class VerhuurSysteem
     {
-        DateTime BeginDatum { get; set; }
-        DateTime EindDatum { get; set; }
+        public DateTime BeginDatum { get; set; }
+        public DateTime EindDatum { get; set; }
 
         public VerhuurSysteem()
         {
@@ -29,7 +29,7 @@ namespace Proftaak_S24B_ASP
             List<DateTime> datums = dm.VerkrijgDatums(evenement.ID);
 
             BeginDatum = datums[0];
-            EindDatum = datums[datums.Count];
+            EindDatum = datums[datums.Count - 1];
 
             return datums;
         }
@@ -88,10 +88,26 @@ namespace Proftaak_S24B_ASP
             return hoofdNode;
         }
 
+        public ProductCategorie VerkrijgProductCategorie(string naam)
+        {
+            DatabaseManager dm = new DatabaseManager();
+
+            return dm.VerkrijgProductCategorie(naam);
+        }
+
         public List<Product> VerkrijgProducten(ProductCategorie pcat)
         {
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgMaterialen(pcat);
+
+            List<Product> producten = dm.VerkrijgMaterialen(pcat);
+
+            var session = HttpContext.Current.Session;
+
+            session["Producten"] = producten;
+
+            return producten;
         }
+
+
     }
 }
