@@ -148,10 +148,5 @@ namespace Proftaak_S24B_ASP
                     cbxMateriaalDatumTot.Items.RemoveAt(0);
             }
         }
-
-        protected void cbxMateriaalDatumTot_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

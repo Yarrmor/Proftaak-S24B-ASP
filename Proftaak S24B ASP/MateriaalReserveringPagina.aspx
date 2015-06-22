@@ -69,7 +69,7 @@
         </asp:DropDownList>
         <br />
         <p>Tot:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumTot_SelectedIndexChanged">
+        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True">
         </asp:DropDownList>
                 
         <br /><br />
