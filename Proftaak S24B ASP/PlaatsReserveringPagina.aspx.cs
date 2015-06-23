@@ -96,11 +96,6 @@ namespace Proftaak_S24B_ASP
                 return -1;
         }
 
-        protected void btnReserveren_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void cbxDatumVan_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxDatumVan.SelectedIndex == -1)
@@ -118,5 +113,22 @@ namespace Proftaak_S24B_ASP
                     cbxDatumTot.Items.RemoveAt(0);
             }
         }
+
+        protected void clbPlaatsFilters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cbxPlaatsnummer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
+        protected void btnReserveren_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

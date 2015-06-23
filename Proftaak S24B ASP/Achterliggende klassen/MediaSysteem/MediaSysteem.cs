@@ -30,8 +30,13 @@ namespace Proftaak_S24B_ASP
 
         public Categorie VerkrijgCategorie(string naam)
         {
-            //this.Categorie = this.dm.VerkrijgCategorie(naam);
-            return null; //this.Categorie;
+            return this.dm.VerkrijgCategorie(naam);
+        }
+
+        public Bestand VerkrijgBestand(int id)
+        {
+            this.Bestand = this.dm.VerkrijgBestand(id);
+            return null;
         }
 
         public List<Bestand> VerkrijgBestanden()
@@ -42,8 +47,8 @@ namespace Proftaak_S24B_ASP
 
         public List<Bestand> VerkrijgBestanden(Categorie cat)
         {
-            //this.Bestanden = this.dm.VerkrijgBestanden(cat);
-            return null; //this.Bestanden;
+            this.Bestanden = this.dm.VerkrijgBestanden(cat);
+            return this.Bestanden;
         }
 
         public bool PlaatsBericht(Bericht hoofdBericht, string titel, string bericht)

@@ -13,14 +13,20 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((Bestand)Session["SelectedBestand"] == null)
+            int id;
+            if(!int.TryParse(Request.QueryString["id"], out id))
             {
                 Response.Redirect("MediaPagina.aspx");
             }
 
             MS = new MediaSysteem();
 
-            MS.Bestand = (Bestand)Session["SelectedBestand"];
+            MS.VerkrijgBestand(id);
+
+            if(MS.Bestand == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
 
             VulBestandInfo();
 

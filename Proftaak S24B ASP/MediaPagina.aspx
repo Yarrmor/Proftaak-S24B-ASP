@@ -2,5 +2,40 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <asp:ListView ID="lvwMedia" runat="server" OnSelectedIndexChanged="lvwMedia_SelectedIndexChanged"></asp:ListView>
+    <asp:ListView ID="lvwMedia" runat="server" OnSelectedIndexChanged="lvwMedia_SelectedIndexChanged">
+        <LayoutTemplate>
+            <table>
+                <tr runat="server">
+                    <th>ID</th>
+                    <th>Naam</th>
+                    <th>Uploader</th>
+                    <th>Datum</th>
+                </tr>
+                <tr runat="server" id="itemPlaceholder" />
+            </table>
+            <asp:DataPager runat="server" ID="ContactsDataPager" PageSize="12">
+            <Fields>
+              <asp:NextPreviousPagerField ShowFirstPageButton="true" ShowLastPageButton="true"
+                FirstPageText="|&lt;&lt; " LastPageText=" &gt;&gt;|"
+                NextPageText=" &gt; " PreviousPageText=" &lt; " />
+            </Fields>
+          </asp:DataPager>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <tr runat="server">
+                <td>
+                    <asp:Label ID="lblMediaID" runat="server" Text='<%#Eval("ID") %>' />
+                </td>
+                <td>
+                    <asp:HyperLink ID="hplMediaNaam" runat="server" NavigateUrl='<%# "BestandPagina.aspx?id=" + Eval("ID") %>' Text='<%#Eval("Naam") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="lblMediaUploader" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Account.Gebruikersnaam") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="lblMediaDatum" runat="server" Text='<%#Eval("Datum") %>' />
+                </td>
+            </tr>
+        </ItemTemplate>
+    </asp:ListView>
 </asp:Content>

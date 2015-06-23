@@ -15,12 +15,13 @@ namespace Proftaak_S24B_ASP
 
         public bool Geactiveerd { get; set; }
 
-        public Account(int ID, string gebruikersnaam)
+        public Account(int id, string gebruikersnaam)
         {
-
+            this.ID = id;
+            this.Gebruikersnaam = gebruikersnaam;
         }
 
-        public Account(int ID, string gebruikersnaam, string email, bool geactiveerd)
+        public Account(int id, string gebruikersnaam, string email, bool geactiveerd)
         {
             this.ID = ID;
             this.Gebruikersnaam = gebruikersnaam;

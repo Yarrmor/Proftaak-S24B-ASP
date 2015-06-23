@@ -67,6 +67,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.DropDownList cbxDatumTot;
         
         /// <summary>
+        /// updPnlPlaats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updPnlPlaats;
+        
+        /// <summary>
         /// tblPlaats control.
         /// </summary>
         /// <remarks>
