@@ -13,6 +13,51 @@ namespace Proftaak_S24B_ASP {
     public partial class WebForm2 {
         
         /// <summary>
+        /// btnEventAanmaken control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEventAanmaken;
+        
+        /// <summary>
+        /// btnPlaatsMateriaalToevoegen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPlaatsMateriaalToevoegen;
+        
+        /// <summary>
+        /// btnMateriaalVerwijderenWijzigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMateriaalVerwijderenWijzigen;
+        
+        /// <summary>
+        /// btnPlaatsVerwijderenWijzigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPlaatsVerwijderenWijzigen;
+        
+        /// <summary>
+        /// btnVerhuur control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerhuur;
+        
+        /// <summary>
         /// ListBox1 control.
         /// </summary>
         /// <remarks>
@@ -20,15 +65,6 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox ListBox1;
-        
-        /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
         /// ddlWijzigProductCategorie control.
@@ -101,15 +137,6 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lbxVerwijderWijzigPlek;
-        
-        /// <summary>
-        /// tblPlekWijzig control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblPlekWijzig;
         
         /// <summary>
         /// tbxWijzigPlekNaam control.
@@ -202,15 +229,6 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnVerwijderPlek;
         
         /// <summary>
-        /// tblPlekVoegToe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblPlekVoegToe;
-        
-        /// <summary>
         /// tbxLocatieNaam control.
         /// </summary>
         /// <remarks>
@@ -290,15 +308,6 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVoegPlekToe;
-        
-        /// <summary>
-        /// tblProductVoegToe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblProductVoegToe;
         
         /// <summary>
         /// ddlProductCategorieen control.
