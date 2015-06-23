@@ -35,68 +35,30 @@ namespace Proftaak_S24B_ASP
             // Laad categorieen
             if (tvwCategorieen.Nodes.Count == 0)
             {
-                TreeNodeCollection nodes = verhuurSysteem.VerkrijgProductCategorieen();
-
-                foreach (TreeNode node in nodes)
-                {
-                    tvwCategorieen.Nodes.Add(node);
-                }
+                VerkrijgCategorieen();
             }
 
-            // Laad materiaal
-            if (Session["SelectedProductCategorie"] != null)
-            {
-                lbxMateriaal.Items.Clear();
-
-                List<Product> producten = verhuurSysteem.VerkrijgProducten(Session["SelectedProductCategorie"] as ProductCategorie);
-
-                foreach (Product p in producten)
-                {
-                    lbxMateriaal.Items.Add(p.ToString());
-                }
-            }
+            VerkrijgMaterialen();
             
         }
 
-        protected void lbxMateriaal_SelectedIndexChanged(object sender, EventArgs e)
+        #region Categorieen
+
+        protected void btnVerversCategorieen_Click(object sender, EventArgs e)
         {
-            if (lbxMateriaal.SelectedIndex != -1 && Session["Producten"] != null)
-            {
-                List<Product> producten = Session["Producten"] as List<Product>;
-
-                Product p = producten[lbxMateriaal.SelectedIndex];
-
-                if (p != null)
-                {
-                    lblMateriaalNaam.Text = p.ToString();
-                    lblMateriaalPrijs.Text = p.Prijs.ToString("C");
-                }
-            }
+            VerkrijgCategorieen();
         }
 
-        /// <summary>
-        /// Probeert een exemplaar van het geselecteerde product te huren.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnHuur_Click(object sender, EventArgs e)
+        private void VerkrijgCategorieen()
         {
-            if (Session["IngelogdAccount"] == null)
-            {
-                lblNietIngelogd.Visible = true;
-            }
-            else
-            {
-                if (lbxMateriaal.SelectedIndex != -1 && cbxMateriaalDatumVan.SelectedIndex != -1 && cbxMateriaalDatumTot.SelectedIndex != -1)
-                {
-                    List<Product> producten = Session["Producten"] as List<Product>;
+            TreeNodeCollection nodes = verhuurSysteem.VerkrijgProductCategorieen();
 
-                    Product p = producten[lbxMateriaal.SelectedIndex];
+            tvwCategorieen.Nodes.Clear();
 
-                    verhuurSysteem.HuurProduct(p, Session["IngelogdAccount"] as Account, cbxMateriaalDatumVan.SelectedIndex, cbxMateriaalDatumTot.SelectedIndex);
-                }
+            foreach (TreeNode node in nodes)
+            {
+                tvwCategorieen.Nodes.Add(node);
             }
-            
         }
 
         /// <summary>
@@ -110,6 +72,7 @@ namespace Proftaak_S24B_ASP
 
             lbxMateriaal.Items.Clear();
             Session["Producten"] = null;
+            Session["SelectedProduct"] = null;
 
             lblMateriaalNaam.Text = "Selecteer eerst een materiaal!";
             lblMateriaalPrijs.Text = "€0.00";
@@ -122,6 +85,61 @@ namespace Proftaak_S24B_ASP
                 {
                     lbxMateriaal.Items.Add(p.ToString());
                 }
+            }
+        }
+
+        #endregion
+
+        #region Materiaal
+
+        /// <summary>
+        /// Haalt materialen op en stopt deze in de lb
+        /// </summary>
+        private void VerkrijgMaterialen()
+        {
+            // Laad materiaal
+            if (Session["SelectedProductCategorie"] != null)
+            {
+                lbxMateriaal.Items.Clear();
+
+                List<Product> producten = verhuurSysteem.VerkrijgProducten(Session["SelectedProductCategorie"] as ProductCategorie);
+
+                foreach (Product p in producten)
+                {
+                    lbxMateriaal.Items.Add(p.ToString());
+                }
+            }
+        }
+
+        protected void btnVerversMaterialen_Click(object sender, EventArgs e)
+        {
+            VerkrijgMaterialen();
+        }
+
+        /// <summary>
+        /// Vult de gegevens in van het geselecteerde product, en stopt dit product in de sessie (voor btnHuur Event)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lbxMateriaal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbxMateriaal.SelectedIndex != -1 && Session["Producten"] != null)
+            {
+                List<Product> producten = Session["Producten"] as List<Product>;
+
+                Product p = producten[lbxMateriaal.SelectedIndex];
+
+                Session["SelectedProduct"] = p;
+
+                if (p != null)
+                {
+                    lblMateriaalNaam.Text = p.ToString();
+                    lblMateriaalPrijs.Text = p.Prijs.ToString("C");
+                }
+            }
+            else
+            {
+                Session["SelectedProduct"] = null;
             }
         }
 
@@ -148,5 +166,37 @@ namespace Proftaak_S24B_ASP
                     cbxMateriaalDatumTot.Items.RemoveAt(0);
             }
         }
+
+        #endregion
+
+        /// <summary>
+        /// Probeert een exemplaar van het geselecteerde product te huren.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnHuur_Click(object sender, EventArgs e)
+        {
+            Account a = Session["IngelogdAccount"] as Account;
+
+            if (a == null)
+            {
+                lblHuurError.Visible = true;
+                lblHuurError.Text = "U moet ingelogd zijn om producten te huren!";
+            }
+            else if (Session["SelectedProduct"] != null)
+            {
+                Product p = Session["SelectedProduct"] as Product;
+
+                p.Huur(Session["IngelogdAccount"] as Account, Session["SelectedEvent"] as Event, cbxMateriaalDatumVan.SelectedIndex, cbxMateriaalDatumTot.SelectedIndex);
+            }
+            else
+            {
+                lblHuurError.Visible = true;
+                lblHuurError.Text = "U moet eerst een product selecteren!";
+            }
+
+        }
+
+
     }
 }
