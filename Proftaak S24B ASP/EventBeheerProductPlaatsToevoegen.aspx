@@ -17,6 +17,10 @@
             padding: 6px 12px;
         }
 
+        .auto-style1 {
+            height: 48px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -173,13 +177,23 @@
                 </tr>
 
                 <tr>
-                    <td>Prijs</td>
-                    <td>
+                    <td class="auto-style1">Prijs</td>
+                    <td class="auto-style1">
                         <asp:TextBox ID="tbxProductPrijs" runat="server" TextMode="Number"></asp:TextBox>
                     </td>
-                    <td>
+                    <td class="auto-style1">
                         <asp:RequiredFieldValidator ID="rfvProductPrijs" runat="server" ControlToValidate="tbxProductPrijs" ErrorMessage="rfvProductPrijs" ForeColor="Red" ValidationGroup="Product"></asp:RequiredFieldValidator>
                     </td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style1">Filter</td>
+                    <td class="auto-style1">
+                        <asp:CheckBoxList ID="cblFilters" runat="server">
+                        </asp:CheckBoxList>
+                    </td>
+                    <td class="auto-style1">
+                        &nbsp;</td>
                 </tr>
 
                 <tr>

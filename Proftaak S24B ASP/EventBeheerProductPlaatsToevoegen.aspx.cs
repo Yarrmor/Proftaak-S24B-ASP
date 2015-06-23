@@ -19,6 +19,10 @@ namespace Proftaak_S24B_ASP
             {
                 productCats = bs.VerkrijgProductCategorieen();
                 VulDropDownListCategorieen(productCats);
+                if (cblFilters.Items.Count == 0)
+                {
+                    bs.VerkrijgFilters();
+                }
             }
             else
             {
@@ -57,7 +61,16 @@ namespace Proftaak_S24B_ASP
                 Locatie lo = new Locatie(tbxLocatieNaam.Text, tbxLocatieStraat.Text, tbxLocatieNR.Text, tbxLocatiePostcode.Text, tbxLocatiePlaats.Text);
                 if (lo.VoegToe())
                 {
-                    Plek pl = new Plek(Convert.ToInt32(tbxPlekNummer.Text), Convert.ToInt32(tbxCapaciteit.Text), Convert.ToInt32(tbxPlekPrijs.Text), lo);
+                    List<string> filters = new List<string>();
+                    foreach (ListItem item in cblFilters.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            filters.Add(item.Value.ToString());
+                        }
+                    }
+
+                    Plek pl = new Plek(Convert.ToInt32(tbxPlekNummer.Text), Convert.ToInt32(tbxCapaciteit.Text), Convert.ToInt32(tbxPlekPrijs.Text), lo, filters);
 
                     if (pl.VoegToe())
                     {

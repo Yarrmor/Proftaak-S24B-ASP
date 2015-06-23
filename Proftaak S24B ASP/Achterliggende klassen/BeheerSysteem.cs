@@ -43,5 +43,11 @@ namespace Proftaak_S24B_ASP
         {
             throw new NotImplementedException();
         }
+
+        public List<string> VerkrijgFilters()
+        {
+            DatabaseManager dm = new DatabaseManager();
+            return null;
+        }
     }
 }
