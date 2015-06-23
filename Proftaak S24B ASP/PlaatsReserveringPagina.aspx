@@ -40,7 +40,7 @@
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Tot en met:</asp:TableCell>
                                 <asp:TableCell runat="server">
-                                    <asp:DropDownList ID="cbxDatumTot" runat="server"></asp:DropDownList></asp:TableCell>
+                                    <asp:DropDownList ID="cbxDatumTot" OnSelectedIndexChanged="cbxDatumTot_SelectedIndexChanged" runat="server" AutoPostBack="true"></asp:DropDownList></asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
                     </ContentTemplate>
@@ -67,11 +67,11 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Dagprijs:</asp:TableCell>
-                                <asp:TableCell runat="server"></asp:TableCell>
+                                <asp:TableCell runat="server" ID="tbcDagprijs"></asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Totaalprijs:</asp:TableCell>
-                                <asp:TableCell runat="server"></asp:TableCell>
+                                <asp:TableCell runat="server" ID="tbcTotaalprijs"></asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
                     </ContentTemplate>

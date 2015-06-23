@@ -1073,9 +1073,11 @@ namespace Proftaak_S24B_ASP
             {
                 // bepaalde specificaties zijn niet filterbaar met een check (ja/nee)
                 // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
-                string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 ) AND ID IN ( SELECT SPECIFICATIE_ID FROM PLEK_SPECIFICATIE WHERE PLEK_ID = :PLEKID )";
+                string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 ) AND ID IN ( SELECT SPECIFICATIE_ID FROM PLEK_SPECIFICATIE WHERE PLEK_ID = :PLEKID AND WAARDE='ja')";
 
                 OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PLEKID", plekID);
 
                 OracleDataReader reader = VoerMultiQueryUit(command);
 

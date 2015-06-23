@@ -103,6 +103,24 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.DropDownList cbxPlaatsnummer;
         
         /// <summary>
+        /// tbcDagprijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell tbcDagprijs;
+        
+        /// <summary>
+        /// tbcTotaalprijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell tbcTotaalprijs;
+        
+        /// <summary>
         /// tblGegevens control.
         /// </summary>
         /// <remarks>

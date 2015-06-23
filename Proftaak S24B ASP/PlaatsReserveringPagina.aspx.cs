@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -109,14 +110,14 @@ namespace Proftaak_S24B_ASP
                 for (int i = 0; i < cbxDatumVan.SelectedIndex; i++)
                     cbxDatumTot.Items.RemoveAt(0);
             }
+
+            BerekenPrijs();
         }
 
         protected void clbPlaatsFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (clbPlaatsFilters.SelectedIndex != -1)
-            {
-
-            }
+            VerversPlaatsen();
+            BerekenPrijs();
         }
 
         private void VerversPlaatsen()
@@ -127,8 +128,6 @@ namespace Proftaak_S24B_ASP
                 Response.Redirect(Request.RawUrl);
 
             cbxPlaatsnummer.Items.Clear();
-
-            List<Plek> gefilterdePlekken = new List<Plek>();
 
             // Alle plekken
             foreach (Plek plek in plekken)
@@ -147,22 +146,85 @@ namespace Proftaak_S24B_ASP
                         else if (!plek.Filters.Contains(item.Value.ToString()))
                             match = false;
                     }
-
-                    if (match)
-                        cbxPlaatsnummer.Items.Add(plek.ID.ToString());
                 }
+                if (match)
+                    cbxPlaatsnummer.Items.Add(plek.Nummer.ToString());
             }
+
+            BerekenPrijs();
         }
 
         protected void cbxPlaatsnummer_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cbxPlaatsnummer.SelectedIndex == -1)
+            {
+                tbcTotaalprijs.Text = "";
+                tbcTotaalprijs.Text = "";
+            }
+            else
+            {
+                BerekenPrijs();
+            }
+            
         }
 
+        private void BerekenPrijs()
+        {
+            // Dagprijs
+            if (cbxPlaatsnummer.SelectedIndex != -1)
+            {
+                List<Plek> plekken = Session["Plekken"] as List<Plek>;
+
+                foreach (Plek plek in plekken)
+                {
+                    if (plek.Nummer == Convert.ToInt32(cbxPlaatsnummer.SelectedValue.ToString()))
+                    {
+                        CultureInfo ci = new CultureInfo("nl-NL");
+
+                        tbcDagprijs.Text = plek.DagPrijs.ToString("c", ci);
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                tbcDagprijs.Text = "";
+            }
+
+            // Totaalprijs
+            if (cbxDatumVan.SelectedIndex == -1 || cbxDatumTot.SelectedIndex == -1 || cbxPlaatsnummer.SelectedIndex == -1)
+                tbcTotaalprijs.Text = "";
+            else
+            {
+                int dagen = cbxDatumTot.SelectedIndex + 1;
+
+                List<Plek> plekken = Session["Plekken"] as List<Plek>;
+
+                foreach (Plek plek in plekken)
+                {
+                    if (plek.Nummer == Convert.ToInt32(cbxPlaatsnummer.SelectedValue.ToString()))
+                    {
+                        CultureInfo ci = new CultureInfo("nl-NL");
+
+                        int prijs = plek.DagPrijs * dagen;
+
+                        tbcTotaalprijs.Text = prijs.ToString("c", ci);
+
+                        break;
+                    }
+                }
+            }
+        }
        
         protected void btnReserveren_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void cbxDatumTot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BerekenPrijs();
         }
 
     }
