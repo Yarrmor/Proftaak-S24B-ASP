@@ -42,7 +42,7 @@ namespace Proftaak_S24B_ASP
         public bool VoegToe()
         {
             DatabaseManager dm = new DatabaseManager();
-            return dm.NieuwEvent(this);
+            return dm.VoegEventToe(this);
         }
 
         public bool Wijzig()

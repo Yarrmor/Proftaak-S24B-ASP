@@ -623,7 +623,7 @@ namespace Proftaak_S24B_ASP
 
         #region Queries/EventBeheer
         
-        public bool NieuweLocatie(Locatie l)
+        public bool VoegLocatieToe(Locatie l)
         {
             try
             {
@@ -677,7 +677,7 @@ namespace Proftaak_S24B_ASP
             }
         }
 
-        public bool NieuwEvent(Event e)
+        public bool VoegEventToe(Event e)
         {
             try
             {
@@ -690,6 +690,31 @@ namespace Proftaak_S24B_ASP
                 command.Parameters.Add(":DATUMSTART", e.DatumStart);
                 command.Parameters.Add(":DATUMEINDE", e.DatumEind);
                 command.Parameters.Add(":MAXBEZOEKERS", e.MaxBezoekers);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool VoegPlekToe(Plek p)
+        {
+            try
+            {
+                string sql = "INSERT INTO PLEK (LOCATIE_ID, PRIJS, NUMMER, CAPACITEIT) VALUES (:LOCATIEID, :PRIJS, :NUMMER, :CAPACITEIT)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":LOCATIEID", VerkrijgLaatsteLocatieID(p.Locatie));
+                command.Parameters.Add(":PRIJS", p.DagPrijs);
+                command.Parameters.Add(":NUMMER", p.Nummer);
+                command.Parameters.Add(":CAPACITEIT", p.Capaciteit);
 
                 return VoerNonQueryUit(command);
             }

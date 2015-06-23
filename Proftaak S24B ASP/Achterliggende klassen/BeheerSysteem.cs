@@ -12,6 +12,12 @@ namespace Proftaak_S24B_ASP
 
         }
 
+        public List<ProductCategorie> VerkrijgProductCategorieen()
+        {
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VerkrijgProductCategorieen();
+        }
+
         public List<Verhuur> VerkrijgVerhuur()
         {
             throw new NotImplementedException();

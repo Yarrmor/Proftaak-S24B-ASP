@@ -21,7 +21,7 @@ namespace Proftaak_S24B_ASP
 
         protected void btnPlaatsMateriaalToevoegen_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("EventBeheerProductPlaatsToevoegen.aspx");
         }
 
         protected void btnMateriaalVerwijderenWijzigen_Click(object sender, EventArgs e)

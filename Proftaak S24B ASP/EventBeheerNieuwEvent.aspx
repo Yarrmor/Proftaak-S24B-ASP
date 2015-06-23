@@ -108,7 +108,7 @@
             <tr>
                 <td>Huisnummer</td>
                 <td>
-                    <asp:TextBox ID="tbxHuisNummer" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="tbxHuisNummer" runat="server"></asp:TextBox>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="rfvLocatieHuisNR" runat="server" ControlToValidate="tbxHuisNummer" ErrorMessage="Er moet een huisnummer worden ingevult!" ForeColor="Red"></asp:RequiredFieldValidator>
