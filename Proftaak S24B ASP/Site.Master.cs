@@ -22,6 +22,7 @@ namespace Proftaak_S24B_ASP
                 Account acc = (Account)Session["IngelogdAccount"];
                 lblGebruikersnaam.Text = acc.Gebruikersnaam;
                 lblGebruikersnaam.Visible = true;
+                lblIngelogdAls.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
                 btnBeheer.Visible = false;
@@ -31,6 +32,7 @@ namespace Proftaak_S24B_ASP
                 btnLoginUit.Text = "Inloggen";
                 lblGebruikersnaam.Text = "";
                 lblGebruikersnaam.Visible = false;
+                lblIngelogdAls.Visible = false;
                 btnAccount.Visible = false;
                 btnUpload.Visible = false;
                 btnBeheer.Visible = false;
@@ -92,6 +94,13 @@ namespace Proftaak_S24B_ASP
         protected void tvwSubMenu_SelectedNodeChanged(object sender, EventArgs e)
         {
             Session["SelectedCategorie"] = MS.VerkrijgCategorie(tvwSubMenu.SelectedNode.Text);
+        }
+
+        protected void btnAccount_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException("Bestaat niet");
+
+            Response.Redirect("AccountPagina.aspx");
         }
     }
 }
