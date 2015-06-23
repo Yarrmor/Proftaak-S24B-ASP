@@ -122,6 +122,16 @@
                 </tr>
 
                 <tr>
+                    <td>Filter</td>
+                    <td>
+                        <asp:CheckBoxList ID="cblFilters" runat="server">
+                        </asp:CheckBoxList>
+                    </td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+
+                <tr>
                     <td>
                         <asp:Label ID="lblPlekError" runat="server" ForeColor="Red"></asp:Label>
                     </td>
@@ -184,16 +194,6 @@
                     <td class="auto-style1">
                         <asp:RequiredFieldValidator ID="rfvProductPrijs" runat="server" ControlToValidate="tbxProductPrijs" ErrorMessage="rfvProductPrijs" ForeColor="Red" ValidationGroup="Product"></asp:RequiredFieldValidator>
                     </td>
-                </tr>
-
-                <tr>
-                    <td class="auto-style1">Filter</td>
-                    <td class="auto-style1">
-                        <asp:CheckBoxList ID="cblFilters" runat="server">
-                        </asp:CheckBoxList>
-                    </td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
                 </tr>
 
                 <tr>

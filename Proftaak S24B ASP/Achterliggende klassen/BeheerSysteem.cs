@@ -44,10 +44,10 @@ namespace Proftaak_S24B_ASP
             throw new NotImplementedException();
         }
 
-        public List<string> VerkrijgFilters()
+        public List<string> VerkrijgFilters(int eventID)
         {
             DatabaseManager dm = new DatabaseManager();
-            return null;
+            return dm.VerkrijgAllePlekFilters(eventID);
         }
     }
 }

@@ -792,6 +792,28 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public int VerkrijgLaatstePlekID()
+        {
+            try
+            {
+                string sql = "SELECT MAX(ID) AS ID FROM PLEK";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         public bool VoegEventToe(Event e)
         {
             try
@@ -831,7 +853,14 @@ namespace Proftaak_S24B_ASP
                 command.Parameters.Add(":NUMMER", p.Nummer);
                 command.Parameters.Add(":CAPACITEIT", p.Capaciteit);
 
-                return VoerNonQueryUit(command);
+                VoerNonQueryUit(command);
+
+                foreach (string filter in p.Filters)
+                {
+                    VoegSpecificatieToe(filter, VerkrijgLaatstePlekID());
+                }
+
+                return true;
             }
             catch
             {
@@ -840,6 +869,25 @@ namespace Proftaak_S24B_ASP
             finally
             {
                 verbinding.Close();
+            }
+        }
+
+        public bool VoegSpecificatieToe(string filter, int plekID)
+        {
+            try
+            {
+                string sql = "INSERT INTO PLEK_SPECIFICATIE ( SPECIFICATIE_ID, PLEK_ID, WAARDE) VALUES ( (SELECT ID FROM SPECIFICATIE WHERE NAAM = :FILTER), :PLEKID, 'ja' )";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":FILTER", filter);
+                command.Parameters.Add(":PLEKID", plekID);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
             }
         }
 
