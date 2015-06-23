@@ -13,25 +13,36 @@ namespace Proftaak_S24B_ASP
 
         public string Straat { get; set; }
 
-        public int NR { get; set; }
+        public string HuisNR { get; set; }
 
         public string Postcode { get; set; }
 
         public string Plaats { get; set; }
 
-        public Locatie(int id, string naam, string straat, int nr, string postcode, string plaats)
+        public Locatie(int id, string naam, string straat, string huisNR, string postcode, string plaats)
         {
             this.ID = id;
             this.Naam = naam;
             this.Straat = straat;
-            this.NR = nr;
+            this.HuisNR = huisNR;
+            this.Postcode = postcode;
+            this.Plaats = plaats;
+        }
+
+        //Voor nieuwe locaties, bij een nieuw locatie heb je geen id nodig, die worden gegenereert in de database.
+        public Locatie(string naam, string straat, string huisNR, string postcode, string plaats)
+        {
+            this.Naam = naam;
+            this.Straat = straat;
+            this.HuisNR = huisNR;
             this.Postcode = postcode;
             this.Plaats = plaats;
         }
 
         public bool VoegToe()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.NieuweLocatie(this);
         }
 
         public bool Wijzig()

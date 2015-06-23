@@ -135,9 +135,11 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <asp:Button ID="btnNieuwEvent" runat="server" Text="Maak aan" />
+                    <asp:Button ID="btnNieuwEvent" runat="server" Text="Maak aan" OnClick="btnNieuwEvent_Click" />
                 </td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Label ID="lblEventError" runat="server"></asp:Label>
+                </td>
             </tr>
         </table>
 

@@ -621,6 +621,90 @@ namespace Proftaak_S24B_ASP
         }
         #endregion
 
+        #region Queries/EventBeheer
+        
+        public bool NieuweLocatie(Locatie l)
+        {
+            try
+            {
+                string sql = "INSERT INTO LOCATIE (NAAM, STRAAT, NR, POSTCODE, PLAATS) VALUES (:NAAM, :STRAAT, :HUISNR, :POSTCODE, :PLAATS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":NAAM", l.Naam);
+                command.Parameters.Add(":STRAAT", l.Straat);
+                command.Parameters.Add(":NR", l.HuisNR);
+                command.Parameters.Add(":POSTCODE", l.Postcode);
+                command.Parameters.Add(":PLAATS", l.Plaats);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public int VerkrijgLaatsteLocatieID(Locatie l)
+        {
+            try
+            {
+                string sql = "SELECT ID FROM LOCATIE WHERE NAAM = :NAAM AND STRAAT = :STRAAT AND NR = :NR AND POSTCODE = :POSTCODE AND PLAATS = :PLAATS";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":NAAM", l.Naam);
+                command.Parameters.Add(":STRAAT", l.Straat);
+                command.Parameters.Add(":NR", l.HuisNR);
+                command.Parameters.Add(":POSTCODE", l.Postcode);
+                command.Parameters.Add(":PLAATS", l.Plaats);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool NieuwEvent(Event e)
+        {
+            try
+            {
+                string sql = "INSERT INTO EVENT (LOCATIE_ID, NAAM, DATUMSTART, DATUMEINDE, MAXBEZOEKERS) VALUES (:LOCATIEID, :NAAM, :DATUMSTART, :DATUMEINDE, :MAXBEZOEKERS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":LOCATIEID", VerkrijgLaatsteLocatieID(e.Locatie));
+                command.Parameters.Add(":NAAM", e.Naam);
+                command.Parameters.Add(":DATUMSTART", e.DatumStart);
+                command.Parameters.Add(":DATUMEINDE", e.DatumEind);
+                command.Parameters.Add(":MAXBEZOEKERS", e.MaxBezoekers);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        #endregion
+
         #endregion
     }
 }
