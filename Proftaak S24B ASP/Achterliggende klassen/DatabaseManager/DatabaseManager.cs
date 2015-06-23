@@ -955,15 +955,20 @@ namespace Proftaak_S24B_ASP
                 // bepaalde specificaties zijn niet filterbaar met een check (ja/nee)
                 // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
                 string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 )";
-			
+
                 List<string> filters = new List<string>();
-                
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
                 while (reader.Read())
                 {
                     filters.Add(reader["NAAM"].ToString());
                 }
 
-                return filters;				
+                return filters;
+            }
             catch
             {
                 return null;
