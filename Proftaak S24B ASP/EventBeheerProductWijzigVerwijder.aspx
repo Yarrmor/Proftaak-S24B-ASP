@@ -78,17 +78,21 @@
                 <tr>
                     <td></td>
                     <td>
-                        <asp:Button ID="btnWijzigProduct" runat="server" Text="Wijzig" />
+                        <asp:Button ID="btnWijzigProduct" runat="server" Text="Wijzig" OnClick="btnWijzigProduct_Click" />
                     </td>
-                    <td></td>
+                    <td>
+                        <asp:Label ID="lblWijzigError" runat="server"></asp:Label>
+                    </td>
                 </tr>
 
                 <tr>
                     <td></td>
                     <td>
-                        <asp:Button ID="btnVerwijderProduct" runat="server" Text="Verwijder" />
+                        <asp:Button ID="btnVerwijderProduct" runat="server" Text="Verwijder" OnClick="btnVerwijderProduct_Click" />
                     </td>
-                    <td></td>
+                    <td>
+                        <asp:Label ID="lblVerwijderError" runat="server"></asp:Label>
+                    </td>
                 </tr>
             </table>
         </div>

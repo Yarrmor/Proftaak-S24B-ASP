@@ -130,6 +130,18 @@ namespace Proftaak_S24B_ASP
             return null;
         }
 
+        private Product VerkrijgProductLabel()
+        {
+            foreach (Product p in producten)
+            {
+                if (p.ID == Convert.ToInt32(lblProductWVID.Text))
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+
         private void VulDropDownListCategorieen(List<ProductCategorie> productCategorieen)
         {
             //todo categorieen die een subcategorie hebben ook aan een ddl toevoegen. (andere)
@@ -163,6 +175,48 @@ namespace Proftaak_S24B_ASP
                 }
             }
             return null;
+        }
+
+        protected void btnWijzigProduct_Click(object sender, EventArgs e)
+        {
+            Product p = VerkrijgProductLabel();
+            if (p != null)
+            {
+                p = new Product(p.ID, VerkrijgProductCategorie(ddlWijzigProductCategorie.SelectedItem.ToString()), tbxWijzigProductMerk.Text, tbxWijzigProductSerie.Text, Convert.ToInt32(tbxWijzigProductTypenummer.Text), Convert.ToInt32(tbxWijzigProductPrijs.Text));
+                if (p.Wijzig())
+                {
+                    lblWijzigError.Text = "Wijziging is gelukt!";
+                }
+                else
+                {
+                    lblWijzigError.Text = "Wijziging is mislukt!";
+                }
+            }
+            else
+            {
+                lblWijzigError.Text = "ID kon niet worden gevonden!";
+            }
+        }
+
+        protected void btnVerwijderProduct_Click(object sender, EventArgs e)
+        {
+            Product p = VerkrijgProductLabel();
+            if (p != null)
+            {
+                p = new Product(p.ID, VerkrijgProductCategorie(ddlWijzigProductCategorie.SelectedItem.ToString()), tbxWijzigProductMerk.Text, tbxWijzigProductSerie.Text, Convert.ToInt32(tbxWijzigProductTypenummer.Text), Convert.ToInt32(tbxWijzigProductPrijs.Text));
+                if (p.Verwijder())
+                {
+                    lblVerwijderError.Text = "Verwijdering is voltooid!";
+                }
+                else
+                {
+                    lblVerwijderError.Text = "Verwijdering is mislukt!";
+                }
+            }
+            else
+            {
+                lblVerwijderError.Text = "ID kon niet worden gevonden!";
+            }
         }
     }
 }
