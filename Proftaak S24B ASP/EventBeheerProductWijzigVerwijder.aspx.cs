@@ -40,10 +40,11 @@ namespace Proftaak_S24B_ASP
                     {
                         Response.Write("Er kon geen product worden gevonden!");
                     }
+                        /*
                     else
                     {
                         VulDropDownListCategorieen((List<ProductCategorie>)Session["ProductVWCats"]);
-                    }
+                    }*/
                 }
             }
             else
