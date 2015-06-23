@@ -47,7 +47,9 @@ namespace Proftaak_S24B_ASP
 
             if (Session["Plekken"] == null)
             {
-                List<Plek> plekken = PlaatsReserveringsSysteem.VerkrijgPlekken((Session["SelectedEvent"] as Event).ID);
+                Event evenement = Session["SelectedEvent"] as Event;
+
+                List<Plek> plekken = PlaatsReserveringsSysteem.VerkrijgPlekken(evenement.ID, evenement.Locatie);
 
                 Session["Plekken"] = plekken;
 
@@ -126,15 +128,29 @@ namespace Proftaak_S24B_ASP
 
             cbxPlaatsnummer.Items.Clear();
 
+            List<Plek> gefilterdePlekken = new List<Plek>();
+
+            // Alle plekken
             foreach (Plek plek in plekken)
             {
                 bool match = true;
 
+                // Alle filters
                 foreach (ListItem item in clbPlaatsFilters.Items)
                 {
-                    
+                    // Als filter geselecteerd is moet deze voorkomen in de List<string> plek.Filters.
+                    // Zo niet, moet deze niet toegevoegd worden aan de lijst van plekken.
+                    if (item.Selected)
+                    {
+                        if (plek.Filters == null)
+                            match = false;
+                        else if (!plek.Filters.Contains(item.Value.ToString()))
+                            match = false;
+                    }
+
+                    if (match)
+                        cbxPlaatsnummer.Items.Add(plek.ID.ToString());
                 }
-                cbxPlaatsnummer.Items.Add(plek.ID.ToString());
             }
         }
 

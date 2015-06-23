@@ -41,15 +41,13 @@ namespace Proftaak_S24B_ASP
         public static List<string>  VerkrijgPlekFilters(int eventID)
         {
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgPlekFilters(eventID);
+            return dm.VerkrijgAllePlekFilters(eventID);
         }
 
-        public static List<Plek> VerkrijgPlekken(int eventID)
+        public static List<Plek> VerkrijgPlekken(int eventID, Locatie l)
         {
-            throw new NotImplementedException();
-            /*
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgPlekken(eventID);*/
+            return dm.VerkrijgPlekken(eventID, l);
         }
     }
 }

@@ -982,7 +982,7 @@ namespace Proftaak_S24B_ASP
 		
         #region Queries/PlekReservering
 
-        public List<string> VerkrijgPlekFilters(int eventID)
+        public List<string> VerkrijgAllePlekFilters(int eventID)
         {
             try
             {
@@ -994,7 +994,7 @@ namespace Proftaak_S24B_ASP
 
                 OracleCommand command = MaakOracleCommand(sql);
 
-                OracleDataReader reader = VoerQueryUit(command);
+                OracleDataReader reader = VoerMultiQueryUit(command);
 
                 while (reader.Read())
                 {
@@ -1012,7 +1012,80 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+
+        /// <summary>
+        /// Haalt alle filters op voor de meegegeven plek
+        /// Verbinding wordt niet gesloten omdat deze methoden tijdens een andere query wordt uitgevoerd!
+        /// </summary>
+        /// <param name="plekID"></param>
+        /// <returns></returns>
+        private List<string> VerkrijgPlekFilters(int plekID)
+        {
+            try
+            {
+                // bepaalde specificaties zijn niet filterbaar met een check (ja/nee)
+                // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
+                string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 ) AND ID IN ( SELECT SPECIFICATIE_ID FROM PLEK_SPECIFICATIE WHERE PLEK_ID = :PLEKID )";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<string> filters = new List<string>();
+
+                while (reader.Read())
+                {
+                    filters.Add(reader["NAAM"].ToString());
+                }
+
+                return filters;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 		
+        public List<Plek> VerkrijgPlekken(int eventID, Locatie l)
+        {
+            try
+            {
+                string sql = "SELECT ID, NUMMER, PRIJS, CAPACITEIT FROM PLEK WHERE LOCATIE_ID IN ( SELECT LOCATIE_ID FROM EVENT WHERE ID = :EVENTID )";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":EVENTID", eventID);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Plek> plekken = new List<Plek>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    int nummer = Convert.ToInt32(reader["NUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+                    int capaciteit = Convert.ToInt32(reader["CAPACITEIT"]);
+
+                    List<string> filters = VerkrijgPlekFilters(id);
+
+                    Plek p = new Plek(id, nummer, capaciteit, prijs, l, filters);
+
+                    plekken.Add(p);
+                }
+
+                return plekken;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         #endregion        
 		
 		#endregion
