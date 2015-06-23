@@ -93,6 +93,7 @@ namespace Proftaak_S24B_ASP
         protected void tvwSubMenu_SelectedNodeChanged(object sender, EventArgs e)
         {
             Session["SelectedCategorie"] = MS.VerkrijgCategorie(tvwSubMenu.SelectedNode.Text);
+            Response.Redirect("MediaPagina.aspx");
         }
 
         protected void btnAccount_Click(object sender, EventArgs e)

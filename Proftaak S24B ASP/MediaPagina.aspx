@@ -27,10 +27,10 @@
                     <asp:Label ID="lblMediaID" runat="server" Text='<%#Eval("ID") %>' />
                 </td>
                 <td>
-                    <asp:Label ID="lblMediaNaam" runat="server" Text='<%#Eval("Naam") %>' />
+                    <asp:HyperLink ID="hplMediaNaam" runat="server" NavigateUrl='<%# "BestandPagina.aspx?id=" + Eval("ID") %>' Text='<%#Eval("Naam") %>' />
                 </td>
                 <td>
-                    <asp:Label ID="lblMediaUploader" runat="server" Text='<%#Eval("Account") %>' />
+                    <asp:Label ID="lblMediaUploader" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Account.Gebruikersnaam") %>' />
                 </td>
                 <td>
                     <asp:Label ID="lblMediaDatum" runat="server" Text='<%#Eval("Datum") %>' />

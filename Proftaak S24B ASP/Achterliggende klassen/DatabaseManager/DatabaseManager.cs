@@ -617,6 +617,40 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public Bestand VerkrijgBestand(int id)
+        {
+            try
+            {
+                string sql = "SELECT bi.ID AS BI_ID, bi.DATUM AS BI_DATUM, b.NAAM AS B_NAAM, b.BESTANDSLOCATIE AS B_BESTANDSLOCATIE, b.GROOTTE AS B_GROOTTE, a.ID AS A_ID, a.GEBRUIKERSNAAM AS A_GEBRUIKERSNAAM FROM BIJDRAGE bi, BESTAND b, ACCOUNT a WHERE bi.ID = :ID AND bi.ID = b.BIJDRAGE_ID AND a.ID = bi.ACCOUNT_ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", id);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                Bestand bestand = new Bestand(Convert.ToInt32(reader["BI_ID"]),
+                                              Convert.ToDateTime(reader["BI_DATUM"]),
+                                              new Account(Convert.ToInt32(reader["A_ID"]),
+                                                          reader["A_GEBRUIKERSNAAM"].ToString()),
+                                              null,
+                                              reader["B_NAAM"].ToString(),
+                                              reader["B_BESTANDSLOCATIE"].ToString(),
+                                              Convert.ToInt32(reader["B_GROOTTE"]));
+
+                return bestand;
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         public List<Bestand> VerkrijgBestanden()
         {
             try
@@ -677,7 +711,7 @@ namespace Proftaak_S24B_ASP
                     int id = Convert.ToInt32(reader["BI_ID"]);
                     DateTime datum = Convert.ToDateTime(reader["BI_DATUM"]);
                     string naam = reader["B_NAAM"].ToString();
-                    string bestandLocatie = reader["B_BESTANDLOCATIE"].ToString();
+                    string bestandLocatie = reader["B_BESTANDSLOCATIE"].ToString();
                     int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
 
                     int accId = Convert.ToInt32(reader["A_ID"]);
