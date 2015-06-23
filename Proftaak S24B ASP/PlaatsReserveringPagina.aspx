@@ -50,14 +50,12 @@
                     <asp:TableCell runat="server">Filters:</asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:CheckBoxList ID="clbPlaatsFilters" runat="server">
-                            <asp:ListItem>clbValue1</asp:ListItem>
-                            <asp:ListItem>clbValue2</asp:ListItem>   
                         </asp:CheckBoxList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Plaatsnummer:</asp:TableCell>
-                    <asp:TableCell runat="server"><asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                    <asp:TableCell runat="server"><asp:DropDownList ID="cbxPlaatsnummer" runat="server"></asp:DropDownList>
 </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
