@@ -177,7 +177,7 @@
 
                 </div>
 
-                <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: 967px;">
+                <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: auto;">
                     <ul style="width: 967px; height: 40px;">
                         <li><asp:Button ID="btnHome" runat="server" Text="Home" CausesValidation="False"/></li>
                         <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer plaats" CausesValidation="False" OnClick="btnReserveer_Click"/></li>
@@ -185,6 +185,11 @@
                         <li><asp:Button ID="btnAccount" runat="server" Text="Account" Visible="False" CausesValidation="False" OnClick="btnAccount_Click"/></li>
                         <li><asp:Button ID="btnUpload" runat="server" Text="Upload" Visible="False" CausesValidation="False"/></li>
                         <li><asp:Button ID="btnBeheer" runat="server" Text="Beheer" Visible="False" CausesValidation="False"/></li>
+                        <li>
+                            <asp:Label runat="server" ID="lblEvenement" Text="Evenement:"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddlEvenement"></asp:DropDownList>
+
+                        </li>
                         <li class="li-inlog">
                             <asp:Button ID="btnLoginUit" runat="server" Text="Inloggen" Width="80px" Visible="true" CausesValidation="False" OnClick="btnLoginUit_Click"/>
                             <asp:Label CssId="lblIngelogdAls" ID="lblIngelogdAls" runat="server" Text="Ingelogd als:" Visible="False"></asp:Label><br />

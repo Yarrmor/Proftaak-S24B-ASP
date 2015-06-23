@@ -32,9 +32,10 @@ namespace Proftaak_S24B_ASP
             throw new NotImplementedException();
         }
 
-        public List<DateTime> VerkrijgDatums(int eventID)
+        public static List<DateTime> VerkrijgDatums(int eventID)
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VerkrijgDatums(eventID);
         }
     }
 }

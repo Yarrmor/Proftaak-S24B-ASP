@@ -169,6 +169,22 @@ namespace Proftaak_S24B_ASP
             }  
         }
 
+        public List<DateTime> VerkrijgDatums(Event evenement)
+        {
+            List<DateTime> dates = new List<DateTime>();
+
+            DateTime datumStart = evenement.DatumStart;
+            DateTime datumEind = evenement.DatumEind;
+
+            do
+            {
+                dates.Add(datumStart);
+                datumStart = datumStart.AddDays(1);
+            } while (datumStart.Date != datumEind);
+
+            return dates;
+        }
+
         #region Queries/Account
         /// <summary>
         /// Verkrijg een account voor het gegeven email en wachtwoord.

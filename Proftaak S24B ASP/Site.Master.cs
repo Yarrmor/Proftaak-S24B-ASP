@@ -11,10 +11,23 @@ namespace Proftaak_S24B_ASP
     {
         private MediaSysteem MS;
 
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
+            Event evenement = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
+            Session["SelectedEvent"] = evenement;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
-            Session["SelectedEvent"] = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
+            Event evenement = Session["SelectedEvent"] as Event;
+
+            // Haal alle evenementen op en stop deze in ddl
+            if (ddlEvenement.Items.Count == 0)
+            {
+                ddlEvenement.Items.Add(evenement.Naam);
+                ddlEvenement.SelectedIndex = 1;
+            }
 
             if (Session["IngelogdAccount"] != null)
             {
