@@ -72,6 +72,7 @@
     <Content Include="Site.Master" />
     <Content Include="ActiveerAccount.aspx" />
     <Content Include="EventBeheer.aspx" />
+    <Content Include="EventBeheerNieuwEvent.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="EventBeheer.aspx.designer.cs">
       <DependentUpon>EventBeheer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheerNieuwEvent.aspx.cs">
+      <DependentUpon>EventBeheerNieuwEvent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheerNieuwEvent.aspx.designer.cs">
+      <DependentUpon>EventBeheerNieuwEvent.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>
