@@ -30,7 +30,7 @@
 
                 <td>
                     <!-- Eventbeheer nr4/5/12/13 -->
-                    <asp:Button ID="btnMateriaalVerwijderenWijzigen" runat="server" Text="Materiaal verwijderen/wijzigen" Width="210px" OnClick="btnMateriaalVerwijderenWijzigen_Click"/>
+                    <asp:Button ID="btnMateriaalVerwijderenWijzigen" runat="server" Text="Product verwijderen/wijzigen" Width="210px" OnClick="btnMateriaalVerwijderenWijzigen_Click"/>
                 </td>
             </tr>
             <tr>

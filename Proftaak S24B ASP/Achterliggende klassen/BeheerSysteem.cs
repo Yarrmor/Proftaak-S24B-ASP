@@ -15,7 +15,13 @@ namespace Proftaak_S24B_ASP
         public List<ProductCategorie> VerkrijgProductCategorieen()
         {
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgProductCategorieen();
+            return dm.VerkrijgAlleProductCategorieen();
+        }
+
+        public List<Product> VerkrijgProducten()
+        {
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VerkrijgAlleProducten();
         }
 
         public List<Verhuur> VerkrijgVerhuur()

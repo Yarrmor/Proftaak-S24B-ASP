@@ -74,6 +74,7 @@
     <Content Include="EventBeheer.aspx" />
     <Content Include="EventBeheerNieuwEvent.aspx" />
     <Content Include="EventBeheerProductPlaatsToevoegen.aspx" />
+    <Content Include="EventBeheerProductWijzigVerwijder.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="EventBeheerProductPlaatsToevoegen.aspx.designer.cs">
       <DependentUpon>EventBeheerProductPlaatsToevoegen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheerProductWijzigVerwijder.aspx.cs">
+      <DependentUpon>EventBeheerProductWijzigVerwijder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheerProductWijzigVerwijder.aspx.designer.cs">
+      <DependentUpon>EventBeheerProductWijzigVerwijder.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

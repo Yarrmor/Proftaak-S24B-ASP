@@ -83,6 +83,13 @@ namespace Proftaak_S24B_ASP
                 {
                     return p;
                 }
+                else if (p.HoofdCategorie != null)
+                {
+                    if ((p.HoofdCategorie.Naam + " " + p.Naam) == naam)
+                    {
+                        return p;
+                    }
+                }
             }
             return null;
         }
@@ -92,7 +99,14 @@ namespace Proftaak_S24B_ASP
             //todo categorieen die een subcategorie hebben ook aan een ddl toevoegen. (andere)
             foreach (ProductCategorie p in productCategorieen)
             {
-                ddlProductCategorieen.Items.Add(p.Naam);
+                if (p.HoofdCategorie != null)
+                {
+                    ddlProductCategorieen.Items.Add((p.HoofdCategorie.Naam + " " + p.Naam));
+                }
+                else
+                {
+                    ddlProductCategorieen.Items.Add(p.Naam);
+                }
             }
         }
     }

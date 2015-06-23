@@ -26,7 +26,7 @@ namespace Proftaak_S24B_ASP
 
         protected void btnMateriaalVerwijderenWijzigen_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("EventBeheerProductWijzigVerwijder.aspx");
         }
 
         protected void btnPlaatsVerwijderenWijzigen_Click(object sender, EventArgs e)

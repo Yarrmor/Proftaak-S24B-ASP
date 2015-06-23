@@ -166,7 +166,7 @@ namespace Proftaak_S24B_ASP
             finally
             {
                 verbinding.Close();
-            }  
+            }
         }
 
         #region Queries/Account
@@ -388,8 +388,8 @@ namespace Proftaak_S24B_ASP
                 List<Product> producten = new List<Product>();
 
                 while (reader.Read())
-	            {
-	                int id = Convert.ToInt32(reader["ID"]);
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
                     string merk = reader["MERK"].ToString();
                     string serie = reader["SERIE"].ToString();
                     int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
@@ -398,10 +398,10 @@ namespace Proftaak_S24B_ASP
                     Product p = new Product(id, pcat, merk, serie, typeNummer, prijs);
                     producten.Add(p);
 
-	            }
+                }
 
                 return producten;
-                
+
             }
             catch
             {
@@ -555,7 +555,7 @@ namespace Proftaak_S24B_ASP
                     string naam = reader["B_NAAM"].ToString();
                     string bestandLocatie = reader["B_BESTANDLOCATIE"].ToString();
                     int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
-                    
+
                     int accId = Convert.ToInt32(reader["A_ID"]);
                     string accNaam = reader["A_GEBRUIKERSNAAM"].ToString();
 
@@ -565,7 +565,7 @@ namespace Proftaak_S24B_ASP
                 }
 
                 return bestanden;
-                
+
             }
             catch
             {
@@ -622,7 +622,7 @@ namespace Proftaak_S24B_ASP
         #endregion
 
         #region Queries/EventBeheer
-        
+
         public bool VoegLocatieToe(Locatie l)
         {
             try
@@ -747,6 +747,117 @@ namespace Proftaak_S24B_ASP
             catch
             {
                 return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public List<Product> VerkrijgAlleProducten()
+        {
+            try
+            {
+                string sql = "SELECT ID, PRODUCTCAT_ID, MERK, SERIE, TYPENUMMER, PRIJS FROM PRODUCT";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Product> producten = new List<Product>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    int productCatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                    string merk = reader["MERK"].ToString();
+                    string serie = reader["SERIE"].ToString();
+                    int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+
+                    Product p = new Product(id, VerkrijgProductCategorie(productCatID), merk, serie, typeNummer, prijs);
+                    producten.Add(p);
+
+                }
+
+                return producten;
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+
+        //Geen verbinding.close aangezien deze methode door andere methodes uit de DBmanager wordt aangeroepen!
+        public ProductCategorie VerkrijgProductCategorie(int ProductCategorieID)
+        {
+            try
+            {
+                string sql = "SELECT PRODUCTCAT_ID, NAAM FROM PRODUCTCAT WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", ProductCategorieID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                string catNaam = reader["NAAM"].ToString();
+
+                if (reader["PRODUCTCAT_ID"] != DBNull.Value)
+                {
+                    int prodcatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                    return new ProductCategorie(ProductCategorieID, catNaam, VerkrijgProductCategorie(prodcatID));
+                }
+                else
+                {
+                    return new ProductCategorie(ProductCategorieID, catNaam);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<ProductCategorie> VerkrijgAlleProductCategorieen()
+        {
+            try
+            {
+                string sql = "SELECT ID, PRODUCTCAT_ID, NAAM FROM PRODUCTCAT";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<ProductCategorie> categorieen = new List<ProductCategorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    if (reader["PRODUCTCAT_ID"] != DBNull.Value)
+                    {
+                        int prodcatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                        categorieen.Add(new ProductCategorie(id, naam, VerkrijgProductCategorie(prodcatID)));
+                    }
+                    else
+                    {
+                        categorieen.Add(new ProductCategorie(id, naam));
+                    }
+                }
+
+                return categorieen;
+            }
+            catch
+            {
+                return null;
             }
             finally
             {
