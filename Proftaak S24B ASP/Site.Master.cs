@@ -23,6 +23,7 @@ namespace Proftaak_S24B_ASP
                 lblGebruikersnaam.Text = acc.Gebruikersnaam;
                 lblGebruikersnaam.Visible = true;
                 lblIngelogdAls.Visible = true;
+                btnHuur.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
                 btnBeheer.Visible = false;
@@ -33,6 +34,7 @@ namespace Proftaak_S24B_ASP
                 lblGebruikersnaam.Text = "";
                 lblGebruikersnaam.Visible = false;
                 lblIngelogdAls.Visible = false;
+                btnHuur.Visible = false;
                 btnAccount.Visible = false;
                 btnUpload.Visible = false;
                 btnBeheer.Visible = false;
@@ -98,9 +100,19 @@ namespace Proftaak_S24B_ASP
 
         protected void btnAccount_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException("Bestaat niet");
+            throw new NotImplementedException("Pagina bestaat niet");
 
             Response.Redirect("AccountPagina.aspx");
+        }
+
+        protected void btnReserveer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PlaatsReserveringPagina.aspx");
+        }
+
+        protected void btnHuur_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MateriaalReserveringPagina.aspx");
         }
     }
 }
