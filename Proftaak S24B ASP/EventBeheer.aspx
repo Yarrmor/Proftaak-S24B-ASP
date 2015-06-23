@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Proftaak_S24B_ASP.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EventBeheer.aspx.cs" Inherits="Proftaak_S24B_ASP.WebForm2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -20,28 +20,28 @@
             <tr>
                 <td>
                     <!-- Eventbeheer nr1 -->
-                    <asp:Button ID="btnEventAanmaken" runat="server" Text="Maak nieuw event" Width="210px" />
+                    <asp:Button ID="btnEventAanmaken" runat="server" Text="Maak nieuw event" Width="210px" OnClick="btnEventAanmaken_Click" />
                 </td>
 
                 <td>
                     <!-- Eventbeheer nr3 -->
-                    <asp:Button ID="btnPlaatsMateriaalToevoegen" runat="server" Text="Plaats/Materiaal toevoegen" Width="210px" />
+                    <asp:Button ID="btnPlaatsMateriaalToevoegen" runat="server" Text="Plaats/Materiaal toevoegen" Width="210px" OnClick="btnPlaatsMateriaalToevoegen_Click" />
                 </td>
 
                 <td>
                     <!-- Eventbeheer nr4/5/12/13 -->
-                    <asp:Button ID="btnMateriaalVerwijderenWijzigen" runat="server" Text="Materiaal verwijderen/wijzigen" Width="210px"/>
+                    <asp:Button ID="btnMateriaalVerwijderenWijzigen" runat="server" Text="Materiaal verwijderen/wijzigen" Width="210px" OnClick="btnMateriaalVerwijderenWijzigen_Click"/>
                 </td>
             </tr>
             <tr>
                 <td>
                     <!-- Eventbeheer nr4/5/  -->
-                    <asp:Button ID="btnPlaatsVerwijderenWijzigen" runat="server" Text="Plaats verwijderen/wijzigen" Width="210px"/>
+                    <asp:Button ID="btnPlaatsVerwijderenWijzigen" runat="server" Text="Plaats verwijderen/wijzigen" Width="210px" OnClick="btnPlaatsVerwijderenWijzigen_Click"/>
                 </td>
 
                 <td>
                     <!-- Eventbeheer nr6/7/8/9/10/11  -->
-                    <asp:Button ID="btnVerhuur" runat="server" Text="Verhuur" Width="210px"/>
+                    <asp:Button ID="btnVerhuur" runat="server" Text="Verhuur" Width="210px" OnClick="btnVerhuur_Click"/>
                 </td>
             </tr>
         </table>

@@ -13,5 +13,30 @@ namespace Proftaak_S24B_ASP
         {
 
         }
+
+        protected void btnEventAanmaken_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPlaatsMateriaalToevoegen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnMateriaalVerwijderenWijzigen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPlaatsVerwijderenWijzigen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVerhuur_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
