@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <div id="divHlkEventBeheer">
+        <asp:HyperLink ID="hlkEventBeheer" runat="server" NavigateUrl="~/EventBeheer.aspx">EventBeheer</asp:HyperLink>
+    </div>
+    <br />
     <div id="eventBeheerVerwijderWijzigProduct" style="width: 1000px; overflow: auto;">
         <h1 align="center">Product Wijzigen/Verwijderen</h1>
         <div id="listboxVerwijderWijzigProduct" style="float: left">

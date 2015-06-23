@@ -20,6 +20,10 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <div id="divHlkEventBeheer">
+        <asp:HyperLink ID="hlkEventBeheer" runat="server" NavigateUrl="~/EventBeheer.aspx">EventBeheer</asp:HyperLink>
+    </div>
+    <br />
     <div id="eventBeheerVoegToe" style="width: 1100px; overflow: auto;">
         <h1 align="center">Plek/Product Toevoegen</h1>
         <div id="plekVoegToe" style="float: left;">

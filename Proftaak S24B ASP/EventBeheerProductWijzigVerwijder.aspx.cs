@@ -36,15 +36,16 @@ namespace Proftaak_S24B_ASP
                 else
                 {
                     producten = (List<Product>)Session["ProductenWV"];
+                    prodCats = (List<ProductCategorie>)Session["ProductVWCats"];
                     if (producten == null && producten.Count == 0)
                     {
                         Response.Write("Er kon geen product worden gevonden!");
                     }
-                        /*
-                    else
+                    else if (lbxProductWV.Items.Count == 0 && ddlWijzigProductCategorie.Items.Count == 0)
                     {
-                        VulDropDownListCategorieen((List<ProductCategorie>)Session["ProductVWCats"]);
-                    }*/
+                        VulLbxProductWV();
+                        VulDropDownListCategorieen(prodCats);
+                    }
                 }
             }
             else

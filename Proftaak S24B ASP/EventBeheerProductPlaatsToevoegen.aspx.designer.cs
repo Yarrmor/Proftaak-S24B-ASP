@@ -13,6 +13,15 @@ namespace Proftaak_S24B_ASP {
     public partial class WebForm4 {
         
         /// <summary>
+        /// hlkEventBeheer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlkEventBeheer;
+        
+        /// <summary>
         /// tbxLocatieNaam control.
         /// </summary>
         /// <remarks>
