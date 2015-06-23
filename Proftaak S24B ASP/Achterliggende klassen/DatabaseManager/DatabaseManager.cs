@@ -169,6 +169,22 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public List<DateTime> VerkrijgDatums(Event evenement)
+        {
+            List<DateTime> dates = new List<DateTime>();
+
+            DateTime datumStart = evenement.DatumStart;
+            DateTime datumEind = evenement.DatumEind;
+
+            do
+            {
+                dates.Add(datumStart);
+                datumStart = datumStart.AddDays(1);
+            } while (datumStart.Date != datumEind);
+
+            return dates;
+        }
+
         #region Queries/Account
         /// <summary>
         /// Verkrijg een account voor het gegeven email en wachtwoord.
@@ -417,14 +433,23 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
+                // Zoek beschikbaar exemplaarID
+                int exemplaarID = VerkrijgVerhuurbaarExemplaarID(p);
+                if (exemplaarID == -1)
+                    return false;
+
+                // Zoek polsbandje_id van account voor huidige evenement
+                int polsbandjeID = VerkrijgPolsbandjeID(a, evenement);
+                if (polsbandjeID == -1)
+                    return false;
+
+                // Insert de gegevens in verhuur
                 string sql = "INSERT INTO VERHUUR (PRODUCTEXEMPLAAR_ID, RES_PB_ID, DATUMIN, DATUMUIT, BETAALD) VALUES (:EXEMPLAARID, :PB_ID, :DATUMIN, :DATUMUIT, 0)";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
-                throw new NotImplementedException();
-
-                //command.Parameters.Add(":EXEMPLAARID", VerkrijgBeschikbaarExemplaar(p));
-                //command.Parameters.Add(":PB_ID", VerkrijgPolsbandjeID(a, evenement));
+                command.Parameters.Add(":EXEMPLAARID", exemplaarID);
+                command.Parameters.Add(":PB_ID", polsbandjeID);
                 command.Parameters.Add(":DATUMIN", eindDatum);
                 command.Parameters.Add(":DATUMUIT", beginDatum);
 
@@ -439,6 +464,62 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+
+        /// <summary>
+        /// Haalt het polsbandje id op van de meegegeven account voor het meegegeven evenement.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="evenement"></param>
+        /// <returns></returns>
+        public int VerkrijgPolsbandjeID(Account account, Event evenement)
+        {
+            try
+            {
+                string sql = "SELECT POLSBANDJE_ID AS PBID FROM RESERVERING_POLSBANDJE WHERE ACCOUNT_ID = :ACCID AND RESERVERING_ID IN ( SELECT ID FROM RESERVERING WHERE ID IN ( SELECT RESERVERING_ID FROM PLEK_RESERVERING WHERE PLEK_ID IN ( SELECT ID FROM PLEK WHERE LOCATIE_ID IN ( SELECT LOCATIE_ID FROM EVENT WHERE ID = :EVENTID))))";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ACCID", account.ID);
+                command.Parameters.Add(":EVENTID", evenement.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["PBID"]);
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public int VerkrijgVerhuurbaarExemplaarID(Product p)
+        {
+            try
+            {
+                string sql = "SELECT ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN) AND PRODUCT_ID = :PID AND ROWNUM <= 1";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PID", p.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         #endregion
 
         #region Queries/Media

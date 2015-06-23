@@ -27,7 +27,7 @@
             <ContentTemplate>
                   <asp:TreeView ID="tvwCategorieen" runat="server" OnSelectedNodeChanged="tvwCategorieen_SelectedNodeChanged">
                   </asp:TreeView>
-            <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" />
+            <asp:Button ID="btnVerversCategorieen" runat="server" Text="Ververs lijst" OnClick="btnVerversCategorieen_Click" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
@@ -40,7 +40,7 @@
                   <asp:ListBox ID="lbxMateriaal" runat="server" OnSelectedIndexChanged="lbxMateriaal_SelectedIndexChanged" Width="300px" Height="300px" AutoPostBack="True">
         <asp:ListItem>Selecteer een categorie!</asp:ListItem>
     </asp:ListBox>
-    <asp:Button ID="btnVerversMeterialen" runat="server" Text="Ververs lijst" />
+    <asp:Button ID="btnVerversMaterialen" runat="server" Text="Ververs lijst" OnClick="btnVerversMaterialen_Click" />
             </ContentTemplate>
         </asp:UpdatePanel>
   
@@ -69,14 +69,14 @@
         </asp:DropDownList>
         <br />
         <p>Tot:</p>
-        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cbxMateriaalDatumTot_SelectedIndexChanged">
+        <asp:DropDownList ID="cbxMateriaalDatumTot" runat="server" AutoPostBack="True">
         </asp:DropDownList>
                 
         <br /><br />
 
         <!--  Plaats reservering -->
         <asp:Button ID="btnHuur" runat="server" Text="Huur" OnClick="btnHuur_Click" />
-        <asp:Label runat="server" Visible="false" ID="lblNietIngelogd">U moet ingelogd zijn om een product te huren!</asp:Label>
+        <asp:Label runat="server" Visible="False" ID="lblHuurError">U moet ingelogd zijn om een product te huren!</asp:Label>
         </ContentTemplate>
             </asp:UpdatePanel>
     </div>

@@ -11,7 +11,7 @@ namespace Proftaak_S24B_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"] != null)
+            if (Session["IngelogdAccount"] != null)
             {
                 Response.Redirect("Default.aspx");
             }
@@ -24,7 +24,7 @@ namespace Proftaak_S24B_ASP
             Account acc = inlog.Login(tbEmail.Text, tbWachtwoord.Text);
             if (acc != null)
             {
-                Session["Account"] = acc;
+                Session["IngelogdAccount"] = acc;
                 Response.Redirect("Default.aspx");
             }
             else

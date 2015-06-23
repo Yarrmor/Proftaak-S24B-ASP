@@ -58,9 +58,20 @@ namespace Proftaak_S24B_ASP
         /// Probeert een exemplaar van dit product te huren
         /// </summary>
         /// <returns></returns>
-        public bool Huur(Account a, Event evenement, DateTime beginDatum, DateTime eindDatum)
+        public bool Huur(Account a, Event evenement, int beginDatumIndex, int eindDatumIndex)
         {
+            if (evenement == null)
+                return false;
+
             DatabaseManager dm = new DatabaseManager();
+
+            List<DateTime> datums = dm.VerkrijgDatums(evenement.ID);
+
+            DateTime beginDatum = datums[beginDatumIndex];
+            // eindDatumIndex is een toevoeging op beginDatumIndex
+            // Als je voor start de tweede waarde selecteert, zal de eerste waarde van eind hetzelfde zijn
+            // Zo kan je niet tot een datum eerder dan de begindatum huren.
+            DateTime eindDatum = datums[beginDatumIndex + eindDatumIndex];
 
             return dm.HuurProduct(this, evenement, a, beginDatum, eindDatum);
         }

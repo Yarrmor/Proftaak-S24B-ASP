@@ -67,13 +67,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.ListBox lbxMateriaal;
         
         /// <summary>
-        /// btnVerversMeterialen control.
+        /// btnVerversMaterialen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerversMeterialen;
+        protected global::System.Web.UI.WebControls.Button btnVerversMaterialen;
         
         /// <summary>
         /// updPnlMateriaalDetails control.
@@ -130,12 +130,12 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnHuur;
         
         /// <summary>
-        /// lblNietIngelogd control.
+        /// lblHuurError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNietIngelogd;
+        protected global::System.Web.UI.WebControls.Label lblHuurError;
     }
 }
