@@ -33,6 +33,31 @@ namespace Proftaak_S24B_ASP
                     cbxDatumVan.Items.Add(datum.ToShortDateString());
                 }
             }
+
+            // vult filters in als dit nog niet gedaan is
+            if (clbPlaatsFilters.Items.Count == 0)
+            {
+                List<string> filters = PlaatsReserveringsSysteem.VerkrijgPlekFilters((Session["SelectedEvent"] as Event).ID);
+
+                foreach (string filter in filters)
+                {
+                    clbPlaatsFilters.Items.Add(filter);
+                }
+            }
+
+            if (Session["Plekken"] == null)
+            {
+                List<Plek> plekken = PlaatsReserveringsSysteem.VerkrijgPlekken((Session["SelectedEvent"] as Event).ID);
+
+                Session["Plekken"] = plekken;
+
+                cbxPlaatsnummer.Items.Clear();
+
+                foreach (Plek plek in plekken)
+                {
+                    cbxPlaatsnummer.Items.Add(plek.ID.ToString());
+                }
+            }
         }
         
         /// <summary>

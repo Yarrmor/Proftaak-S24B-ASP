@@ -702,6 +702,41 @@ namespace Proftaak_S24B_ASP
         }
         #endregion
 
+        #region Queries/PlekReservering
+
+        public List<string> VerkrijgPlekFilters(int eventID)
+        {
+            try
+            {
+                // bepaalde specificaties zijn niet filterbaar met een check (ja/nee)
+                // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
+                string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 )";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<string> filters = new List<string>();
+                
+                while (reader.Read())
+                {
+                    filters.Add(reader["NAAM"].ToString());
+                }
+
+                return filters;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        #endregion
+
         #endregion
     }
 }

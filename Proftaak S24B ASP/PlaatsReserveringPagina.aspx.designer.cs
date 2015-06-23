@@ -85,13 +85,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.CheckBoxList clbPlaatsFilters;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// cbxPlaatsnummer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList cbxPlaatsnummer;
         
         /// <summary>
         /// tblGegevens control.
