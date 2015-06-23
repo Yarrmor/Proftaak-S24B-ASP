@@ -51,12 +51,7 @@ namespace Proftaak_S24B_ASP
 
                 Session["Plekken"] = plekken;
 
-                cbxPlaatsnummer.Items.Clear();
-
-                foreach (Plek plek in plekken)
-                {
-                    cbxPlaatsnummer.Items.Add(plek.ID.ToString());
-                }
+                VerversPlaatsen();
             }
         }
         
@@ -116,7 +111,31 @@ namespace Proftaak_S24B_ASP
 
         protected void clbPlaatsFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (clbPlaatsFilters.SelectedIndex != -1)
+            {
 
+            }
+        }
+
+        private void VerversPlaatsen()
+        {
+            List<Plek> plekken = Session["Plekken"] as List<Plek>;
+
+            if (plekken == null)
+                Response.Redirect(Request.RawUrl);
+
+            cbxPlaatsnummer.Items.Clear();
+
+            foreach (Plek plek in plekken)
+            {
+                bool match = true;
+
+                foreach (ListItem item in clbPlaatsFilters.Items)
+                {
+                    
+                }
+                cbxPlaatsnummer.Items.Add(plek.ID.ToString());
+            }
         }
 
         protected void cbxPlaatsnummer_SelectedIndexChanged(object sender, EventArgs e)

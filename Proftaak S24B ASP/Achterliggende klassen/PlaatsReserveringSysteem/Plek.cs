@@ -17,21 +17,25 @@ namespace Proftaak_S24B_ASP
 
         public Locatie Locatie { get; set; }
 
-        public Plek(int id, int nummer, int capaciteit, int dagprijs, Locatie locatie)
+        public List<string> Filters { get; set; }
+
+        public Plek(int id, int nummer, int capaciteit, int dagprijs, Locatie locatie, List<string> filters)
         {
             this.ID = id;
             this.Nummer = nummer;
             this.Capaciteit = capaciteit;
             this.DagPrijs = dagprijs;
             this.Locatie = locatie;
+            Filters = filters;
         }
 
-        public Plek(int nummer, int capaciteit, int dagprijs, Locatie locatie)
+        public Plek(int nummer, int capaciteit, int dagprijs, Locatie locatie, List<string> filters)
         {
             this.Nummer = nummer;
             this.Capaciteit = capaciteit;
             this.DagPrijs = dagprijs;
             this.Locatie = locatie;
+            Filters = filters;
         }
 
         public bool VoegToe()
