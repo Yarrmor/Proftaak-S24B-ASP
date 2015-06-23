@@ -28,8 +28,26 @@ namespace Proftaak_S24B_ASP
 
         protected void btnVoegProductToe_Click(object sender, EventArgs e)
         {
-
-            
+            if (tbxProductMerk.Text != "" && tbxProductPrijs.Text != "" && tbxProductSerie.Text != "" && tbxProductTypenummer.Text != "" && ddlProductCategorieen.SelectedItem != null)
+            {
+                ProductCategorie prodCat = VerkrijgProductCategorie(ddlProductCategorieen.SelectedItem.ToString());
+                if (prodCat != null)
+                {
+                    Product prod = new Product(prodCat, tbxProductMerk.Text, tbxProductSerie.Text, Convert.ToInt32(tbxProductTypenummer.Text), Convert.ToInt32(tbxProductPrijs.Text));
+                    if (prod.VoegToe())
+                    {
+                        lblProductError.Text = "Product toegevoegd!";
+                    }
+                    else
+                    {
+                        lblProductError.Text = "Product is niet toegevoegd!";
+                    }
+                }
+                else
+                {
+                    lblProductError.Text = "ProductCategorie niet gevonden!";
+                }
+            }
         }
 
         protected void btnVoegPlekToe_Click(object sender, EventArgs e)
@@ -55,6 +73,18 @@ namespace Proftaak_S24B_ASP
                     lblPlekError.Text = "Locatie toevoegen is mislukt!";
                 }
             }
+        }
+
+        private ProductCategorie VerkrijgProductCategorie(string naam)
+        {
+            foreach (ProductCategorie p in productCats)
+            {
+                if (p.Naam == naam)
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
         private void VulDropDownListCategorieen(List<ProductCategorie> productCategorieen)

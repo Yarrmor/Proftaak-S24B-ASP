@@ -161,7 +161,7 @@
                 <tr>
                     <td>Typenummer</td>
                     <td>
-                        <asp:TextBox ID="tbxProductTypenummer" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbxProductTypenummer" runat="server" TextMode="Number"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvProductTypeNR" runat="server" ControlToValidate="tbxProductTypenummer" ErrorMessage="TypeNR is vereist!" ForeColor="Red" ValidationGroup="Product"></asp:RequiredFieldValidator>
@@ -171,7 +171,7 @@
                 <tr>
                     <td>Prijs</td>
                     <td>
-                        <asp:TextBox ID="tbxProductPrijs" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbxProductPrijs" runat="server" TextMode="Number"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="rfvProductPrijs" runat="server" ControlToValidate="tbxProductPrijs" ErrorMessage="rfvProductPrijs" ForeColor="Red" ValidationGroup="Product"></asp:RequiredFieldValidator>
@@ -183,7 +183,9 @@
                     <td>
                         <asp:Button ID="btnVoegProductToe" runat="server" Text="Voeg Toe" OnClick="btnVoegProductToe_Click" ValidationGroup="Product"/>
                     </td>
-                    <td></td>
+                    <td>
+                        <asp:Label ID="lblProductError" runat="server" ForeColor="Red"></asp:Label>
+                    </td>
                 </tr>
             </table>
         </div>

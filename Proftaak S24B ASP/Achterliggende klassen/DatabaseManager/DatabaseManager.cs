@@ -728,6 +728,31 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public bool VoegProductToe(Product p)
+        {
+            try
+            {
+                string sql = "INSERT INTO PRODUCT (PRODUCTCAT_ID, MERK, SERIE, TYPENUMMER, PRIJS) VALUES (:PRODUCTCAT_ID, :MERK, :SERIE, :TYPENUMMER, :PRIJS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PRODUCTCAT_ID", p.ProductCategorie.ID);
+                command.Parameters.Add(":MERK", p.Merk);
+                command.Parameters.Add(":SERIE", p.Serie);
+                command.Parameters.Add(":TYPENUMMER", p.Typenummer);
+                command.Parameters.Add(":PRIJS", p.Prijs);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
         #endregion
 
         #endregion
