@@ -27,16 +27,21 @@
         <div id="divDatum" style="display:table-cell;padding-left:20px;">
             <h3>Datum:</h3>
             
-            <asp:Table ID="tblDatum" runat="server">
-                <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Van:</asp:TableCell>
-                    <asp:TableCell runat="server"><asp:DropDownList ID="cbxDatumVan" runat="server"></asp:DropDownList></asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Tot en met:</asp:TableCell>
-                    <asp:TableCell runat="server"><asp:DropDownList ID="cbxDatumTot" runat="server"></asp:DropDownList></asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+            <asp:UpdatePanel ID="updPnlDatums" runat="server">
+                <ContentTemplate>
+                    <asp:Table ID="tblDatum" runat="server">
+                        <asp:TableRow runat="server">
+                            <asp:TableCell runat="server">Van:</asp:TableCell>
+                            <asp:TableCell runat="server"><asp:DropDownList ID="cbxDatumVan" OnSelectedIndexChanged="cbxDatumVan_SelectedIndexChanged" runat="server" AutoPostBack="True"></asp:DropDownList></asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server">
+                            <asp:TableCell runat="server">Tot en met:</asp:TableCell>
+                            <asp:TableCell runat="server"><asp:DropDownList ID="cbxDatumTot" runat="server"></asp:DropDownList></asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            
         </div>
         <div id="divPlaats" style="display:table-cell;padding-left:20px;">
             <h3>Plaats:</h3>
@@ -45,14 +50,12 @@
                     <asp:TableCell runat="server">Filters:</asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:CheckBoxList ID="clbPlaatsFilters" runat="server">
-                            <asp:ListItem>clbValue1</asp:ListItem>
-                            <asp:ListItem>clbValue2</asp:ListItem>   
                         </asp:CheckBoxList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Plaatsnummer:</asp:TableCell>
-                    <asp:TableCell runat="server"><asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                    <asp:TableCell runat="server"><asp:DropDownList ID="cbxPlaatsnummer" runat="server"></asp:DropDownList>
 </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">

@@ -22,13 +22,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Label lblInfo;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// updPnlCategorie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel updPnlCategorie;
         
         /// <summary>
         /// tvwCategorieen control.
@@ -49,13 +49,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnVerversCategorieen;
         
         /// <summary>
-        /// updPnl control.
+        /// updPnlMateriaal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updPnl;
+        protected global::System.Web.UI.UpdatePanel updPnlMateriaal;
         
         /// <summary>
         /// lbxMateriaal control.
@@ -67,13 +67,22 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.ListBox lbxMateriaal;
         
         /// <summary>
-        /// btnVerversMeterialen control.
+        /// btnVerversMaterialen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerversMeterialen;
+        protected global::System.Web.UI.WebControls.Button btnVerversMaterialen;
+        
+        /// <summary>
+        /// updPnlMateriaalDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updPnlMateriaalDetails;
         
         /// <summary>
         /// lblMateriaalNaam control.
@@ -83,15 +92,6 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMateriaalNaam;
-        
-        /// <summary>
-        /// lblMateriaalVoorraad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMateriaalVoorraad;
         
         /// <summary>
         /// lblMateriaalPrijs control.
@@ -121,12 +121,21 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.DropDownList cbxMateriaalDatumTot;
         
         /// <summary>
-        /// btnReserveer control.
+        /// btnHuur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReserveer;
+        protected global::System.Web.UI.WebControls.Button btnHuur;
+        
+        /// <summary>
+        /// lblHuurError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHuurError;
     }
 }

@@ -11,17 +11,32 @@ namespace Proftaak_S24B_ASP
     {
         private MediaSysteem MS;
 
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
+            Event evenement = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
+            Session["SelectedEvent"] = evenement;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
-            Session["SelectedEvent"] = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
+            Event evenement = Session["SelectedEvent"] as Event;
 
-            if (Session["Account"] != null)
+            // Haal alle evenementen op en stop deze in ddl
+            if (ddlEvenement.Items.Count == 0)
+            {
+                ddlEvenement.Items.Add(evenement.Naam);
+                ddlEvenement.SelectedIndex = 1;
+            }
+
+            if (Session["IngelogdAccount"] != null)
             {
                 btnLoginUit.Text = "Uitloggen";
-                Account acc = (Account)Session["Account"];
+                Account acc = (Account)Session["IngelogdAccount"];
                 lblGebruikersnaam.Text = acc.Gebruikersnaam;
                 lblGebruikersnaam.Visible = true;
+                lblIngelogdAls.Visible = true;
+                btnHuur.Visible = true;
                 btnAccount.Visible = true;
                 btnUpload.Visible = true;
                 btnBeheer.Visible = false;
@@ -31,6 +46,8 @@ namespace Proftaak_S24B_ASP
                 btnLoginUit.Text = "Inloggen";
                 lblGebruikersnaam.Text = "";
                 lblGebruikersnaam.Visible = false;
+                lblIngelogdAls.Visible = false;
+                btnHuur.Visible = false;
                 btnAccount.Visible = false;
                 btnUpload.Visible = false;
                 btnBeheer.Visible = false;
@@ -92,6 +109,23 @@ namespace Proftaak_S24B_ASP
         protected void tvwSubMenu_SelectedNodeChanged(object sender, EventArgs e)
         {
             Session["SelectedCategorie"] = MS.VerkrijgCategorie(tvwSubMenu.SelectedNode.Text);
+        }
+
+        protected void btnAccount_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException("Pagina bestaat niet");
+
+            Response.Redirect("AccountPagina.aspx");
+        }
+
+        protected void btnReserveer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PlaatsReserveringPagina.aspx");
+        }
+
+        protected void btnHuur_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MateriaalReserveringPagina.aspx");
         }
     }
 }

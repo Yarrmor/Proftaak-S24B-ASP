@@ -21,6 +21,43 @@ namespace Proftaak_S24B_ASP
                     cbxAantalPersonen.Items.Add(i.ToString());
                 }
             }
+
+            // Als comboboxen datums leeg zijn, worden deze gevuld. Datums komen uit event
+            if (cbxDatumVan.Items.Count == 0 && Session["SelectedEvent"] != null)
+            {
+                List<DateTime> datums = PlaatsReserveringsSysteem.VerkrijgDatums((Session["SelectedEvent"] as Event).ID);
+
+                foreach (DateTime datum in datums)
+                {
+                    cbxDatumTot.Items.Add(datum.ToShortDateString());
+                    cbxDatumVan.Items.Add(datum.ToShortDateString());
+                }
+            }
+
+            // vult filters in als dit nog niet gedaan is
+            if (clbPlaatsFilters.Items.Count == 0)
+            {
+                List<string> filters = PlaatsReserveringsSysteem.VerkrijgPlekFilters((Session["SelectedEvent"] as Event).ID);
+
+                foreach (string filter in filters)
+                {
+                    clbPlaatsFilters.Items.Add(filter);
+                }
+            }
+
+            if (Session["Plekken"] == null)
+            {
+                List<Plek> plekken = PlaatsReserveringsSysteem.VerkrijgPlekken((Session["SelectedEvent"] as Event).ID);
+
+                Session["Plekken"] = plekken;
+
+                cbxPlaatsnummer.Items.Clear();
+
+                foreach (Plek plek in plekken)
+                {
+                    cbxPlaatsnummer.Items.Add(plek.ID.ToString());
+                }
+            }
         }
         
         /// <summary>
@@ -62,6 +99,24 @@ namespace Proftaak_S24B_ASP
         protected void btnReserveren_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void cbxDatumVan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDatumVan.SelectedIndex == -1)
+                cbxDatumTot.SelectedIndex = -1;
+            else
+            {
+                // Reset eind datum waarden
+                cbxDatumTot.Items.Clear();
+
+                foreach (var item in cbxDatumVan.Items)
+                    cbxDatumTot.Items.Add(item.ToString());
+
+                // Haal alle datums weg vóór geselecteerde begindatum
+                for (int i = 0; i < cbxDatumVan.SelectedIndex; i++)
+                    cbxDatumTot.Items.RemoveAt(0);
+            }
         }
     }
 }

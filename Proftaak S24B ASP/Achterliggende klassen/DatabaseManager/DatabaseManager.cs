@@ -138,7 +138,7 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
-                string sql = "SELECT DATUMSTART, DATUMEIND FROM EVENT WHERE ID = :EVENTID";
+                string sql = "SELECT DATUMSTART, DATUMEINDE FROM EVENT WHERE ID = :EVENTID";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
@@ -149,7 +149,7 @@ namespace Proftaak_S24B_ASP
                 List<DateTime> dates = new List<DateTime>();
 
                 DateTime datumStart = Convert.ToDateTime(reader["DATUMSTART"]);
-                DateTime datumEind = Convert.ToDateTime(reader["DATUMEIND"]);
+                DateTime datumEind = Convert.ToDateTime(reader["DATUMEINDE"]);
 
                 do
                 {
@@ -167,6 +167,22 @@ namespace Proftaak_S24B_ASP
             {
                 verbinding.Close();
             }  
+        }
+
+        public List<DateTime> VerkrijgDatums(Event evenement)
+        {
+            List<DateTime> dates = new List<DateTime>();
+
+            DateTime datumStart = evenement.DatumStart;
+            DateTime datumEind = evenement.DatumEind;
+
+            do
+            {
+                dates.Add(datumStart);
+                datumStart = datumStart.AddDays(1);
+            } while (datumStart.Date != datumEind);
+
+            return dates;
         }
 
         #region Queries/Account
@@ -373,29 +389,130 @@ namespace Proftaak_S24B_ASP
         /// </summary>
         /// <param name="pcat"></param>
         /// <returns></returns>
-        public List<Product> VerkrijgMaterialen(ProductCategorie pcat)
+        public List<Product> VerkrijgProducten(ProductCategorie pcat)
         {
             try
             {
-                throw new NotImplementedException();
-                /*
                 string sql = "SELECT ID, MERK, SERIE, TYPENUMMER, PRIJS FROM PRODUCT WHERE PRODUCTCAT_ID = :PCATID AND ID IN ( SELECT PRODUCT_ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN))";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
                 command.Parameters.Add(":PCATID", pcat.ID);
 
-                OracleDataReader reader = VoerQueryUit(command);
+                OracleDataReader reader = VoerMultiQueryUit(command);
 
-                int id = Convert.ToInt32(reader["ID"]);
-                string catNaam = reader["NAAM"].ToString();
+                List<Product> producten = new List<Product>();
 
-                return 
-                */
+                while (reader.Read())
+	            {
+	                int id = Convert.ToInt32(reader["ID"]);
+                    string merk = reader["MERK"].ToString();
+                    string serie = reader["SERIE"].ToString();
+                    int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+
+                    Product p = new Product(id, pcat, merk, serie, typeNummer, prijs);
+                    producten.Add(p);
+
+	            }
+
+                return producten;
+                
             }
             catch
             {
                 return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool HuurProduct(Product p, Event evenement, Account a, DateTime beginDatum, DateTime eindDatum)
+        {
+            try
+            {
+                // Zoek beschikbaar exemplaarID
+                int exemplaarID = VerkrijgVerhuurbaarExemplaarID(p);
+                if (exemplaarID == -1)
+                    return false;
+
+                // Zoek polsbandje_id van account voor huidige evenement
+                int polsbandjeID = VerkrijgPolsbandjeID(a, evenement);
+                if (polsbandjeID == -1)
+                    return false;
+
+                // Insert de gegevens in verhuur
+                string sql = "INSERT INTO VERHUUR (PRODUCTEXEMPLAAR_ID, RES_PB_ID, DATUMIN, DATUMUIT, BETAALD) VALUES (:EXEMPLAARID, :PB_ID, :DATUMIN, :DATUMUIT, 0)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":EXEMPLAARID", exemplaarID);
+                command.Parameters.Add(":PB_ID", polsbandjeID);
+                command.Parameters.Add(":DATUMIN", eindDatum);
+                command.Parameters.Add(":DATUMUIT", beginDatum);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        /// <summary>
+        /// Haalt het polsbandje id op van de meegegeven account voor het meegegeven evenement.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="evenement"></param>
+        /// <returns></returns>
+        public int VerkrijgPolsbandjeID(Account account, Event evenement)
+        {
+            try
+            {
+                string sql = "SELECT POLSBANDJE_ID AS PBID FROM RESERVERING_POLSBANDJE WHERE ACCOUNT_ID = :ACCID AND RESERVERING_ID IN ( SELECT ID FROM RESERVERING WHERE ID IN ( SELECT RESERVERING_ID FROM PLEK_RESERVERING WHERE PLEK_ID IN ( SELECT ID FROM PLEK WHERE LOCATIE_ID IN ( SELECT LOCATIE_ID FROM EVENT WHERE ID = :EVENTID))))";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ACCID", account.ID);
+                command.Parameters.Add(":EVENTID", evenement.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["PBID"]);
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public int VerkrijgVerhuurbaarExemplaarID(Product p)
+        {
+            try
+            {
+                string sql = "SELECT ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN) AND PRODUCT_ID = :PID AND ROWNUM <= 1";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PID", p.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return -1;
             }
             finally
             {
@@ -583,6 +700,41 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+        #endregion
+
+        #region Queries/PlekReservering
+
+        public List<string> VerkrijgPlekFilters(int eventID)
+        {
+            try
+            {
+                // bepaalde specificaties zijn niet filterbaar met een check (ja/nee)
+                // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
+                string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 )";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<string> filters = new List<string>();
+                
+                while (reader.Read())
+                {
+                    filters.Add(reader["NAAM"].ToString());
+                }
+
+                return filters;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         #endregion
 
         #endregion

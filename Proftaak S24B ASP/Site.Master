@@ -59,8 +59,9 @@
             display: block;
             font-size: 14px;
             line-height: 20px;
-            padding: 6px 12px;
+            padding: 6px 20px;
             margin: 3px 0px;
+            width:auto;
         }
 
         input[type="submit"]:hover {
@@ -157,6 +158,10 @@
             display:inline-block;
             float:left;
         }
+
+        #lblIngelogdAls, #lblGebruikersnaam {
+            margin-left: 10px;
+        }
 </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -172,16 +177,23 @@
 
                 </div>
 
-                <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: 967px;">
+                <div id="Menu" style="float: none; height: 40px; margin: 0px 0px 0px 0px; width: auto;">
                     <ul style="width: 967px; height: 40px;">
-                        <li><asp:Button ID="btnHome" runat="server" Text="Home" Width="75" CausesValidation="False"/></li>
-                        <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer" Width="75" CausesValidation="False"/></li>
-                        <li><asp:Button ID="btnAccount" runat="server" Text="Account" Width="75" Visible="False" CausesValidation="False"/></li>
-                        <li><asp:Button ID="btnUpload" runat="server" Text="Upload" Width="75" Visible="False" CausesValidation="False"/></li>
-                        <li><asp:Button ID="btnBeheer" runat="server" Text="Beheer" Width="75" Visible="False" CausesValidation="False"/></li>
+                        <li><asp:Button ID="btnHome" runat="server" Text="Home" CausesValidation="False"/></li>
+                        <li><asp:Button ID="btnReserveer" runat="server" Text="Reserveer plaats" CausesValidation="False" OnClick="btnReserveer_Click"/></li>
+                        <li><asp:Button ID="btnHuur" runat="server" Text="Huur materiaal" CausesValidation="False" OnClick="btnHuur_Click"/></li>
+                        <li><asp:Button ID="btnAccount" runat="server" Text="Account" Visible="False" CausesValidation="False" OnClick="btnAccount_Click"/></li>
+                        <li><asp:Button ID="btnUpload" runat="server" Text="Upload" Visible="False" CausesValidation="False"/></li>
+                        <li><asp:Button ID="btnBeheer" runat="server" Text="Beheer" Visible="False" CausesValidation="False"/></li>
+                        <li>
+                            <asp:Label runat="server" ID="lblEvenement" Text="Evenement:"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddlEvenement"></asp:DropDownList>
+
+                        </li>
                         <li class="li-inlog">
                             <asp:Button ID="btnLoginUit" runat="server" Text="Inloggen" Width="80px" Visible="true" CausesValidation="False" OnClick="btnLoginUit_Click"/>
-                            <asp:Label ID="lblGebruikersnaam" runat="server" Visible="False"></asp:Label>
+                            <asp:Label CssId="lblIngelogdAls" ID="lblIngelogdAls" runat="server" Text="Ingelogd als:" Visible="False"></asp:Label><br />
+                            <asp:Label CssId="lblGebruikersnaam" ID="lblGebruikersnaam" runat="server" Visible="False"></asp:Label>
                         </li>
                     </ul>
                 </div>
@@ -195,7 +207,7 @@
                 </asp:Panel>
             </div>
 
-            <div id="Content" style="float: left; width: 900px; height: 500px;">
+            <div id="Content" style="float: left; width: auto; height: 500px;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
