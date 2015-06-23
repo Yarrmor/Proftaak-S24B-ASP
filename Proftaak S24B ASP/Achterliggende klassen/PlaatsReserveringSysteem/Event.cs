@@ -29,9 +29,20 @@ namespace Proftaak_S24B_ASP
             this.MaxBezoekers = maxBezoekers;
         }
 
+        //Voor nieuwe events, bij een nieuw event heb je geen id nodig, die worden gegenereert in de database.
+        public Event(string naam, DateTime datumStart, DateTime datumEind, Locatie locatie, int maxBezoekers)
+        {
+            this.Naam = naam;
+            this.DatumStart = datumStart;
+            this.DatumEind = datumEind;
+            this.Locatie = locatie;
+            this.MaxBezoekers = maxBezoekers;
+        }
+
         public bool VoegToe()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VoegEventToe(this);
         }
 
         public bool Wijzig()

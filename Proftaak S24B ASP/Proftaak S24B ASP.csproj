@@ -71,6 +71,10 @@
     <Content Include="PlaatsReserveringPagina.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ActiveerAccount.aspx" />
+    <Content Include="EventBeheer.aspx" />
+    <Content Include="EventBeheerNieuwEvent.aspx" />
+    <Content Include="EventBeheerProductPlaatsToevoegen.aspx" />
+    <Content Include="EventBeheerProductWijzigVerwijder.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,6 +166,34 @@
     </Compile>
     <Compile Include="ActiveerAccount.aspx.designer.cs">
       <DependentUpon>ActiveerAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheer.aspx.cs">
+      <DependentUpon>EventBeheer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheer.aspx.designer.cs">
+      <DependentUpon>EventBeheer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheerNieuwEvent.aspx.cs">
+      <DependentUpon>EventBeheerNieuwEvent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheerNieuwEvent.aspx.designer.cs">
+      <DependentUpon>EventBeheerNieuwEvent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheerProductPlaatsToevoegen.aspx.cs">
+      <DependentUpon>EventBeheerProductPlaatsToevoegen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheerProductPlaatsToevoegen.aspx.designer.cs">
+      <DependentUpon>EventBeheerProductPlaatsToevoegen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventBeheerProductWijzigVerwijder.aspx.cs">
+      <DependentUpon>EventBeheerProductWijzigVerwijder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventBeheerProductWijzigVerwijder.aspx.designer.cs">
+      <DependentUpon>EventBeheerProductWijzigVerwijder.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

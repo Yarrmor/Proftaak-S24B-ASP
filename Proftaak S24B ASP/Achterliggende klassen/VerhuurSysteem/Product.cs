@@ -19,6 +19,15 @@ namespace Proftaak_S24B_ASP
 
         public int Prijs { get; set; }
 
+        public Product(ProductCategorie productCategorie, string merk, string serie, int typenummer, int prijs)
+        {
+            ProductCategorie = productCategorie;
+            Merk = merk;
+            Serie = serie;
+            Typenummer = typenummer;
+            Prijs = prijs;
+        }
+
         public Product(int id, ProductCategorie productCategorie, string merk, string serie, int typenummer, int prijs)
         {
             ID = id;
@@ -36,7 +45,8 @@ namespace Proftaak_S24B_ASP
 
         public bool VoegToe()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VoegProductToe(this);
         }
 
         public bool Wijzig()

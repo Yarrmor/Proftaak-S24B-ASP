@@ -166,7 +166,7 @@ namespace Proftaak_S24B_ASP
             finally
             {
                 verbinding.Close();
-            }  
+            }
         }
 
         public List<DateTime> VerkrijgDatums(Event evenement)
@@ -404,8 +404,8 @@ namespace Proftaak_S24B_ASP
                 List<Product> producten = new List<Product>();
 
                 while (reader.Read())
-	            {
-	                int id = Convert.ToInt32(reader["ID"]);
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
                     string merk = reader["MERK"].ToString();
                     string serie = reader["SERIE"].ToString();
                     int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
@@ -414,10 +414,10 @@ namespace Proftaak_S24B_ASP
                     Product p = new Product(id, pcat, merk, serie, typeNummer, prijs);
                     producten.Add(p);
 
-	            }
+                }
 
                 return producten;
-                
+
             }
             catch
             {
@@ -636,7 +636,7 @@ namespace Proftaak_S24B_ASP
                     string naam = reader["B_NAAM"].ToString();
                     string bestandLocatie = reader["B_BESTANDSLOCATIE"].ToString();
                     int grootte = Convert.ToInt32(reader["B_GROOTTE"]);
-                    
+
                     int accId = Convert.ToInt32(reader["A_ID"]);
                     string accNaam = reader["A_GEBRUIKERSNAAM"].ToString();
 
@@ -646,7 +646,7 @@ namespace Proftaak_S24B_ASP
                 }
 
                 return bestanden;
-                
+
             }
             catch
             {
@@ -702,6 +702,250 @@ namespace Proftaak_S24B_ASP
         }
         #endregion
 
+        #region Queries/EventBeheer
+
+        public bool VoegLocatieToe(Locatie l)
+        {
+            try
+            {
+                string sql = "INSERT INTO LOCATIE (NAAM, STRAAT, NR, POSTCODE, PLAATS) VALUES (:NAAM, :STRAAT, :HUISNR, :POSTCODE, :PLAATS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":NAAM", l.Naam);
+                command.Parameters.Add(":STRAAT", l.Straat);
+                command.Parameters.Add(":NR", l.HuisNR);
+                command.Parameters.Add(":POSTCODE", l.Postcode);
+                command.Parameters.Add(":PLAATS", l.Plaats);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public int VerkrijgLaatsteLocatieID(Locatie l)
+        {
+            try
+            {
+                string sql = "SELECT ID FROM LOCATIE WHERE NAAM = :NAAM AND STRAAT = :STRAAT AND NR = :NR AND POSTCODE = :POSTCODE AND PLAATS = :PLAATS";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":NAAM", l.Naam);
+                command.Parameters.Add(":STRAAT", l.Straat);
+                command.Parameters.Add(":NR", l.HuisNR);
+                command.Parameters.Add(":POSTCODE", l.Postcode);
+                command.Parameters.Add(":PLAATS", l.Plaats);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool VoegEventToe(Event e)
+        {
+            try
+            {
+                string sql = "INSERT INTO EVENT (LOCATIE_ID, NAAM, DATUMSTART, DATUMEINDE, MAXBEZOEKERS) VALUES (:LOCATIEID, :NAAM, :DATUMSTART, :DATUMEINDE, :MAXBEZOEKERS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":LOCATIEID", VerkrijgLaatsteLocatieID(e.Locatie));
+                command.Parameters.Add(":NAAM", e.Naam);
+                command.Parameters.Add(":DATUMSTART", e.DatumStart);
+                command.Parameters.Add(":DATUMEINDE", e.DatumEind);
+                command.Parameters.Add(":MAXBEZOEKERS", e.MaxBezoekers);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool VoegPlekToe(Plek p)
+        {
+            try
+            {
+                string sql = "INSERT INTO PLEK (LOCATIE_ID, PRIJS, NUMMER, CAPACITEIT) VALUES (:LOCATIEID, :PRIJS, :NUMMER, :CAPACITEIT)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":LOCATIEID", VerkrijgLaatsteLocatieID(p.Locatie));
+                command.Parameters.Add(":PRIJS", p.DagPrijs);
+                command.Parameters.Add(":NUMMER", p.Nummer);
+                command.Parameters.Add(":CAPACITEIT", p.Capaciteit);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool VoegProductToe(Product p)
+        {
+            try
+            {
+                string sql = "INSERT INTO PRODUCT (PRODUCTCAT_ID, MERK, SERIE, TYPENUMMER, PRIJS) VALUES (:PRODUCTCAT_ID, :MERK, :SERIE, :TYPENUMMER, :PRIJS)";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PRODUCTCAT_ID", p.ProductCategorie.ID);
+                command.Parameters.Add(":MERK", p.Merk);
+                command.Parameters.Add(":SERIE", p.Serie);
+                command.Parameters.Add(":TYPENUMMER", p.Typenummer);
+                command.Parameters.Add(":PRIJS", p.Prijs);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public List<Product> VerkrijgAlleProducten()
+        {
+            try
+            {
+                string sql = "SELECT ID, PRODUCTCAT_ID, MERK, SERIE, TYPENUMMER, PRIJS FROM PRODUCT";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Product> producten = new List<Product>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    int productCatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                    string merk = reader["MERK"].ToString();
+                    string serie = reader["SERIE"].ToString();
+                    int typeNummer = Convert.ToInt32(reader["TYPENUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+
+                    Product p = new Product(id, VerkrijgProductCategorie(productCatID), merk, serie, typeNummer, prijs);
+                    producten.Add(p);
+
+                }
+
+                return producten;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+
+        //Geen verbinding.close aangezien deze methode door andere methodes uit de DBmanager wordt aangeroepen!
+        public ProductCategorie VerkrijgProductCategorie(int ProductCategorieID)
+        {
+            try
+            {
+                string sql = "SELECT PRODUCTCAT_ID, NAAM FROM PRODUCTCAT WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", ProductCategorieID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                string catNaam = reader["NAAM"].ToString();
+
+                if (reader["PRODUCTCAT_ID"] != DBNull.Value)
+                {
+                    int prodcatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                    return new ProductCategorie(ProductCategorieID, catNaam, VerkrijgProductCategorie(prodcatID));
+                }
+                else
+                {
+                    return new ProductCategorie(ProductCategorieID, catNaam);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<ProductCategorie> VerkrijgAlleProductCategorieen()
+        {
+            try
+            {
+                string sql = "SELECT ID, PRODUCTCAT_ID, NAAM FROM PRODUCTCAT";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<ProductCategorie> categorieen = new List<ProductCategorie>();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["ID"]);
+                    string naam = reader["NAAM"].ToString();
+
+                    if (reader["PRODUCTCAT_ID"] != DBNull.Value)
+                    {
+                        int prodcatID = Convert.ToInt32(reader["PRODUCTCAT_ID"]);
+                        categorieen.Add(new ProductCategorie(id, naam, VerkrijgProductCategorie(prodcatID)));
+                    }
+                    else
+                    {
+                        categorieen.Add(new ProductCategorie(id, naam));
+                    }
+                }
+
+                return categorieen;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+        #endregion
+		
         #region Queries/PlekReservering
 
         public List<string> VerkrijgPlekFilters(int eventID)
@@ -712,12 +956,12 @@ namespace Proftaak_S24B_ASP
                 // eigenlijk gebruiken wij dit soort specificaties niet, maar voor de zekerheid worden deze 3 id's toch gefilterd in de query.
                 string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 )";
 
+                List<string> filters = new List<string>();
+
                 OracleCommand command = MaakOracleCommand(sql);
 
-                OracleDataReader reader = VoerMultiQueryUit(command);
+                OracleDataReader reader = VoerQueryUit(command);
 
-                List<string> filters = new List<string>();
-                
                 while (reader.Read())
                 {
                     filters.Add(reader["NAAM"].ToString());
@@ -734,9 +978,9 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
-
-        #endregion
-
-        #endregion
+		
+        #endregion        
+		
+		#endregion
     }
 }

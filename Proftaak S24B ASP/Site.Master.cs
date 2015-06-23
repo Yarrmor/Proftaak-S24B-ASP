@@ -14,7 +14,7 @@ namespace Proftaak_S24B_ASP
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
+            Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, null, null, null);
             Event evenement = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
             Session["SelectedEvent"] = evenement;
         }
@@ -72,28 +72,12 @@ namespace Proftaak_S24B_ASP
             
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            Session["IngelogdAccount"] = "Beheerder";
-            Response.Redirect("Default.aspx");
-        }
-
-        protected void btnLogout_Click(object sender, EventArgs e)
-        {
-            Session.Contents.Remove("IngelogdAccount");
-            Response.Redirect("Default.aspx");
-        }
-
         protected void btnLoginUit_Click(object sender, EventArgs e)
         {
-            if (Session["Account"] != null)
+            if (Session["IngelogdAccount"] != null)
             {
-                Session["Account"] = null;
-                btnLoginUit.Text = "Inloggen";
-                lblGebruikersnaam.Visible = false;
-                btnAccount.Visible = false;
-                btnUpload.Visible = false;
-                btnBeheer.Visible = false;
+                Session["IngelogdAccount"] = null;
+                Response.Redirect("Default.aspx");
             }
             else
             {
