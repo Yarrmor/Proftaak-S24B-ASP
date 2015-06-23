@@ -46,8 +46,10 @@ namespace Proftaak_S24B_ASP
 
         public static List<Plek> VerkrijgPlekken(int eventID)
         {
+            throw new NotImplementedException();
+            /*
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgPlekken(eventID);
+            return dm.VerkrijgPlekken(eventID);*/
         }
     }
 }
