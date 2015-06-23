@@ -16,10 +16,10 @@ namespace Proftaak_S24B_ASP
             Locatie locatie = new Locatie(1, "Camping De Valkenhof", null, 0, null, null);
             Session["SelectedEvent"] = new Event(1, "ICT4EVENTS", new DateTime(2015, 7, 16, 0, 0, 0), new DateTime(2015, 7, 20, 0, 0, 0), locatie, 100);
 
-            if (Session["Account"] != null)
+            if (Session["IngelogdAccount"] != null)
             {
                 btnLoginUit.Text = "Uitloggen";
-                Account acc = (Account)Session["Account"];
+                Account acc = (Account)Session["IngelogdAccount"];
                 lblGebruikersnaam.Text = acc.Gebruikersnaam;
                 lblGebruikersnaam.Visible = true;
                 btnAccount.Visible = true;

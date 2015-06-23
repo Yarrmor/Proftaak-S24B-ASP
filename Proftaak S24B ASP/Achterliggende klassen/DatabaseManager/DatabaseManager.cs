@@ -417,13 +417,17 @@ namespace Proftaak_S24B_ASP
         {
             try
             {
+                int exemplaarID = VerkrijgVerhuurbaarExemplaarID(p);
+                if (exemplaarID == -1)
+                    return false;
+
                 string sql = "INSERT INTO VERHUUR (PRODUCTEXEMPLAAR_ID, RES_PB_ID, DATUMIN, DATUMUIT, BETAALD) VALUES (:EXEMPLAARID, :PB_ID, :DATUMIN, :DATUMUIT, 0)";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
                 throw new NotImplementedException();
 
-                //command.Parameters.Add(":EXEMPLAARID", VerkrijgBeschikbaarExemplaar(p));
+                command.Parameters.Add(":EXEMPLAARID", exemplaarID);
                 //command.Parameters.Add(":PB_ID", VerkrijgPolsbandjeID(a, evenement));
                 command.Parameters.Add(":DATUMIN", eindDatum);
                 command.Parameters.Add(":DATUMUIT", beginDatum);
@@ -439,6 +443,31 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+
+        public int VerkrijgVerhuurbaarExemplaarID(Product p)
+        {
+            try
+            {
+                string sql = "SELECT ID FROM PRODUCTEXEMPLAAR WHERE ID NOT IN ( SELECT PRODUCTEXEMPLAAR_ID FROM VERHUUR WHERE SYSDATE <= DATUMIN) AND PRODUCT_ID = :PID AND ROWNUM <= 1";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PID", p.ID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return Convert.ToInt32(reader["ID"]);
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         #endregion
 
         #region Queries/Media
