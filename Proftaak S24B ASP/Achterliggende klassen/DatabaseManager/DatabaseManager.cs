@@ -1076,6 +1076,92 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        public List<Plek> VerkrijgAllePlekken(int eventID)
+        {
+            try
+            {
+                string sql = "SELECT LOCATIE_ID, NUMMER, PRIJS, CAPACITEIT FROM PLEK WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", eventID);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Plek> plekken = new List<Plek>();
+
+                while (reader.Read())
+                {
+                    int locatieID = Convert.ToInt32(reader["LOCATIE_ID"]);
+                    int nummer = Convert.ToInt32(reader["NUMMER"]);
+                    int prijs = Convert.ToInt32(reader["PRIJS"]);
+                    int capaciteit = Convert.ToInt32(reader["CAPACITEIT"]);
+
+                    List<string> filters = VerkrijgPlekFilters(eventID);
+
+                    Plek p = new Plek(eventID, nummer, capaciteit, prijs, VerkrijgLocatie(locatieID), filters);
+
+                    plekken.Add(p);
+                }
+
+                return plekken;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        private Locatie VerkrijgLocatie(int locatieID)
+        {
+            try
+            {
+                string sql = "SELECT NAAM, STRAAT, NR, POSTCODE, PLAATS FROM LOCATIE WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", locatieID);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                string naam = reader["NAAM"].ToString();
+
+                string straat;
+                if (reader["STRAAT"] != DBNull.Value)
+                    straat = reader["STRAAT"].ToString();
+                else
+                    straat = "";
+
+                string NR;
+                if (reader["NR"] != DBNull.Value)
+                    NR = reader["NR"].ToString();
+                else
+                    NR = "";
+
+                string postcode;
+                if (reader["POSTCODE"] != DBNull.Value)
+                    postcode = reader["POSTCODE"].ToString();
+                else
+                    postcode = "";
+
+                string plaats;
+                if (reader["PLAATS"] != DBNull.Value)
+                    plaats = reader["PLAATS"].ToString();
+                else
+                    plaats = "";
+
+                return new Locatie(naam, straat, NR, postcode, plaats);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         #endregion
 		
         #region Queries/PlekReservering

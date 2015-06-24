@@ -52,6 +52,11 @@ namespace Proftaak_S24B_ASP
         public bool Verwijder()
         {
             throw new NotImplementedException();
-        }   
+        }
+
+        public override string ToString()
+        {
+            return ID.ToString() + "-" + Locatie + "-" + Nummer.ToString();
+        }
     }
 }

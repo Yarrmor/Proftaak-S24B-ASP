@@ -49,5 +49,11 @@ namespace Proftaak_S24B_ASP
             DatabaseManager dm = new DatabaseManager();
             return dm.VerkrijgAllePlekFilters(eventID);
         }
+
+        public List<Plek> VerkrijgPlekken()
+        {
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VerkrijgAllePlekken();
+        }
     }
 }
