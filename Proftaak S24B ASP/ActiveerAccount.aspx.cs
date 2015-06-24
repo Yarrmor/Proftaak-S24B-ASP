@@ -9,8 +9,6 @@ namespace Proftaak_S24B_ASP
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private Account acc;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string activatieHash = Request.QueryString["activate"];
@@ -19,7 +17,9 @@ namespace Proftaak_S24B_ASP
                 Response.Redirect("Default.aspx");
             }
 
-            VerkrijgAccount(activatieHash);
+            Session["Account"] = VerkrijgAccount(activatieHash);
+
+            Account acc = Session["Account"] as Account;
 
             if (acc != null)
             {
@@ -62,10 +62,10 @@ namespace Proftaak_S24B_ASP
             btnActiveer.Enabled = false;
         }
 
-        private void VerkrijgAccount(string activatieHash)
+        private Account VerkrijgAccount(string activatieHash)
         {
             DatabaseManager dm = new DatabaseManager();
-            acc = dm.VerkrijgAccount(activatieHash);
+            return dm.VerkrijgAccount(activatieHash);
         }
 
         protected void btnActiveer_Click(object sender, EventArgs e)
@@ -74,13 +74,18 @@ namespace Proftaak_S24B_ASP
             DatabaseManager dm = new DatabaseManager();
             InlogSysteem inlog = new InlogSysteem();
 
-            if (dm.ActiveerAccount(acc.ID, tbxGebruikersnaam.Text, inlog.getHashSha256(tbxWachtwoord.Text)))
+            Account acc = Session["Account"] as Account;
+
+            if (acc != null)
             {
-                Response.Redirect("InlogPagina.aspx");
-            }
-            else
-            {
-                lblActivatieMislukt.Visible = true;
+                if (dm.ActiveerAccount(acc.ID, tbxGebruikersnaam.Text, inlog.getHashSha256(tbxWachtwoord.Text)))
+                {
+                    Response.Redirect("InlogPagina.aspx");
+                }
+                else
+                {
+                    lblActivatieMislukt.Visible = true;
+                }
             }
         }
     }

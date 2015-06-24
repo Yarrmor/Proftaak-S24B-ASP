@@ -17,17 +17,31 @@ namespace Proftaak_S24B_ASP
 
         public string Straat { get; set; }
 
-        public int HuisNR { get; set; }
+        public string HuisNR { get; set; }
 
         public string Woonplaats { get; set; }
 
-        public int BankNR { get; set; }
+        public string BankNR { get; set; }
 
-        public Persoon()
+        public Persoon(string voornaam, string tussenvoegsel, string achternaam, string straat, string huisNR, string woonplaats, string bankNR)
         {
-
+            Voornaam = voornaam;
+            Tussenvoegsel = tussenvoegsel;
+            Achternaam = achternaam;
+            Straat = straat;
+            HuisNR = huisNR;
+            Woonplaats = woonplaats;
+            BankNR = bankNR;
         }
 
         //Misschien nog een wijzig gegevens methode (OPTIONEEL)
+
+        internal bool VoegToe()
+        {
+            DatabaseManager dm = new DatabaseManager();
+
+            return dm.VoegPersoonToe(this);
+
+        }
     }
 }

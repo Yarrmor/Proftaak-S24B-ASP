@@ -103,6 +103,24 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.DropDownList cbxPlaatsnummer;
         
         /// <summary>
+        /// tbcDagprijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell tbcDagprijs;
+        
+        /// <summary>
+        /// tbcTotaalprijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell tbcTotaalprijs;
+        
+        /// <summary>
         /// tblGegevens control.
         /// </summary>
         /// <remarks>
@@ -112,67 +130,166 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Table tblGegevens;
         
         /// <summary>
-        /// TextBox2 control.
+        /// tbxVoornaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox tbxVoornaam;
         
         /// <summary>
-        /// TextBox3 control.
+        /// rfvVoornaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvVoornaam;
         
         /// <summary>
-        /// TextBox4 control.
+        /// tbxTussenvoegsel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox tbxTussenvoegsel;
         
         /// <summary>
-        /// TextBox5 control.
+        /// tbxAchternaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox tbxAchternaam;
         
         /// <summary>
-        /// TextBox6 control.
+        /// rfvAchternaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAchternaam;
         
         /// <summary>
-        /// TextBox7 control.
+        /// tbxTelefoonnummer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox tbxTelefoonnummer;
         
         /// <summary>
-        /// TextBox8 control.
+        /// rfvTelefoonnummer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefoonnummer;
+        
+        /// <summary>
+        /// tbxWoonplaats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxWoonplaats;
+        
+        /// <summary>
+        /// rfvWoonplaats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWoonplaats;
+        
+        /// <summary>
+        /// tbxStraatnaam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxStraatnaam;
+        
+        /// <summary>
+        /// rfvStraatnaam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStraatnaam;
+        
+        /// <summary>
+        /// tbxHuisnummer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxHuisnummer;
+        
+        /// <summary>
+        /// rfvHuisnummer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHuisnummer;
+        
+        /// <summary>
+        /// tbxEmailAdres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxEmailAdres;
+        
+        /// <summary>
+        /// rfvEmailAdres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmailAdres;
+        
+        /// <summary>
+        /// revEmailAdres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailAdres;
+        
+        /// <summary>
+        /// tbxBankrekeningnummer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxBankrekeningnummer;
+        
+        /// <summary>
+        /// rfvBankrekeningnummer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBankrekeningnummer;
         
         /// <summary>
         /// pnlGroepsgegevens control.
@@ -229,13 +346,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail2;
         
         /// <summary>
-        /// tbEmail2 control.
+        /// tbxEmail2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail2;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail2;
         
         /// <summary>
         /// tbrEmail3 control.
@@ -247,13 +364,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail3;
         
         /// <summary>
-        /// tbEmail3 control.
+        /// tbxEmail3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail3;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail3;
         
         /// <summary>
         /// tbrEmail4 control.
@@ -265,13 +382,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail4;
         
         /// <summary>
-        /// tbEmail4 control.
+        /// tbxEmail4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail4;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail4;
         
         /// <summary>
         /// tbrEmail5 control.
@@ -283,13 +400,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail5;
         
         /// <summary>
-        /// tbEmail5 control.
+        /// tbxEmail5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail5;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail5;
         
         /// <summary>
         /// tbrEmail6 control.
@@ -301,13 +418,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail6;
         
         /// <summary>
-        /// tbEmail6 control.
+        /// tbxEmail6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail6;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail6;
         
         /// <summary>
         /// tbrEmail7 control.
@@ -319,13 +436,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail7;
         
         /// <summary>
-        /// tbEmail7 control.
+        /// tbxEmail7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail7;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail7;
         
         /// <summary>
         /// tbrEmail8 control.
@@ -337,13 +454,13 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TableRow tbrEmail8;
         
         /// <summary>
-        /// tbEmail8 control.
+        /// tbxEmail8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail8;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail8;
         
         /// <summary>
         /// btnReserveren control.
@@ -353,5 +470,14 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReserveren;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

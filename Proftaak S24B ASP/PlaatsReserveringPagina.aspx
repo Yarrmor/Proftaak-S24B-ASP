@@ -13,6 +13,13 @@
         input[type="checkbox"] {
             float: left;
         }
+        /* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box 
+            Verbergt de arrows voor input["number"] in browsers die dit ondersteunen, is namelijk raar voor telefoonnummer */
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -40,7 +47,7 @@
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Tot en met:</asp:TableCell>
                                 <asp:TableCell runat="server">
-                                    <asp:DropDownList ID="cbxDatumTot" runat="server"></asp:DropDownList></asp:TableCell>
+                                    <asp:DropDownList ID="cbxDatumTot" OnSelectedIndexChanged="cbxDatumTot_SelectedIndexChanged" runat="server" AutoPostBack="true"></asp:DropDownList></asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
                     </ContentTemplate>
@@ -67,11 +74,11 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Dagprijs:</asp:TableCell>
-                                <asp:TableCell runat="server"></asp:TableCell>
+                                <asp:TableCell runat="server" ID="tbcDagprijs"></asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">Totaalprijs:</asp:TableCell>
-                                <asp:TableCell runat="server"></asp:TableCell>
+                                <asp:TableCell runat="server" ID="tbcTotaalprijs"></asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
                     </ContentTemplate>
@@ -83,43 +90,64 @@
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Voornaam:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxVoornaam" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvVoornaam" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxVoornaam"></asp:RequiredFieldValidator>
                         </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server">
+                        <asp:TableCell runat="server">Tussenvoegsel:</asp:TableCell>
+                        <asp:TableCell runat="server">
+                            <asp:TextBox ID="tbxTussenvoegsel" runat="server"></asp:TextBox>
+                     </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Achternaam:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxAchternaam" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvAchternaam" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxAchternaam"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Telefoonnummer:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxTelefoonnummer" TextMode="Number" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvTelefoonnummer" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxTelefoonnummer"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Woonplaats:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxWoonplaats" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvWoonplaats" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxWoonplaats"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Straatnaam:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxStraatnaam" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvStraatnaam" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxStraatnaam"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Huisnummer:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxHuisnummer" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvHuisnummer" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxHuisnummer"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Email adres:</asp:TableCell>
                         <asp:TableCell runat="server">
-                            <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbxEmailAdres" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvEmailAdres" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxEmailAdres"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revEmailAdres" runat="server" ErrorMessage="Ongeligd email adres!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxEmailAdres" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server">
+                        <asp:TableCell runat="server">Bankrekeningnumer:</asp:TableCell>
+                        <asp:TableCell runat="server">
+                            <asp:TextBox ID="tbxBankrekeningnummer" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvBankrekeningnummer" runat="server" ErrorMessage="Veld moet ingevuld zijn!" Display="Dynamic" ForeColor="Red" ControlToValidate="tbxBankrekeningnummer"></asp:RequiredFieldValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
@@ -144,7 +172,7 @@
                                Email lid 2:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail2" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail2" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail3" runat="server">
@@ -152,7 +180,7 @@
                                Email lid 3:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail3" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail3" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail4" runat="server">
@@ -160,7 +188,7 @@
                                Email lid 4:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail4" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail4" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail5" runat="server">
@@ -168,7 +196,7 @@
                                Email lid 5:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail5" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail5" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail6" runat="server">
@@ -176,7 +204,7 @@
                                Email lid 6:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail6" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail6" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail7" runat="server">
@@ -184,7 +212,7 @@
                                Email lid 7:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail7" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail7" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow Visible="false" ID="tbrEmail8" runat="server">
@@ -192,7 +220,7 @@
                                Email lid 8:
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:TextBox ID="tbEmail8" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tbxEmail8" runat="server"></asp:TextBox>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
@@ -202,7 +230,13 @@
             </div>
         </div>
         <br />
-        <asp:Button ID="btnReserveren" runat="server" Text="Plaats reservering" OnClick="btnReserveren_Click" />
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:Button ID="btnReserveren" runat="server" Text="Plaats reservering" OnClick="btnReserveren_Click" />
+                <asp:Label ID="lblError" runat="server" Visible="false" ForeColor="Red"/>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+       
     </div>
 
 </asp:Content>
