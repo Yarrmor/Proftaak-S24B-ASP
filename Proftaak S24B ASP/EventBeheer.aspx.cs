@@ -31,7 +31,7 @@ namespace Proftaak_S24B_ASP
 
         protected void btnPlaatsVerwijderenWijzigen_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("EventBeheerPlaatsWijzigVerwijder.aspx");
         }
 
         protected void btnVerhuur_Click(object sender, EventArgs e)
