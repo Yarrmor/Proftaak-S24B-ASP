@@ -1098,16 +1098,58 @@ namespace Proftaak_S24B_ASP
                     }
                 }
 
-                //todo oude filters verwijderen en nieuwe inserten.
-                string sql = "UPDATE PRODUCT SET LOCATIE_ID = :LOCATIE_ID, PRIJS = :PRIJS, NUMMER = :NUMMER, CAPACITEIT = :CAPACITEIT WHERE ID = :ID";
+                if (VerwijderFilters(plek.ID)) 
+                {
+                    string sql = "UPDATE PLEK SET LOCATIE_ID = :LOCATIE_ID, PRIJS = :PRIJS, NUMMER = :NUMMER, CAPACITEIT = :CAPACITEIT WHERE ID = :ID";
+
+                    OracleCommand command = MaakOracleCommand(sql);
+
+                    command.Parameters.Add(":LOCATIE_ID", plek.Locatie.ID);
+                    command.Parameters.Add(":PRIJS", plek.DagPrijs);
+                    command.Parameters.Add(":NUMMER", plek.Nummer);
+                    command.Parameters.Add(":CAPACITEIT", plek.Capaciteit);
+                    command.Parameters.Add(":ID", plek.ID);
+
+                    if (VoerNonQueryUit(command)) //probleem ORA-02291: integrity constraint (DBI255847.LOCATIEPLEK) violated - parent key not found
+                    {
+                        foreach (string filter in plek.Filters)
+                        {
+                            if (!VoegSpecificatieToe(filter, plek.ID))
+                            {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        private bool VerwijderFilters(int plekID)
+        {
+            try
+            {
+                string sql = "DELETE FROM PLEK_SPECIFICATIE WHERE PLEK_ID = :PLEK_ID";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
-                command.Parameters.Add(":LOCATIE_ID", plek.Locatie.ID);
-                command.Parameters.Add(":PRIJS", plek.DagPrijs);
-                command.Parameters.Add(":NUMMER", plek.Nummer);
-                command.Parameters.Add(":CAPACITEIT", plek.Capaciteit);
-                command.Parameters.Add(":ID", plek.ID);
+                command.Parameters.Add(":ID", plekID);
 
                 return VoerNonQueryUit(command);
             }
@@ -1118,7 +1160,7 @@ namespace Proftaak_S24B_ASP
             finally
             {
                 verbinding.Close();
-            }
+            }        
         }
 
         //todo: plekken in database misschien ook een eventID geven.

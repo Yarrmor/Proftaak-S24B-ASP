@@ -139,7 +139,7 @@ namespace Proftaak_S24B_ASP
                     }
                 }
 
-                p = new Plek(p.ID, Convert.ToInt32(tbxWijzigPlekCapaciteit.Text), Convert.ToInt32(tbxWijzigPlekPrijs.Text), new Locatie(tbxWijzigPlekLocatieNaam.Text, tbxWijzigPlekLocatieStraat.Text, tbxWijzigPlekLocatieNR.Text, tbxWijzigPlekLocatiePostcode.Text, tbxWijzigPlekLocatiePlaats.Text), filters);
+                p = new Plek(Convert.ToInt32(lblPlekID.Text) , Convert.ToInt32(tbxWijzigPlekNummer.Text), Convert.ToInt32(tbxWijzigPlekCapaciteit.Text), Convert.ToInt32(tbxWijzigPlekPrijs.Text), new Locatie(tbxWijzigPlekLocatieNaam.Text, tbxWijzigPlekLocatieStraat.Text, tbxWijzigPlekLocatieNR.Text, tbxWijzigPlekLocatiePostcode.Text, tbxWijzigPlekLocatiePlaats.Text), filters);
                 if (p.Wijzig())
                 {
                     lblWijzigError.Text = "Wijziging is gelukt!";
