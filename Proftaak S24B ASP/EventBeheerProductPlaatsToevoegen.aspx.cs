@@ -45,6 +45,7 @@ namespace Proftaak_S24B_ASP
                     Product prod = new Product(prodCat, tbxProductMerk.Text, tbxProductSerie.Text, Convert.ToInt32(tbxProductTypenummer.Text), Convert.ToInt32(tbxProductPrijs.Text));
                     if (prod.VoegToe())
                     {
+                        Session["ProductenWV"] = null;
                         lblProductError.Text = "Product toegevoegd!";
                     }
                     else

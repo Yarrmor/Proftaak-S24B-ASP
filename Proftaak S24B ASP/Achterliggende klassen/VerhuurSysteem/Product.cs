@@ -40,7 +40,8 @@ namespace Proftaak_S24B_ASP
 
         public bool Verwijder()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.VerwijderProduct(this.ID);
         }
 
         public bool VoegToe()
@@ -51,7 +52,8 @@ namespace Proftaak_S24B_ASP
 
         public bool Wijzig()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.WijzigProduct(this);
         }
 
         /// <summary>

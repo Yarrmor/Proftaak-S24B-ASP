@@ -186,6 +186,9 @@ namespace Proftaak_S24B_ASP
                 if (p.Wijzig())
                 {
                     lblWijzigError.Text = "Wijziging is gelukt!";
+                    producten = bs.VerkrijgProducten();
+                    Session["ProductenWV"] = producten;
+                    Response.Redirect("EventBeheerProductWijzigVerwijder.aspx");
                 }
                 else
                 {
@@ -207,6 +210,9 @@ namespace Proftaak_S24B_ASP
                 if (p.Verwijder())
                 {
                     lblVerwijderError.Text = "Verwijdering is voltooid!";
+                    producten = bs.VerkrijgProducten();
+                    Session["ProductenWV"] = producten;
+                    Response.Redirect("EventBeheerProductWijzigVerwijder.aspx");
                 }
                 else
                 {

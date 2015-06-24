@@ -1026,6 +1026,56 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+
+        public bool VerwijderProduct(int productID)
+        {
+            try
+            {
+                string sql = "DELETE FROM PRODUCT WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", productID);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public bool WijzigProduct(Product product)
+        {
+            try
+            {
+                string sql = "UPDATE PRODUCT SET PRODUCTCAT_ID = :PRODUCTCAT_ID, MERK = :MERK, SERIE = :SERIE, TYPENUMMER = :TYPENUMMER, PRIJS = :PRIJS WHERE ID = :ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PRODUCTCAT_ID", product.ProductCategorie.ID);
+                command.Parameters.Add(":MERK", product.Merk);
+                command.Parameters.Add(":SERIE", product.Serie);
+                command.Parameters.Add(":TYPENUMMER", product.Typenummer.ToString());
+                command.Parameters.Add(":PRIJS", product.Prijs);
+                command.Parameters.Add(":ID", product.ID);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
         #endregion
 		
         #region Queries/PlekReservering
