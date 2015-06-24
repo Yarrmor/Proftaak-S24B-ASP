@@ -38,10 +38,10 @@ namespace Proftaak_S24B_ASP
             return dm.VerkrijgDatums(eventID);
         }
 
-        public static List<string>  VerkrijgPlekFilters(int eventID)
+        public static List<string>  VerkrijgPlekFilters()
         {
             DatabaseManager dm = new DatabaseManager();
-            return dm.VerkrijgAllePlekFilters(eventID);
+            return dm.VerkrijgAllePlekFilters();
         }
 
         public static List<Plek> VerkrijgPlekken(int eventID, Locatie l)

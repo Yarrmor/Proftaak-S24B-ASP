@@ -46,7 +46,8 @@ namespace Proftaak_S24B_ASP
 
         public bool Wijzig()
         {
-            throw new NotImplementedException();
+            DatabaseManager dm = new DatabaseManager();
+            return dm.WijzigPlek(this);
         }
 
         public bool Verwijder()
@@ -56,7 +57,7 @@ namespace Proftaak_S24B_ASP
 
         public override string ToString()
         {
-            return ID.ToString() + "-" + Locatie + "-" + Nummer.ToString();
+            return ID.ToString() + "-" + Locatie.Naam + "-" + Nummer.ToString();
         }
     }
 }

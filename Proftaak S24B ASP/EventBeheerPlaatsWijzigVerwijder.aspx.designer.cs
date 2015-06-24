@@ -31,49 +31,67 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.ListBox lbxVerwijderWijzigPlek;
         
         /// <summary>
-        /// tbxWijzigPlekNaam control.
+        /// tbxWijzigPlekLocatieNaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekNaam;
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekLocatieNaam;
         
         /// <summary>
-        /// tbxWijzigPlekStraat control.
+        /// rfvWVLocatieNaam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekStraat;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWVLocatieNaam;
         
         /// <summary>
-        /// tbxWijzigPlekNR control.
+        /// tbxWijzigPlekLocatieStraat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekNR;
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekLocatieStraat;
         
         /// <summary>
-        /// tbxWijzigPlekPostcode control.
+        /// tbxWijzigPlekLocatieNR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekPostcode;
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekLocatieNR;
         
         /// <summary>
-        /// tbxWijzigPlekPlaats control.
+        /// tbxWijzigPlekLocatiePostcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekPlaats;
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekLocatiePostcode;
+        
+        /// <summary>
+        /// tbxWijzigPlekLocatiePlaats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekLocatiePlaats;
+        
+        /// <summary>
+        /// lblPlekID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlekID;
         
         /// <summary>
         /// tbxWijzigPlekPrijs control.
@@ -85,6 +103,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekPrijs;
         
         /// <summary>
+        /// rfvWVPlekPrijs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWVPlekPrijs;
+        
+        /// <summary>
         /// tbxWijzigPlekNummer control.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekNummer;
+        
+        /// <summary>
+        /// rfvWVPlekNR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWVPlekNR;
         
         /// <summary>
         /// tbxWijzigPlekCapaciteit control.
@@ -103,6 +139,24 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.TextBox tbxWijzigPlekCapaciteit;
         
         /// <summary>
+        /// rfvWVPlekCapaciteit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWVPlekCapaciteit;
+        
+        /// <summary>
+        /// cblFilters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblFilters;
+        
+        /// <summary>
         /// btnWijzigPlek control.
         /// </summary>
         /// <remarks>
@@ -112,6 +166,15 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnWijzigPlek;
         
         /// <summary>
+        /// lblWijzigError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWijzigError;
+        
+        /// <summary>
         /// btnVerwijderPlek control.
         /// </summary>
         /// <remarks>
@@ -119,5 +182,14 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVerwijderPlek;
+        
+        /// <summary>
+        /// lblVerwijderError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVerwijderError;
     }
 }

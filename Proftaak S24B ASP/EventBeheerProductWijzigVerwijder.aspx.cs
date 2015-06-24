@@ -17,7 +17,7 @@ namespace Proftaak_S24B_ASP
             if (Session["SelectedEvent"] != null)
             {
                 bs = new BeheerSysteem();
-                if (Session["ProductenWV"] == null && Session["ProductenWV"] == null && !IsPostBack)
+                if (Session["ProductenWV"] == null && Session["ProductVWCats"] == null && !IsPostBack)
                 {
                     producten = bs.VerkrijgProducten();
                     prodCats = bs.VerkrijgProductCategorieen();

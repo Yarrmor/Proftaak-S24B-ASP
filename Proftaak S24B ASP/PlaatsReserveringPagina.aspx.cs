@@ -37,7 +37,7 @@ namespace Proftaak_S24B_ASP
             // vult filters in als dit nog niet gedaan is
             if (clbPlaatsFilters.Items.Count == 0)
             {
-                List<string> filters = PlaatsReserveringsSysteem.VerkrijgPlekFilters((Session["SelectedEvent"] as Event).ID);
+                List<string> filters = PlaatsReserveringsSysteem.VerkrijgPlekFilters();
 
                 foreach (string filter in filters)
                 {

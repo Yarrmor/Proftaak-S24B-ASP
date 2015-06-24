@@ -1076,15 +1076,59 @@ namespace Proftaak_S24B_ASP
             }
         }
 
-        public List<Plek> VerkrijgAllePlekken(int eventID)
+        public bool WijzigPlek(Plek plek)
         {
             try
             {
-                string sql = "SELECT LOCATIE_ID, NUMMER, PRIJS, CAPACITEIT FROM PLEK WHERE ID = :ID";
+                int locatieID = 0;
+                if (plek.Locatie.ID == 0)
+                {
+                    locatieID = VerkrijgLocatie(plek.Locatie.Naam, plek.Locatie.Straat, plek.Locatie.HuisNR, plek.Locatie.Postcode, plek.Locatie.Plaats);
+                    if (locatieID == 0)
+                    {
+                        Locatie l = new Locatie(plek.Locatie.Naam, plek.Locatie.Straat, plek.Locatie.HuisNR, plek.Locatie.Postcode, plek.Locatie.Plaats);
+                        if (l.Wijzig())
+                        {
+                            locatieID = VerkrijgLaatsteLocatieID(l);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                //todo oude filters verwijderen en nieuwe inserten.
+                string sql = "UPDATE PRODUCT SET LOCATIE_ID = :LOCATIE_ID, PRIJS = :PRIJS, NUMMER = :NUMMER, CAPACITEIT = :CAPACITEIT WHERE ID = :ID";
 
                 OracleCommand command = MaakOracleCommand(sql);
 
-                command.Parameters.Add(":ID", eventID);
+                command.Parameters.Add(":LOCATIE_ID", plek.Locatie.ID);
+                command.Parameters.Add(":PRIJS", plek.DagPrijs);
+                command.Parameters.Add(":NUMMER", plek.Nummer);
+                command.Parameters.Add(":CAPACITEIT", plek.Capaciteit);
+                command.Parameters.Add(":ID", plek.ID);
+
+                return VoerNonQueryUit(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        //todo: plekken in database misschien ook een eventID geven.
+        public List<Plek> VerkrijgAllePlekken()
+        {
+            try
+            {
+                string sql = "SELECT ID, LOCATIE_ID, NUMMER, PRIJS, CAPACITEIT FROM PLEK";
+
+                OracleCommand command = MaakOracleCommand(sql);
 
                 OracleDataReader reader = VoerMultiQueryUit(command);
 
@@ -1092,14 +1136,15 @@ namespace Proftaak_S24B_ASP
 
                 while (reader.Read())
                 {
+                    int ID = Convert.ToInt32(reader["ID"]);
                     int locatieID = Convert.ToInt32(reader["LOCATIE_ID"]);
                     int nummer = Convert.ToInt32(reader["NUMMER"]);
                     int prijs = Convert.ToInt32(reader["PRIJS"]);
                     int capaciteit = Convert.ToInt32(reader["CAPACITEIT"]);
 
-                    List<string> filters = VerkrijgPlekFilters(eventID);
+                    List<string> filters = VerkrijgPlekFilters(ID);
 
-                    Plek p = new Plek(eventID, nummer, capaciteit, prijs, VerkrijgLocatie(locatieID), filters);
+                    Plek p = new Plek(ID, nummer, capaciteit, prijs, VerkrijgLocatie(locatieID), filters);
 
                     plekken.Add(p);
                 }
@@ -1162,11 +1207,64 @@ namespace Proftaak_S24B_ASP
             }
         }
 
+        private int VerkrijgLocatie(string naam, string straat, string nr, string postcode, string plaats)
+        {
+            try
+            {
+                string sql = "SELECT ID, STRAAT, NR, POSTCODE, PLAATS FROM LOCATIE WHERE NAAM = :NAAM";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":NAAM", naam);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                int lID = Convert.ToInt32(reader["ID"]);
+
+                string lStraat;
+                if (reader["STRAAT"] != DBNull.Value)
+                    lStraat = reader["STRAAT"].ToString();
+                else
+                    lStraat = "";
+
+                string lNR;
+                if (reader["NR"] != DBNull.Value)
+                    lNR = reader["NR"].ToString();
+                else
+                    lNR = "";
+
+                string lPostcode;
+                if (reader["POSTCODE"] != DBNull.Value)
+                    lPostcode = reader["POSTCODE"].ToString();
+                else
+                    lPostcode = "";
+
+                string lPlaats;
+                if (reader["PLAATS"] != DBNull.Value)
+                    lPlaats = reader["PLAATS"].ToString();
+                else
+                    lPlaats = "";
+
+                if(straat == lStraat && nr == lNR && postcode == lPostcode && plaats == lPlaats){
+                    return lID;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+
         #endregion
 		
         #region Queries/PlekReservering
 
-        public List<string> VerkrijgAllePlekFilters(int eventID)
+        public List<string> VerkrijgAllePlekFilters()
         {
             try
             {
@@ -1212,6 +1310,8 @@ namespace Proftaak_S24B_ASP
                 string sql = "SELECT NAAM FROM SPECIFICATIE WHERE ID NOT IN ( 4, 6, 7 ) AND ID IN ( SELECT SPECIFICATIE_ID FROM PLEK_SPECIFICATIE WHERE PLEK_ID = :PLEKID )";
 
                 OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":PLEKID", plekID);
 
                 OracleDataReader reader = VoerMultiQueryUit(command);
 

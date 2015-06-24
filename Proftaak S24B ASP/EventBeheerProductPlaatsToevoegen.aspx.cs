@@ -21,8 +21,7 @@ namespace Proftaak_S24B_ASP
                 VulDropDownListCategorieen(productCats);
                 if (cblFilters.Items.Count == 0)
                 {
-                    Event selected = (Event)Session["SelectedEvent"];
-                    List<string> filters = bs.VerkrijgFilters(selected.ID);
+                    List<string> filters = bs.VerkrijgFilters();
                     foreach (string s in filters)
                     {
                         cblFilters.Items.Add(s);
