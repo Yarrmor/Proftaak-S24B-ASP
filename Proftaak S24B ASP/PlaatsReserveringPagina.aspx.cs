@@ -73,6 +73,8 @@ namespace Proftaak_S24B_ASP
 
             if (aantal != -1)
             {
+                VerversPlaatsen();
+
                 // tblGroepsgegevens.Rows[i].Visible deed geen juiste postback
                 List<TableRow> tbrs = new List<TableRow> { tbrEmail2, tbrEmail3, tbrEmail4, tbrEmail5, tbrEmail6, tbrEmail7, tbrEmail8 };
 
@@ -149,7 +151,14 @@ namespace Proftaak_S24B_ASP
                         else if (!plek.Filters.Contains(item.Value.ToString()))
                             match = false;
                     }
+
+                    
                 }
+
+                // Check capaciteit
+                if (plek.Capaciteit < Convert.ToInt32(cbxAantalPersonen.SelectedItem.ToString()))
+                    match = false;
+
                 if (match)
                     cbxPlaatsnummer.Items.Add(plek.Nummer.ToString());
             }
