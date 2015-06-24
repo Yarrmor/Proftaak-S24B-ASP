@@ -14,6 +14,9 @@ namespace Proftaak_S24B_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["SelectedEvent"] == null)
+                Response.Redirect("Default.aspx");
+
             // Als combobox aantal personen leeg is, wordt deze gevuld. maximumAantalPersonen is in dit geval hardcoded
             if (cbxAantalPersonen.Items.Count == 0)
             {
@@ -219,7 +222,83 @@ namespace Proftaak_S24B_ASP
        
         protected void btnReserveren_Click(object sender, EventArgs e)
         {
+            if (cbxDatumVan.SelectedIndex == -1 || cbxDatumTot.SelectedIndex == -1)
+            {
+                lblError.Text = "Ingevulde datums zijn onjuist!";
+                lblError.Visible = true;
+                return;
+            }
 
+            if (cbxPlaatsnummer.SelectedIndex == -1)
+            {
+                lblError.Text = "Geen plaats is geselecteerd!";
+                lblError.Visible = true;
+                return;
+            }
+
+            if (cbxAantalPersonen.SelectedIndex == -1)
+            {
+                lblError.Text = "Aantal personen is onjuist!";
+                lblError.Visible = true;
+                return;
+            }
+
+            lblError.Visible = false;
+
+            int aantalPersonen = Convert.ToInt32(cbxAantalPersonen.SelectedValue.ToString());
+            List<TextBox> tbxEmails = new List<TextBox> { tbxEmail2, tbxEmail3, tbxEmail4, tbxEmail5, tbxEmail6, tbxEmail7, tbxEmail8 };
+
+            // Check of meerdere keren zelfde email is ingevuld en anders of het email ongeldig is
+            List<string> emails = new List<string>();
+            emails.Add(tbxEmailAdres.Text.ToUpper());
+
+            for (int i = 0; i < aantalPersonen - 1; i++)
+            {
+                string email = tbxEmails[i].Text;
+                if (!IsValidEmail(email) || emails.Contains(email.ToUpper()))
+                {
+                    lblError.Text = "Een email voor een lid is onjuist!";
+                    lblError.Visible = true;
+                    return;
+                }
+                else
+                {
+                    emails.Add(email);
+                }
+            }
+
+            List<Plek> plekken  = Session["Plekken"] as List<Plek>;
+
+             foreach (Plek plek in plekken)
+            {
+                if (plek.Nummer == Convert.ToInt32(cbxPlaatsnummer.SelectedValue.ToString()))
+                {
+                    PlaatsReserveringsSysteem.ReserveerPlek(plek, Session["SelectedEvent"] as Event, cbxDatumVan.SelectedIndex, cbxDatumTot.SelectedIndex, tbxVoornaam.Text, tbxAchternaam.Text,
+                                                            Convert.ToInt32(tbxTelefoonnummer.Text), tbxWoonplaats.Text, tbxStraatnaam.Text, tbxHuisnummer.Text, tbxEmailAdres.Text, tbxBankrekeningnummer.Text,
+                                                            aantalPersonen, tbxEmail2.Text, tbxEmail3.Text, tbxEmail4.Text, tbxEmail5.Text, tbxEmail6.Text, tbxEmail7.Text, tbxEmail8.Text);
+                    break;
+                }
+            }
+
+            
+        }
+
+        /// <summary>
+        /// http://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         protected void cbxDatumTot_SelectedIndexChanged(object sender, EventArgs e)
