@@ -1139,5 +1139,79 @@ namespace Proftaak_S24B_ASP
         #endregion        
 		
 		#endregion
+
+        internal bool BestaatPersoon(string bankrekeningnummer)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) AS AANTAL FROM PERSOON WHERE BANKNR = :BANKNR";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":BANKNR", bankrekeningnummer);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return (Convert.ToInt32(reader["AANTAL"]) > 0);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        internal bool BestaatAccount(string emailAdres)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) AS AANTAL FROM ACCOUNT WHERE EMAIL = :EMAIL";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":BANKNR", emailAdres);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                return (Convert.ToInt32(reader["AANTAL"]) > 0);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        internal bool VoegPersoonToe(Persoon persoon)
+        {
+                try
+                {
+                    throw new NotImplementedException();
+
+                    string sql = "INSERT INTO PERSOON (VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, STRAAT, HUISNR, WOONPLAATS, BANKNR) VALUES (:VOORNAAM, :TUSSENVOEGSEL, :ACHTERNAAM";
+
+                    OracleCommand command = MaakOracleCommand(sql);
+
+                    command.Parameters.Add(":BANKNR", persoon.BankNR);
+
+                    OracleDataReader reader = VoerQueryUit(command);
+
+                    return (Convert.ToInt32(reader["AANTAL"]) > 0);
+                }
+                catch
+                {
+                    return false;
+                }
+                finally
+                {
+                    verbinding.Close();
+                }
+        }
     }
 }

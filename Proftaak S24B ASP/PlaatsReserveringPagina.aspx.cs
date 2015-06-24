@@ -282,7 +282,7 @@ namespace Proftaak_S24B_ASP
             {
                 if (plek.Nummer == Convert.ToInt32(cbxPlaatsnummer.SelectedValue.ToString()))
                 {
-                    PlaatsReserveringsSysteem.ReserveerPlek(plek, Session["SelectedEvent"] as Event, cbxDatumVan.SelectedIndex, cbxDatumTot.SelectedIndex, tbxVoornaam.Text, tbxAchternaam.Text,
+                    PlaatsReserveringsSysteem.ReserveerPlek(plek, Session["SelectedEvent"] as Event, cbxDatumVan.SelectedIndex, cbxDatumTot.SelectedIndex, tbxVoornaam.Text, tbxTussenvoegsel.Text, tbxAchternaam.Text,
                                                             Convert.ToInt32(tbxTelefoonnummer.Text), tbxWoonplaats.Text, tbxStraatnaam.Text, tbxHuisnummer.Text, tbxEmailAdres.Text, tbxBankrekeningnummer.Text,
                                                             aantalPersonen, tbxEmail2.Text, tbxEmail3.Text, tbxEmail4.Text, tbxEmail5.Text, tbxEmail6.Text, tbxEmail7.Text, tbxEmail8.Text);
                     break;

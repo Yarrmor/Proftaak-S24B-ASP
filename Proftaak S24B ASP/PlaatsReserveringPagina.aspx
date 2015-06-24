@@ -95,6 +95,12 @@
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow runat="server">
+                        <asp:TableCell runat="server">Tussenvoegsel:</asp:TableCell>
+                        <asp:TableCell runat="server">
+                            <asp:TextBox ID="tbxTussenvoegsel" runat="server"></asp:TextBox>
+                     </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server">
                         <asp:TableCell runat="server">Achternaam:</asp:TableCell>
                         <asp:TableCell runat="server">
                             <asp:TextBox ID="tbxAchternaam" runat="server"></asp:TextBox>
