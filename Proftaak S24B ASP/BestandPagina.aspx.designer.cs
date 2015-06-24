@@ -49,33 +49,6 @@ namespace Proftaak_S24B_ASP {
         protected global::System.Web.UI.WebControls.Button btnDownload;
         
         /// <summary>
-        /// lvwBerichten control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvwBerichten;
-        
-        /// <summary>
-        /// lblSelectedBericht control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectedBericht;
-        
-        /// <summary>
-        /// btnUnselect control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUnselect;
-        
-        /// <summary>
         /// btnVerwijder control.
         /// </summary>
         /// <remarks>
@@ -83,6 +56,15 @@ namespace Proftaak_S24B_ASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVerwijder;
+        
+        /// <summary>
+        /// lvwBerichten control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvwBerichten;
         
         /// <summary>
         /// lblErrorMessage control.

@@ -10,10 +10,10 @@ namespace Proftaak_S24B_ASP
     public partial class BestandPagina : System.Web.UI.Page
     {
         private MediaSysteem MS;
+        private int id;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id;
             if(!int.TryParse(Request.QueryString["id"], out id))
             {
                 Response.Redirect("MediaPagina.aspx");
@@ -31,6 +31,23 @@ namespace Proftaak_S24B_ASP
             VulBestandInfo();
 
             VulBerichten();
+
+            Account acc = (Account)Session["IngelogdAccount"];
+            if (acc != null)
+            {
+                if (MS.Bestand.Account.ID == acc.ID)
+                {
+                    btnVerwijder.Visible = true;
+                }
+                else
+                {
+                    btnVerwijder.Visible = false;
+                }
+            }
+            else
+            {
+                btnVerwijder.Visible = false;
+            }
 
             if(Session["ErrorMessage"] != null)
             {
@@ -57,28 +74,13 @@ namespace Proftaak_S24B_ASP
 
         public void VulBerichten()
         {
-            MS.Bestand.VerkrijgBerichten();
+            lvwBerichten.DataSource = MS.Bestand.VerkrijgBerichten();
+            lvwBerichten.DataBind();
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             MS.Bestand.Download();
-        }
-
-        protected void lvwBerichten_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MS.Bericht = MS.Berichten[lvwBerichten.SelectedIndex];
-            lblSelectedBericht.Text = "Bericht: " + MS.Bericht.ID.ToString();
-            btnUnselect.Enabled = true;
-            if(MS.Bericht.Account == (Account)Session["IngelogdAccount"])
-            {
-                btnVerwijder.Enabled = true;
-            }
-            else
-            {
-                btnVerwijder.Enabled = false;
-            }
-            tbxTitel.Text = "RE: " + MS.Bericht.Titel;
         }
 
         protected void btnBericht_Click(object sender, EventArgs e)
@@ -112,21 +114,16 @@ namespace Proftaak_S24B_ASP
             {
                 Session["ErrorMessage"] = "De titel van het bericht kan niet leeg zijn en de inhoud moet minstens 10 tekens lang zijn.";
             }
-            Response.Redirect("Bestand.aspx");
-        }
-
-        protected void btnUnselect_Click(object sender, EventArgs e)
-        {
-            MS.Bericht = null;
-            lblSelectedBericht.Text = "Niks geselecteerd.";
-            btnUnselect.Enabled = false;
-            btnVerwijder.Enabled = false;
+            Response.Redirect("Bestand.aspx?id=" + id.ToString());
         }
 
         protected void btnVerwijder_Click(object sender, EventArgs e)
         {
-            MS.Bericht.Verwijder();
-            Response.Redirect("Bestand.aspx");
+            Account acc = (Account)Session["IngelogdAccount"];
+            if(MS.Bestand.Account.ID == acc.ID)
+            {
+                MS.Bestand.Verwijder();
+            }
         }
     }
 }
