@@ -23,7 +23,7 @@ namespace Proftaak_S24B_ASP
 
         public Account(int id, string gebruikersnaam, string email, bool geactiveerd)
         {
-            this.ID = ID;
+            this.ID = id;
             this.Gebruikersnaam = gebruikersnaam;
             this.Email = email;
             this.Geactiveerd = geactiveerd;
