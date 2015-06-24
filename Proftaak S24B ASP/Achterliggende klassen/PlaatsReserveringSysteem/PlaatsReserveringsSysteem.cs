@@ -79,6 +79,7 @@ namespace Proftaak_S24B_ASP
 
             // maak reservering_polsbandjes
 
+            return false;
         }
     }
 }
