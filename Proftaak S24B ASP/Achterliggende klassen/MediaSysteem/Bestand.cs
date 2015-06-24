@@ -42,7 +42,9 @@ namespace Proftaak_S24B_ASP
 
         public List<Bericht> VerkrijgBerichten()
         {
-            throw new NotImplementedException();            
+            this.dm = new DatabaseManager();
+
+            return this.dm.VerkrijgBerichten(this.ID);
         }
     }
 }

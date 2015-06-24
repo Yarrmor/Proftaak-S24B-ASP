@@ -16,24 +16,51 @@
         <tr>
             <td>
                 <asp:Button ID="btnDownload" runat="server" Text="Download" OnClick="btnDownload_Click" />
-            </td>
-        </tr>
-    </table>
-    <br />
-    <asp:ListView ID ="lvwBerichten" runat="server" OnSelectedIndexChanged="lvwBerichten_SelectedIndexChanged"></asp:ListView>
-    <table>
-        <tr>
-            <td style="width: auto;">
-                 <asp:Label ID="lblSelectedBericht" runat="server" Text="Niks geselecteerd." />
-            </td>
-            <td style="width: 136px;">
-                <asp:Button ID="btnUnselect" runat="server" Text="Deselecteer" Enabled="False" OnClick="btnUnselect_Click" />
-            </td>
-            <td style="width: 110px;">
                 <asp:Button ID="btnVerwijder" runat="server" Text="Verwijder" Enabled="False" OnClick="btnVerwijder_Click" />
             </td>
         </tr>
     </table>
+    <br />
+    <asp:ListView ID ="lvwBerichten" runat="server">
+        <LayoutTemplate>
+            <table>
+                <tr runat="server">
+                    <th>Bericht ID</th>
+                    <th>Account</th>
+                    <th>Reactie Op</th>
+                    <th>Bericht</th>
+                </tr>
+                <tr runat="server" id="itemPlaceholder" />
+            </table>
+            <asp:DataPager runat="server" ID="ContactsDataPager" PageSize="12">
+            <Fields>
+              <asp:NextPreviousPagerField ShowFirstPageButton="true" ShowLastPageButton="true"
+                FirstPageText="|&lt;&lt; " LastPageText=" &gt;&gt;|"
+                NextPageText=" &gt; " PreviousPageText=" &lt; " />
+            </Fields>
+          </asp:DataPager>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <tr runat="server">
+                <td>
+                    <asp:Label ID="lblBerichtID" runat="server" Text='<%#Eval("ID") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="lblAccount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Account.Gebruikersnaam") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="lblQuote" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "HoofdBijdrage.ID") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="lblTitel" runat="server" Text='<%#Eval("Titel") %>' />
+                    <br />
+                    <br />
+                    <asp:Label ID="lblInhoud" runat="server" Text='<%#Eval("Inhoud") %>' />
+                </td>
+            </tr>
+        </ItemTemplate>
+    </asp:ListView>
+    <br />
     <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
     <table>
         <tr>

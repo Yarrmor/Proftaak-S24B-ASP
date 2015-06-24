@@ -627,7 +627,7 @@ namespace Proftaak_S24B_ASP
 
                 command.Parameters.Add(":ID", id);
 
-                OracleDataReader reader = VoerMultiQueryUit(command);
+                OracleDataReader reader = VoerQueryUit(command);
 
                 Bestand bestand = new Bestand(Convert.ToInt32(reader["BI_ID"]),
                                               Convert.ToDateTime(reader["BI_DATUM"]),
@@ -734,6 +734,117 @@ namespace Proftaak_S24B_ASP
                 verbinding.Close();
             }
         }
+
+        public Bericht VerkrijgHoofdBericht(int berichtId)
+        {
+            try
+            {
+                string sql = "SELECT a.ID AS ACCOUNTID, a.GEBRUIKERSNAAM, bi.ID AS BIJDRAGEID, bi.DATUM, b.TITEL, B.INHOUD FROM ACCOUNT a, BERICHT b, BIJDRAGE bi WHERE b.BIJDRAGE_ID = :ID AND bi.ID = b.BIJDRAGE_ID AND bi.ACCOUNT_ID = a.ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", berichtId);
+
+                OracleDataReader reader = VoerQueryUit(command);
+
+                Bericht bericht = new Bericht(Convert.ToInt16(reader["BIJDRAGEID"]),
+                                              Convert.ToDateTime(reader["Datum"]),
+                                              new Account(Convert.ToInt16(reader["ACCOUNTID"]),
+                                                          Convert.ToString(reader["GEBRUIKERSNAAM"])),
+                                              null,
+                                              Convert.ToString(reader["TITEL"]),
+                                              Convert.ToString(reader["INHOUD"]));
+
+                return bericht;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<Bericht> VerkrijgBerichten(int bijdrageId)
+        {
+            try
+            {
+                string sql = "SELECT a.ID AS ACCOUNTID, a.GEBRUIKERSNAAM, b.BIJDRAGE_ID AS BERICHTID, b.TITEL, b.INHOUD, bi.DATUM FROM BIJDRAGE_BERICHT bib, BERICHT b, BIJDRAGE bi, ACCOUNT a WHERE bib.BIJDRAGE_ID = :ID AND bib.BERICHT_ID = b.BIJDRAGE_ID AND b.BIJDRAGE_ID = bi.ID AND bi.ACCOUNT_ID = a.ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", bijdrageId);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Bericht> berichten = new List<Bericht>();
+
+                while (reader.Read())
+                {
+                    Bericht bericht = new Bericht(Convert.ToInt16(reader["BERICHTID"]),
+                                                  Convert.ToDateTime(reader["DATUM"]),
+                                                  new Account(Convert.ToInt16(reader["ACCOUNTID"]),
+                                                              Convert.ToString(reader["GEBRUIKERSNAAM"])),
+                                                  null,
+                                                  Convert.ToString(reader["TITEL"]),
+                                                  Convert.ToString(reader["INHOUD"]));
+                    berichten.Add(bericht);
+                    List<Bericht> subBerichten = VerkrijgSubBerichten(bericht.ID);
+                    foreach (Bericht subBericht in subBerichten)
+                    {
+                        berichten.Add(subBericht);
+                    }
+                }
+
+                return berichten;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                verbinding.Close();
+            }
+        }
+
+        public List<Bericht> VerkrijgSubBerichten(int bijdrageId)
+        {
+            try
+            {
+                string sql = "SELECT a.ID AS ACCOUNTID, a.GEBRUIKERSNAAM, b.BIJDRAGE_ID AS BERICHTID, b.TITEL, b.INHOUD, bi.DATUM FROM BIJDRAGE_BERICHT bib, BERICHT b, BIJDRAGE bi, ACCOUNT a WHERE bib.BIJDRAGE_ID = :ID AND bib.BERICHT_ID = b.BIJDRAGE_ID AND b.BIJDRAGE_ID = bi.ID AND bi.ACCOUNT_ID = a.ID";
+
+                OracleCommand command = MaakOracleCommand(sql);
+
+                command.Parameters.Add(":ID", bijdrageId);
+
+                OracleDataReader reader = VoerMultiQueryUit(command);
+
+                List<Bericht> berichten = new List<Bericht>();
+
+                while (reader.Read())
+                {
+                    Bericht bericht = new Bericht(Convert.ToInt16(reader["BERICHTID"]),
+                                                  Convert.ToDateTime(reader["DATUM"]),
+                                                  new Account(Convert.ToInt16(reader["ACCOUNTID"]),
+                                                              Convert.ToString(reader["GEBRUIKERSNAAM"])),
+                                                  VerkrijgHoofdBericht(bijdrageId),
+                                                  Convert.ToString(reader["TITEL"]),
+                                                  Convert.ToString(reader["INHOUD"]));
+                    berichten.Add(bericht);
+                    List<Bericht> subBerichten = VerkrijgSubBerichten(bericht.ID);
+                    foreach (Bericht subBericht in subBerichten)
+                    {
+                        berichten.Add(subBericht);
+                    }
+                }
+
+                return berichten;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         #endregion
 
         #region Queries/EventBeheer
